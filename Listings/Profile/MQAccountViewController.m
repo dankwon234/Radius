@@ -158,11 +158,6 @@
     }
     
     if (tag==1001){ // Applications
-        if (self.profile.applications.count==0){
-            [self showAlertWithtTitle:@"No Applications" message:@"You have not applied to any jobs."];
-            return;
-        }
-
         MQApplicationsViewController *applicationsVc = [[MQApplicationsViewController alloc] init];
         [self.navigationController pushViewController:applicationsVc animated:YES];
     }

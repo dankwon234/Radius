@@ -82,13 +82,12 @@
         });
         
     }];
-    
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
+//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+//{
+//    
+//}
 
 
 #pragma mark - UITableViewDataSource
@@ -128,10 +127,19 @@
     [self.navigationController pushViewController:listingVc animated:YES];
 }
 
+
 //- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 //{
 //    
 //}
+
+
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
 
 
 

@@ -10,7 +10,6 @@
 #import "MQWebServices.h"
 
 @interface MQApplicationsViewController ()
-@property (strong, nonatomic) NSMutableArray *applications;
 @property (strong, nonatomic) UITableView *applicationsTable;
 @end
 
@@ -20,7 +19,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.applications = [NSMutableArray array];
         
     }
     
@@ -49,6 +47,9 @@
 {
     [super viewDidLoad];
     
+    if (self.profile.applications!=nil)
+        return;
+    
     [self.loadingIndicator startLoading];
     [[MQWebServices sharedInstance] fetchApplications:self.profile completion:^(id result, NSError *error){
         [self.loadingIndicator stopLoading];
@@ -68,10 +69,17 @@
         }
         
         NSArray *a = results[@"applications"];
+        self.profile.applications = [NSMutableArray array];
         for (int i=0; i<a.count; i++)
-            [self.applications addObject:[MQApplication applicationWithInfo:a[i]]];
+            [self.profile.applications addObject:[MQApplication applicationWithInfo:a[i]]];
         
-        [self.applicationsTable reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (self.profile.applications.count==0)
+                [self showAlertWithtTitle:@"No Applications" message:@"You have not applied to any jobs."];
+            else
+                [self.applicationsTable reloadData];
+        });
+        
     }];
     
 }
@@ -85,7 +93,7 @@
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.applications.count;
+    return self.profile.applications.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -95,7 +103,7 @@
     if (cell==nil)
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
     
-    MQApplication *application = (MQApplication *)self.applications[indexPath.row];
+    MQApplication *application = (MQApplication *)self.profile.applications[indexPath.row];
     cell.textLabel.text = application.listing.title;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@", [application.listing.city capitalizedString], [application.listing.state uppercaseString]];
     

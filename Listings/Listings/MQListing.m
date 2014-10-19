@@ -22,6 +22,8 @@
 @synthesize timestamp;
 @synthesize applications;
 @synthesize formattedDate;
+@synthesize icon;
+@synthesize iconData;
 
 // these will evenutally come from the profile that created the listing:
 @synthesize state;
@@ -42,6 +44,7 @@
         self.phone = @"none";
         self.email = @"none";
         self.venue = @"none";
+        self.icon = @"none";
         self.imageData = nil;
     }
     
@@ -80,7 +83,10 @@
         
         if ([key isEqualToString:@"image"])
             self.image = [info objectForKey:key];
-        
+
+        if ([key isEqualToString:@"icon"])
+            self.icon = [info objectForKey:key];
+
         if ([key isEqualToString:@"applications"]){
             self.applications = [info objectForKey:key];
         }
@@ -121,12 +127,30 @@
         }
         
     }];
+}
+
+- (void)fetchIcon
+{
+    if ([self.icon isEqualToString:@"none"]) // no image, ignore
+        return;
+    
+    [[MQWebServices sharedInstance] fetchImage:self.icon completionBlock:^(id result, NSError *error){
+        if (error){
+            
+        }
+        else {
+            UIImage *img = (UIImage *)result;
+            self.iconData = img;
+        }
+        
+    }];
     
 }
 
+
 - (NSDictionary *)parametersDictionary
 {
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"id":self.uniqueId, @"profile":self.profile, @"title":self.title, @"summary":self.summary, @"city":self.city, @"image":self.image, @"venue":self.venue, @"state":self.state, @"phone":self.phone, @"email":self.email, @"applications":self.applications}];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"id":self.uniqueId, @"profile":self.profile, @"title":self.title, @"summary":self.summary, @"city":self.city, @"image":self.image, @"venue":self.venue, @"state":self.state, @"phone":self.phone, @"email":self.email, @"applications":self.applications, @"icon":self.icon}];
     
     return params;
 }

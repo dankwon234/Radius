@@ -20,6 +20,8 @@
 @property (copy, nonatomic) NSString *city;
 @property (copy, nonatomic) NSString *image;
 @property (strong, nonatomic) UIImage *imageData;
+@property (copy, nonatomic) NSString *icon; // image id of venue that posted the listing
+@property (strong, nonatomic) UIImage *iconData;
 
 // these will evenutally come from the profile that created the listing:
 @property (copy, nonatomic) NSString *venue;
@@ -29,6 +31,7 @@
 @property (copy, nonatomic) NSArray *applications;
 - (void)populate:(NSDictionary *)info;
 - (void)fetchImage;
+- (void)fetchIcon;
 - (NSDictionary *)parametersDictionary;
 - (NSString *)jsonRepresentation;
 @end

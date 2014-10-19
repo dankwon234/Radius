@@ -53,7 +53,7 @@
         self.video = @"none";
         self.schools = [NSMutableArray array];
         self.skills = [NSMutableArray array];
-        self.applications = [NSMutableArray array];
+        self.applications = nil;
         self.populated = NO;
 
         [self populateFromCache];
@@ -97,7 +97,7 @@
     self.video = [profileInfo objectForKey:@"video"];
     self.skills = [NSMutableArray arrayWithArray:[profileInfo objectForKey:@"skills"]];
     self.schools = [NSMutableArray arrayWithArray:[profileInfo objectForKey:@"schools"]];
-    self.applications = [NSMutableArray arrayWithArray:[profileInfo objectForKey:@"applications"]];
+//    self.applications = [NSMutableArray arrayWithArray:[profileInfo objectForKey:@"applications"]];
     self.populated = YES;
     
     [self cacheProfile];
@@ -168,9 +168,13 @@
 
 - (NSDictionary *)parametersDictionary
 {
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"id":self.uniqueId, @"image":self.image, @"city":self.city, @"state":self.state, @"firstName":self.firstName, @"lastName":self.lastName, @"email":self.email, @"facebookId":self.facebookId, @"twitterId":self.twitterId, @"linkedinId":self.linkedinId, @"schools":self.schools, @"bio":self.bio, @"phone":self.phone, @"skills":self.skills, @"applications":self.applications}];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"id":self.uniqueId, @"image":self.image, @"city":self.city, @"state":self.state, @"firstName":self.firstName, @"lastName":self.lastName, @"email":self.email, @"facebookId":self.facebookId, @"twitterId":self.twitterId, @"linkedinId":self.linkedinId, @"schools":self.schools, @"bio":self.bio, @"phone":self.phone, @"skills":self.skills}];
     
     // for properties that were added later, have to check for nil first
+    if (self.applications != nil)
+        params[@"applications"] = self.applications;
+    
+    
     if (self.resume != nil)
         params[@"resume"] = self.resume;
 

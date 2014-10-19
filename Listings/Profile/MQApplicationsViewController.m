@@ -7,6 +7,7 @@
 //
 
 #import "MQApplicationsViewController.h"
+#import "MQListingViewController.h"
 #import "MQWebServices.h"
 
 @interface MQApplicationsViewController ()
@@ -107,8 +108,30 @@
     cell.textLabel.text = application.listing.title;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@", [application.listing.city capitalizedString], [application.listing.state uppercaseString]];
     
+    if ([application.listing.image isEqualToString:@"none"])
+        return cell;
+    
+    if (application.listing.imageData)
+        return cell;
+    
+    [application.listing fetchImage];
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MQApplication *application = self.profile.applications[indexPath.row];
+    MQListingViewController *listingVc = [[MQListingViewController alloc] init];
+    listingVc.listing = application.listing;
+    
+    listingVc.view.backgroundColor = [UIColor whiteColor];
+    [self.navigationController pushViewController:listingVc animated:YES];
+}
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    
+//}
 
 
 

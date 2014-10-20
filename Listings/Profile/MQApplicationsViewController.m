@@ -77,8 +77,17 @@
         
         NSArray *a = results[@"applications"];
         self.profile.applications = [NSMutableArray array];
-        for (int i=0; i<a.count; i++)
-            [self.profile.applications addObject:[MQApplication applicationWithInfo:a[i]]];
+        for (int i=0; i<a.count; i++){
+            MQApplication *application = [MQApplication applicationWithInfo:a[i]];
+            [self.profile.applications addObject:application];
+            if ([application.listing.image isEqualToString:@"none"])
+                continue;
+            
+            if (application.listing.imageData)
+                continue;
+            
+            [application.listing fetchImage];
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (self.profile.applications.count==0)
@@ -90,10 +99,30 @@
     }];
 }
 
-//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-//{
-//    
-//}
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"iconData"]==NO)
+        return;
+    
+    MQListing *listing = (MQListing *)object;
+    [listing removeObserver:self forKeyPath:@"iconData"];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.applicationsTable reloadData];
+        
+//      //this is smoother than a conventional reload. it doesn't stutter the UI:
+//        int index = (int)[self.listings indexOfObject:listing];
+//        MQListingCell *cell = (MQListingCell *)[self.listingsTable cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+//        
+//        if (!cell)
+//            return;
+//        
+//        cell.icon.image = listing.iconData;
+    });
+    
+    
+}
+
 
 
 #pragma mark - UITableViewDataSource
@@ -113,13 +142,6 @@
     cell.textLabel.text = application.listing.title;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@", [application.listing.city capitalizedString], [application.listing.state uppercaseString]];
     
-    if ([application.listing.image isEqualToString:@"none"])
-        return cell;
-    
-    if (application.listing.imageData)
-        return cell;
-    
-    [application.listing fetchImage];
     return cell;
 }
 

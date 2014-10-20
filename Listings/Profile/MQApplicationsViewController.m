@@ -142,6 +142,18 @@
     cell.textLabel.text = application.listing.title;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@", [application.listing.city capitalizedString], [application.listing.state uppercaseString]];
     
+    MQListing *listing = application.listing;
+    if ([listing.icon isEqualToString:@"none"])
+        return cell;
+    
+    if (listing.iconData){
+        cell.imageView.image = listing.iconData;
+        return cell;
+    }
+    
+    [listing addObserver:self forKeyPath:@"iconData" options:0 context:nil];
+    [listing fetchIcon];
+
     return cell;
 }
 

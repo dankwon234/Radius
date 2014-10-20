@@ -64,14 +64,6 @@
 		5C911C5119EBAED8002AD978 /* MQSelectTwitterAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C911C4D19EBAED8002AD978 /* MQSelectTwitterAccountViewController.m */; };
 		5C911C5219EBAED8002AD978 /* MQSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C911C4F19EBAED8002AD978 /* MQSignupViewController.m */; };
 		5C9ED4D219F35C1C007597BD /* MQApplicationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9ED4D119F35C1C007597BD /* MQApplicationsViewController.m */; };
-		5CC14B5819BC2BFC00836BF7 /* ap.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC14B5019BC2BFC00836BF7 /* ap.png */; };
-		5CC14B5919BC2BFC00836BF7 /* bluemoon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC14B5119BC2BFC00836BF7 /* bluemoon.png */; };
-		5CC14B5A19BC2BFC00836BF7 /* chipotle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC14B5219BC2BFC00836BF7 /* chipotle.png */; };
-		5CC14B5B19BC2BFC00836BF7 /* cvs.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC14B5319BC2BFC00836BF7 /* cvs.png */; };
-		5CC14B5C19BC2BFC00836BF7 /* panera.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC14B5419BC2BFC00836BF7 /* panera.png */; };
-		5CC14B5D19BC2BFC00836BF7 /* starbucks.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC14B5519BC2BFC00836BF7 /* starbucks.png */; };
-		5CC14B5E19BC2BFC00836BF7 /* wasabi.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC14B5619BC2BFC00836BF7 /* wasabi.png */; };
-		5CC14B5F19BC2BFC00836BF7 /* wholefoods.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC14B5719BC2BFC00836BF7 /* wholefoods.png */; };
 		5CC6E10419EF4DB600373C9A /* MQLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6E10319EF4DB600373C9A /* MQLoginViewController.m */; };
 		5CDD2A8319C3B1DE003B3169 /* MQProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDD2A8119C3B1DE003B3169 /* MQProfile.m */; };
 		5CE03D7819C6385F00BE577D /* iconLocation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE03D7719C6385F00BE577D /* iconLocation@2x.png */; };
@@ -201,14 +193,6 @@
 		5C911C4F19EBAED8002AD978 /* MQSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQSignupViewController.m; sourceTree = "<group>"; };
 		5C9ED4D019F35C1C007597BD /* MQApplicationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQApplicationsViewController.h; sourceTree = "<group>"; };
 		5C9ED4D119F35C1C007597BD /* MQApplicationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQApplicationsViewController.m; sourceTree = "<group>"; };
-		5CC14B5019BC2BFC00836BF7 /* ap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ap.png; sourceTree = "<group>"; };
-		5CC14B5119BC2BFC00836BF7 /* bluemoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluemoon.png; sourceTree = "<group>"; };
-		5CC14B5219BC2BFC00836BF7 /* chipotle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chipotle.png; sourceTree = "<group>"; };
-		5CC14B5319BC2BFC00836BF7 /* cvs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cvs.png; sourceTree = "<group>"; };
-		5CC14B5419BC2BFC00836BF7 /* panera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = panera.png; sourceTree = "<group>"; };
-		5CC14B5519BC2BFC00836BF7 /* starbucks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starbucks.png; sourceTree = "<group>"; };
-		5CC14B5619BC2BFC00836BF7 /* wasabi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wasabi.png; sourceTree = "<group>"; };
-		5CC14B5719BC2BFC00836BF7 /* wholefoods.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wholefoods.png; sourceTree = "<group>"; };
 		5CC6E10219EF4DB600373C9A /* MQLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQLoginViewController.h; sourceTree = "<group>"; };
 		5CC6E10319EF4DB600373C9A /* MQLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQLoginViewController.m; sourceTree = "<group>"; };
 		5CDD2A8119C3B1DE003B3169 /* MQProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQProfile.m; sourceTree = "<group>"; };
@@ -423,7 +407,6 @@
 			isa = PBXGroup;
 			children = (
 				5CBAED4E19CF48A600813FC5 /* launch */,
-				5CC14B4F19BC2BFC00836BF7 /* samples */,
 				5C0C93C919BEB4B60011086B /* shadow@2x.png */,
 				5C0A674619ECE520007BF8BA /* bgBlurry1@2x.png */,
 				5CF8482819F1C13500DCCD7F /* bgLegs@2x.png */,
@@ -537,21 +520,6 @@
 			path = launch;
 			sourceTree = "<group>";
 		};
-		5CC14B4F19BC2BFC00836BF7 /* samples */ = {
-			isa = PBXGroup;
-			children = (
-				5CC14B5019BC2BFC00836BF7 /* ap.png */,
-				5CC14B5119BC2BFC00836BF7 /* bluemoon.png */,
-				5CC14B5219BC2BFC00836BF7 /* chipotle.png */,
-				5CC14B5319BC2BFC00836BF7 /* cvs.png */,
-				5CC14B5419BC2BFC00836BF7 /* panera.png */,
-				5CC14B5519BC2BFC00836BF7 /* starbucks.png */,
-				5CC14B5619BC2BFC00836BF7 /* wasabi.png */,
-				5CC14B5719BC2BFC00836BF7 /* wholefoods.png */,
-			);
-			path = samples;
-			sourceTree = "<group>";
-		};
 		5CF7408119C3A1AF001A0AF9 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -660,23 +628,17 @@
 				5C101A1519E8A0B50046F7F1 /* locationPin@2x.png in Resources */,
 				5CF8483319F2356100DCCD7F /* iconCheckMark@2x.png in Resources */,
 				5C101A1119E8998B0046F7F1 /* logo@2x.png in Resources */,
-				5CC14B5A19BC2BFC00836BF7 /* chipotle.png in Resources */,
 				5C21E6BF19CE5BB100AC1324 /* lorem.txt in Resources */,
-				5CC14B5D19BC2BFC00836BF7 /* starbucks.png in Resources */,
 				5C573F7D19BAA86500677DDF /* InfoPlist.strings in Resources */,
-				5CC14B5819BC2BFC00836BF7 /* ap.png in Resources */,
 				5CF8483119F2307900DCCD7F /* iconProfile@2x.png in Resources */,
 				5C1636E819EB29AF00BACC3E /* 01-refresh@2x.png in Resources */,
 				5CF8482B19F2283F00DCCD7F /* bgLegsBlue@2x.png in Resources */,
-				5CC14B5C19BC2BFC00836BF7 /* panera.png in Resources */,
-				5CC14B5F19BC2BFC00836BF7 /* wholefoods.png in Resources */,
 				5C101A0919E891EF0046F7F1 /* header@2x.png in Resources */,
 				5C101A0F19E8975D0046F7F1 /* icon80.png in Resources */,
 				5C101A0E19E8975D0046F7F1 /* icon58.png in Resources */,
 				5C0A674719ECE520007BF8BA /* bgBlurry1@2x.png in Resources */,
 				5C1636E719EB29AF00BACC3E /* 01-refresh.png in Resources */,
 				5CF8482919F1C13500DCCD7F /* bgLegs@2x.png in Resources */,
-				5CC14B5919BC2BFC00836BF7 /* bluemoon.png in Resources */,
 				5CE03D7A19C63B7C00BE577D /* iconCheck@2x.png in Resources */,
 				5C18053219CDED1300E171E6 /* backArrow@2x.png in Resources */,
 				5C0C93CA19BEB4B60011086B /* shadow@2x.png in Resources */,
@@ -685,8 +647,6 @@
 				5CECD4DD19D8887B009A912A /* bgGrandCentral@2x.png in Resources */,
 				5C573F8519BAA86500677DDF /* Images.xcassets in Resources */,
 				5C101A0D19E8975D0046F7F1 /* icon120.png in Resources */,
-				5CC14B5E19BC2BFC00836BF7 /* wasabi.png in Resources */,
-				5CC14B5B19BC2BFC00836BF7 /* cvs.png in Resources */,
 				5CE03D7C19C63E0B00BE577D /* iconCalendar@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -97,14 +97,10 @@
     lblTitle.layer.masksToBounds = YES;
     [self.theScrollview addSubview:lblTitle];
     
-    NSString *sampleText = [[NSString alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"lorem" ofType:@"txt"]
-                                                           encoding:NSUTF8StringEncoding
-                                                              error:nil];
-    
-    CGRect boudingRect = [sampleText boundingRectWithSize:CGSizeMake(width, 450.0f)
-                                                  options:NSStringDrawingUsesLineFragmentOrigin
-                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.0f]}
-                                                  context:NULL];
+    CGRect boudingRect = [self.listing.summary boundingRectWithSize:CGSizeMake(width, 450.0f)
+                                                            options:NSStringDrawingUsesLineFragmentOrigin
+                                                         attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.0f]}
+                                                            context:NULL];
 
     
     y = 2*padding+lblTitle.frame.size.height+8.0f;
@@ -112,7 +108,7 @@
     lblDescription.textColor = [UIColor darkGrayColor];
     lblDescription.font = [UIFont systemFontOfSize:14.0f];
     lblDescription.numberOfLines = 0;
-    lblDescription.text = sampleText;
+    lblDescription.text = self.listing.summary;
     lblDescription.lineBreakMode = NSLineBreakByWordWrapping;
     [self.theScrollview addSubview:lblDescription];
     

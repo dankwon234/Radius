@@ -44,6 +44,12 @@
     self.view = view;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.applicationsTable deselectRowAtIndexPath:[self.applicationsTable indexPathForSelectedRow] animated:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

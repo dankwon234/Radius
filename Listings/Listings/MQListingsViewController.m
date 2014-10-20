@@ -14,7 +14,6 @@
 #import "MQListingViewController.h"
 #import "MQSignupViewController.h"
 #import "MQLoginViewController.h"
-//#import "MQProfileViewController.h"
 #import "MQAccountViewController.h"
 #import "MQListing.h"
 
@@ -22,7 +21,6 @@
 @interface MQListingsViewController ()
 @property (strong, nonatomic) UICollectionView *listingsTable;
 @property (strong, nonatomic) NSMutableArray *listings;
-@property (strong, nonatomic) NSArray *sampleImages;
 @property (strong, nonatomic) UILabel *lblLocation;
 @property (strong, nonatomic) UIButton *btnProfile;
 @property (strong, nonatomic) UIButton *btnLocation;
@@ -48,9 +46,6 @@ static NSString *cellId = @"cellId";
         UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, imgHeader.size.width, imgHeader.size.height)];
         header.backgroundColor = [UIColor colorWithPatternImage:imgHeader];
         self.navigationItem.titleView = header;
-        
-        self.sampleImages = @[[UIImage imageNamed:@"starbucks.png"], [UIImage imageNamed:@"bluemoon.png"], [UIImage imageNamed:@"chipotle.png"], [UIImage imageNamed:@"panera.png"], [UIImage imageNamed:@"wasabi.png"]];
-        
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(searchListings)
@@ -81,7 +76,6 @@ static NSString *cellId = @"cellId";
     self.btnProfile.layer.borderWidth = 2.0f;
     self.btnProfile.layer.borderColor = [[UIColor whiteColor] CGColor];
     self.btnProfile.layer.masksToBounds = YES;
-//    [self.btnProfile addTarget:self action:@selector(apply:) forControlEvents:UIControlEventTouchUpInside];
     [self.btnProfile addTarget:self action:@selector(btnProfileAction:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:self.btnProfile];
     y += dimen-26.0f;
@@ -165,25 +159,22 @@ static NSString *cellId = @"cellId";
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:@"imageData"]==NO)
+    if ([keyPath isEqualToString:@"iconData"]==NO)
         return;
     
-    if (self.profile.imageData==NO)
-        return;
-    
-    self.lblLogin.alpha = 0.0f;
-    [self.btnProfile setBackgroundImage:self.profile.imageData forState:UIControlStateNormal];
+    MQListing *listing = (MQListing *)object;
+    [listing removeObserver:self forKeyPath:@"iconData"];
     
     // this is smoother than a conventional reload. it doesn't stutter the UI:
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        int index = (int)[self.listings indexOfObject:listing];
-//        MQListingCell *cell = (MQListingCell *)[self.listingsTable cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-//        if (!cell){
-//            return;
-//        }
-//        
-//        cell.listingImage.image = listing.imageData;
-//    });
+    dispatch_async(dispatch_get_main_queue(), ^{
+        int index = (int)[self.listings indexOfObject:listing];
+        MQListingCell *cell = (MQListingCell *)[self.listingsTable cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+        
+        if (!cell)
+            return;
+        
+        cell.icon.image = listing.iconData;
+    });
     
 
 }
@@ -211,6 +202,8 @@ static NSString *cellId = @"cellId";
             MQListing *listing = [[MQListing alloc] init];
             [listing populate:list[i]];
             [self.listings addObject:listing];
+            if ([listing.image isEqualToString:@"none"]==NO && listing.imageData==nil)
+                [listing fetchImage];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -422,20 +415,24 @@ static NSString *cellId = @"cellId";
     MQListingCell *cell = (MQListingCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
     
     MQListing *listing = (MQListing *)self.listings[indexPath.row];
-    cell.icon.image = self.sampleImages[indexPath.row%self.sampleImages.count];
     cell.lblTitle.text = listing.title;
     cell.lblVenue.text = listing.venue;
     cell.lblDate.text = listing.formattedDate;
     cell.lblLocation.text = [NSString stringWithFormat:@"%@, %@", [listing.city capitalizedString], [listing.state uppercaseString]];
     cell.tag = indexPath.row+1000;
     
-    if ([listing.image isEqualToString:@"none"])
+    if ([listing.icon isEqualToString:@"none"])
         return cell;
-    
-    if (listing.imageData)
+
+    if (listing.iconData){
+        cell.icon.image = listing.iconData;
         return cell;
+    }
     
-    [listing fetchImage];
+    [listing addObserver:self forKeyPath:@"iconData" options:0 context:nil];
+    [listing fetchIcon];
+
+    
     return cell;
 }
 

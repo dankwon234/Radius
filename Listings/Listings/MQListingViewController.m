@@ -28,7 +28,7 @@
 @implementation MQListingViewController
 @synthesize listing;
 
-#define kTopInset 60.0f
+#define kTopInset 80.0f
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

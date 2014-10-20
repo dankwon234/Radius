@@ -60,7 +60,7 @@ static NSString *cellId = @"cellId";
 
 - (void)loadView
 {
-    UIView *view = [self baseView:NO];
+    UIView *view = [self baseView:YES];
     view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgSidewalk.png"]];
     CGRect frame = view.frame;
     
@@ -378,11 +378,11 @@ static NSString *cellId = @"cellId";
 
 - (void)btnProfileAction:(UIButton *)btn
 {
-//    NSLog(@"btnShareAction:");
+    NSLog(@"btnProfileAction: ");
     if (self.profile.populated){
         MQAccountViewController *accountVc = [[MQAccountViewController alloc] init];
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:accountVc];
-        [self presentViewController:navController animated:YES completion:^{
+        [self.navigationController presentViewController:navController animated:YES completion:^{
             
         }];
         
@@ -510,7 +510,6 @@ static NSString *cellId = @"cellId";
     NSLog(@"actionSheet clickedButtonAtIndex: %d", (int)buttonIndex);
     
     if (buttonIndex==0) { // sign up
-        
         MQSignupViewController *signupVc = [[MQSignupViewController alloc] init];
         UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:signupVc];
         [self presentViewController:navCtr animated:YES completion:^{

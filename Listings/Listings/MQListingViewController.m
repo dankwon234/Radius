@@ -44,7 +44,7 @@
 
 - (void)loadView
 {
-    UIView *view = [self baseView:NO];
+    UIView *view = [self baseView:YES];
     view.backgroundColor = kBaseGray;
     CGRect frame = view.frame;
     
@@ -69,13 +69,7 @@
     self.blurryBackground.alpha = 1.0f;
     [view addSubview:self.blurryBackground];
 
-    UIView *topBar = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 64.0f)];
-    topBar.backgroundColor = [UIColor whiteColor];
-    topBar.alpha = 0.65f;
-    [view addSubview:topBar];
-    
-    
-    CGFloat y = 130.0f;
+    CGFloat y = 90.0f;
     self.theScrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0f, y, frame.size.width, frame.size.height-y-20.0f)];
     self.theScrollview.backgroundColor = [UIColor clearColor];
     self.theScrollview.showsVerticalScrollIndicator = NO;

@@ -37,10 +37,10 @@
     if (self) {
         self.detailIcons = [NSMutableArray array];
         
-        
     }
     return self;
 }
+
 
 - (void)loadView
 {
@@ -48,19 +48,19 @@
     view.backgroundColor = kBaseGray;
     CGRect frame = view.frame;
     
-    double aspectRatio = frame.size.width/frame.size.height;
-    
     UIImage *listingImage = self.listing.imageData;
     CGFloat h = listingImage.size.height;
+    double aspectRatio = frame.size.width/frame.size.height;
     CGFloat w = aspectRatio * h;
     
     
     UIImage *cropped = [self.listing.imageData imageByCropping:CGRectMake(0.5f*(listingImage.size.width-w), 0.0f, w, h)];
+
     
     self.background = [[UIImageView alloc] initWithImage:cropped];
     self.background.backgroundColor = view.backgroundColor;
     self.background.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight);
-    self.background.frame = CGRectMake(0.0f, 0.0f, 1.07f*frame.size.width, 1.07f*frame.size.height);
+    self.background.frame = CGRectMake(0.0f, 0.0f, 1.12f*frame.size.width, 1.12f*frame.size.height);
     [view addSubview:self.background];
     
     self.blurryBackground = [[UIImageView alloc] initWithImage:[self.listing.imageData applyBlurOnImage:1.0f]];
@@ -69,12 +69,12 @@
     self.blurryBackground.alpha = 1.0f;
     [view addSubview:self.blurryBackground];
 
-    CGFloat y = 90.0f;
-    self.theScrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0f, y, frame.size.width, frame.size.height-y-20.0f)];
+    CGFloat y = 110.0f;
+    self.theScrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0f, y, frame.size.width, frame.size.height-y)];
+    self.theScrollview.autoresizingMask = (UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin);
     self.theScrollview.backgroundColor = [UIColor clearColor];
     self.theScrollview.showsVerticalScrollIndicator = NO;
     self.theScrollview.contentInset = UIEdgeInsetsMake(kTopInset, 0.0f, 0.0f, 0.0f);
-    self.theScrollview.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     [self.theScrollview addObserver:self forKeyPath:@"contentOffset" options:0 context:nil];
     
     UIView *base = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 1000.0f)];
@@ -91,7 +91,7 @@
     lblTitle.backgroundColor = [UIColor colorFromHexString:@"#95ad8a"];
     lblTitle.textColor = [UIColor whiteColor];
     lblTitle.textAlignment = NSTextAlignmentCenter;
-    lblTitle.text = @"Shift Supervisor";
+    lblTitle.text = self.listing.title;
     lblTitle.font = [UIFont fontWithName:@"Heiti SC" size:18.0f];
     lblTitle.layer.cornerRadius = 4.0f;
     lblTitle.layer.masksToBounds = YES;
@@ -142,12 +142,12 @@
     y += btnApply.frame.size.height;
     
     
-    self.theScrollview.contentSize = CGSizeMake(0.0f, y+padding);
+    self.theScrollview.contentSize = CGSizeMake(0.0f, y+padding+20.0f);
     [view addSubview:self.theScrollview];
     
     
     
-    self.venueIcon = [[UIImageView alloc] initWithFrame:CGRectMake(20.0f, -70.0f, 60.0f, 60.0f)];
+    self.venueIcon = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, -70.0f, 60.0f, 60.0f)];
     self.venueIcon.center = CGPointMake(0.5f*frame.size.width, self.venueIcon.center.y);
     self.venueIcon.layer.borderColor = [[UIColor whiteColor] CGColor];
     self.venueIcon.layer.borderWidth = 2.0f;
@@ -238,6 +238,13 @@
         self.blurryBackground.alpha = blurFactor;
     }
 }
+
+- (BOOL)automaticallyAdjustsScrollViewInsets
+{
+    return NO;
+}
+
+
 
 - (void)apply:(UIButton *)btn
 {

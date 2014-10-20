@@ -158,7 +158,8 @@
     self.venueIcon.layer.borderColor = [[UIColor whiteColor] CGColor];
     self.venueIcon.layer.borderWidth = 2.0f;
     self.venueIcon.layer.cornerRadius = 0.5f*self.venueIcon.frame.size.width;
-    self.venueIcon.image = [UIImage imageNamed:@"starbucks.png"];
+    self.venueIcon.layer.masksToBounds = YES;
+    self.venueIcon.image = (self.listing.iconData) ? self.listing.iconData : [UIImage imageNamed:@"logo.png"];
     [view addSubview:self.venueIcon];
 
     

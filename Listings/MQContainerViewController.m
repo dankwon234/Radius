@@ -32,21 +32,8 @@
     UIView *view = [self baseView:NO];
     view.backgroundColor = [UIColor whiteColor];
     
-//    self.postsVc = [[PQPostsViewController alloc] init];
-//    
-//    self.navCtr = [[UINavigationController alloc] initWithRootViewController:self.postsVc];
-//    self.navCtr.navigationBar.barTintColor = kGreen;
-//    self.navCtr.navigationBar.tintColor = [UIColor whiteColor];
-//    [self.navCtr setNavigationBarHidden:YES animated:NO];
-//    
-//    [self addChildViewController:self.navCtr];
-//    [self.navCtr willMoveToParentViewController:self];
-//    [view addSubview:self.navCtr.view];
-    
     MQListingsViewController *listingsVc = [[MQListingsViewController alloc] init];
     UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:listingsVc];
-//    navCtr.navigationBarHidden = YES;
-    
     
     [self addChildViewController:navCtr];
     [navCtr willMoveToParentViewController:self];

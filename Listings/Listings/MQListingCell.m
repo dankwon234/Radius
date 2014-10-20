@@ -40,6 +40,7 @@
         self.icon.layer.masksToBounds = YES;
         self.icon.layer.borderColor = [[UIColor whiteColor] CGColor];
         self.icon.layer.borderWidth = 1.0f;
+        self.icon.image = [UIImage imageNamed:@"logo.png"];
         self.icon.backgroundColor = [UIColor whiteColor];
         [self.base addSubview:self.icon];
 

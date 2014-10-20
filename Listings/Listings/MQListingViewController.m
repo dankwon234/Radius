@@ -191,7 +191,7 @@
           initialSpringVelocity:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         self.venueIcon.center = CGPointMake(self.venueIcon.center.x, 215.0f);
+                         self.venueIcon.center = CGPointMake(self.venueIcon.center.x, self.theScrollview.frame.origin.y);
 
                      }
                      completion:NULL];
@@ -221,14 +221,6 @@
             self.blurryBackground.frame = frame;
             self.background.frame = frame;
             
-            CGFloat y = 215.0f-distance;
-            if (y <= 116.0f)
-                return;
-            
-            
-            CGPoint center = self.venueIcon.center;
-            center.y = 215.0f-distance;
-            self.venueIcon.center = center;
         }
 
 

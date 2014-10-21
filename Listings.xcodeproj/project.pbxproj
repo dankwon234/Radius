@@ -60,6 +60,7 @@
 		5C5ADB3219C5623B00B5E29D /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5ADB2419C5623B00B5E29D /* AFURLSessionManager.m */; };
 		5C5ADB3319C5623B00B5E29D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5ADB2719C5623B00B5E29D /* Reachability.m */; };
 		5C5ADB3419C5623B00B5E29D /* SignalCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5ADB2919C5623B00B5E29D /* SignalCheck.m */; };
+		5C736A2D19F5EA5900F7D2CB /* iconSave@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C736A2C19F5EA5900F7D2CB /* iconSave@2x.png */; };
 		5C911C5019EBAED8002AD978 /* MQSelectNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C911C4B19EBAED8002AD978 /* MQSelectNetworkViewController.m */; };
 		5C911C5119EBAED8002AD978 /* MQSelectTwitterAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C911C4D19EBAED8002AD978 /* MQSelectTwitterAccountViewController.m */; };
 		5C911C5219EBAED8002AD978 /* MQSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C911C4F19EBAED8002AD978 /* MQSignupViewController.m */; };
@@ -185,6 +186,7 @@
 		5C5ADB2719C5623B00B5E29D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		5C5ADB2819C5623B00B5E29D /* SignalCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignalCheck.h; sourceTree = "<group>"; };
 		5C5ADB2919C5623B00B5E29D /* SignalCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignalCheck.m; sourceTree = "<group>"; };
+		5C736A2C19F5EA5900F7D2CB /* iconSave@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconSave@2x.png"; sourceTree = "<group>"; };
 		5C911C4A19EBAED8002AD978 /* MQSelectNetworkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQSelectNetworkViewController.h; sourceTree = "<group>"; };
 		5C911C4B19EBAED8002AD978 /* MQSelectNetworkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQSelectNetworkViewController.m; sourceTree = "<group>"; };
 		5C911C4C19EBAED8002AD978 /* MQSelectTwitterAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQSelectTwitterAccountViewController.h; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 				5C101A0819E891EF0046F7F1 /* header@2x.png */,
 				5CECD4DC19D8887B009A912A /* bgGrandCentral@2x.png */,
 				5C18053119CDED1300E171E6 /* backArrow@2x.png */,
+				5C736A2C19F5EA5900F7D2CB /* iconSave@2x.png */,
 				5CF8483019F2307900DCCD7F /* iconProfile@2x.png */,
 				5CE03D7719C6385F00BE577D /* iconLocation@2x.png */,
 				5C1636D519EB22DC00BACC3E /* iconCheckGreen@2x.png */,
@@ -631,6 +634,7 @@
 				5C21E6BF19CE5BB100AC1324 /* lorem.txt in Resources */,
 				5C573F7D19BAA86500677DDF /* InfoPlist.strings in Resources */,
 				5CF8483119F2307900DCCD7F /* iconProfile@2x.png in Resources */,
+				5C736A2D19F5EA5900F7D2CB /* iconSave@2x.png in Resources */,
 				5C1636E819EB29AF00BACC3E /* 01-refresh@2x.png in Resources */,
 				5CF8482B19F2283F00DCCD7F /* bgLegsBlue@2x.png in Resources */,
 				5C101A0919E891EF0046F7F1 /* header@2x.png in Resources */,

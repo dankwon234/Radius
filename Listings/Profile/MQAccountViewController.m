@@ -42,24 +42,22 @@
     UIFont *titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16.0f];
     UIFont *detailFont = [UIFont fontWithName:@"Heiti SC" size:14.0f];
     
-    NSArray *colors = @[[UIColor redColor], [UIColor lightGrayColor], [UIColor yellowColor]];
-    NSArray *sections = @[@"Profile", @"Applied", @"Saved"];
-    NSArray *details = @[@"Manage your profile details", @"View your job applications", @"View your saved jobs"];
-    NSArray *icons = @[@"iconProfile.png", @"iconCheckMark.png", @"iconSave.png"];
-    
-    for (int i=0; i<3; i++){
+    NSArray *sections = @[@{@"title":@"Profile", @"details":@"Manage your profile details", @"icon":@"iconProfile.png", @"color":[UIColor redColor]}, @{@"title":@"Applied", @"details":@"View your job applications", @"icon":@"iconCheckMark.png", @"color":[UIColor lightGrayColor]}, @{@"title":@"Saved", @"details":@"View your saved jobs", @"icon":@"iconSave.png", @"color":[UIColor yellowColor]}];
+
+    for (int i=0; i<sections.count; i++){
+        NSDictionary *section = sections[i];
         UIView *panel = [[UIView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height, width, height)];
         panel.tag = 1000+i;
         panel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
         [panel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sectionSelected:)]];
         
         UIView *background = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, width, height+1.0f)];
-        background.backgroundColor = colors[i];
+        background.backgroundColor = (UIColor *)section[@"color"];
         background.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
         background.alpha = alpha;
         [panel addSubview:background];
         
-        UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:icons[i]]];
+        UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:section[@"icon"]]];
         icon.center = CGPointMake(0.5f*frame.size.width, 0.25f*panel.frame.size.height);
         [panel addSubview:icon];
         
@@ -68,7 +66,7 @@
         lblTitle.textAlignment = NSTextAlignmentCenter;
         lblTitle.textColor = [UIColor whiteColor];
         lblTitle.font = titleFont;
-        lblTitle.text = sections[i];
+        lblTitle.text = section[@"title"];
         [panel addSubview:lblTitle];
         
         UILabel *lblDetails = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 22.0f)];
@@ -76,7 +74,7 @@
         lblDetails.textAlignment = NSTextAlignmentCenter;
         lblDetails.textColor = [UIColor whiteColor];
         lblDetails.font = detailFont;
-        lblDetails.text = details[i];
+        lblDetails.text = section[@"details"];
         [panel addSubview:lblDetails];
 
         [view addSubview:panel];

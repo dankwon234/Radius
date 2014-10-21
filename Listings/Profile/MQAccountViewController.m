@@ -43,9 +43,9 @@
     UIFont *detailFont = [UIFont fontWithName:@"Heiti SC" size:14.0f];
     
     NSArray *colors = @[[UIColor redColor], [UIColor lightGrayColor], [UIColor yellowColor]];
-    NSArray *sections = @[@"Profile", @"Applied", @"Services"];
-    NSArray *details = @[@"Manage your profile details", @"View your job applications", @"Subsribe to premium services"];
-    NSArray *icons = @[@"iconProfile.png", @"iconCheckMark.png", @"iconProfile.png"];
+    NSArray *sections = @[@"Profile", @"Applied", @"Saved"];
+    NSArray *details = @[@"Manage your profile details", @"View your job applications", @"View your saved jobs"];
+    NSArray *icons = @[@"iconProfile.png", @"iconCheckMark.png", @"iconSave.png"];
     
     for (int i=0; i<3; i++){
         UIView *panel = [[UIView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height, width, height)];

@@ -30,6 +30,7 @@
 @property (strong, nonatomic) NSMutableArray *schools;
 @property (strong, nonatomic) NSMutableArray *skills;
 @property (strong, nonatomic) NSMutableArray *applications;
+@property (strong, nonatomic) NSMutableArray *saved;
 @property (strong, nonatomic) UIImage *imageData;
 @property (nonatomic) CLLocationCoordinate2D currentLocation;
 @property (nonatomic) BOOL populated;

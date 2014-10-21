@@ -31,6 +31,7 @@
 @synthesize applications;
 @synthesize resume;
 @synthesize video;
+@synthesize saved;
 
 - (id)init
 {
@@ -54,6 +55,7 @@
         self.schools = [NSMutableArray array];
         self.skills = [NSMutableArray array];
         self.applications = nil;
+        self.saved = nil;
         self.populated = NO;
 
         [self populateFromCache];
@@ -171,10 +173,6 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"id":self.uniqueId, @"image":self.image, @"city":self.city, @"state":self.state, @"firstName":self.firstName, @"lastName":self.lastName, @"email":self.email, @"facebookId":self.facebookId, @"twitterId":self.twitterId, @"linkedinId":self.linkedinId, @"schools":self.schools, @"bio":self.bio, @"phone":self.phone, @"skills":self.skills}];
     
     // for properties that were added later, have to check for nil first
-    if (self.applications != nil)
-        params[@"applications"] = self.applications;
-    
-    
     if (self.resume != nil)
         params[@"resume"] = self.resume;
 

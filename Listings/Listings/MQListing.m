@@ -24,6 +24,7 @@
 @synthesize formattedDate;
 @synthesize icon;
 @synthesize iconData;
+@synthesize saved;
 
 // these will evenutally come from the profile that created the listing:
 @synthesize state;
@@ -87,9 +88,12 @@
         if ([key isEqualToString:@"icon"])
             self.icon = [info objectForKey:key];
 
-        if ([key isEqualToString:@"applications"]){
+        if ([key isEqualToString:@"applications"])
             self.applications = [info objectForKey:key];
-        }
+
+        if ([key isEqualToString:@"saved"])
+            self.saved = [info objectForKey:key];
+
 
         if ([key isEqualToString:@"timestamp"]){
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];

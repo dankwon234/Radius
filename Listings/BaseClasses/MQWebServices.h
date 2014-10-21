@@ -27,6 +27,7 @@ typedef void (^MQWebServiceRequestCompletionBlock)(id result, NSError *error);
 // Listings
 - (void)fetchListings:(MQWebServiceRequestCompletionBlock)completionBlock;
 - (void)fetchListings:(NSArray *)locations completion:(MQWebServiceRequestCompletionBlock)completionBlock;
+- (void)saveListing:(MQListing *)listing forProfile:(MQProfile *)profile completion:(MQWebServiceRequestCompletionBlock)completionBlock;
 
 // Applications
 - (void)fetchApplications:(MQProfile *)profile completion:(MQWebServiceRequestCompletionBlock)completionBlock;

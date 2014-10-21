@@ -223,7 +223,6 @@
 - (void)fetchListings:(MQWebServiceRequestCompletionBlock)completionBlock
 {
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:kBaseUrl]];
-    
     [manager GET:kPathListings
       parameters:nil
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -261,11 +260,8 @@
             locationsString = [locationsString stringByAppendingString:@";"];
     }
     
-    NSLog(@"LOCATIONS STRING: %@", locationsString);
-    
-    
+//    NSLog(@"LOCATIONS STRING: %@", locationsString);
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:kBaseUrl]];
-    
     [manager GET:kPathListings
       parameters:@{@"locations":locationsString}
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -288,6 +284,35 @@
              if (completionBlock)
                  completionBlock(nil, error);
          }];
+}
+
+- (void)saveListing:(MQListing *)listing forProfile:(MQProfile *)profile completion:(MQWebServiceRequestCompletionBlock)completionBlock
+{
+    AFHTTPRequestOperationManager *manager = [self requestManagerForJSONSerializiation];
+    
+    [manager PUT:[kPathListings stringByAppendingString:listing.uniqueId]
+      parameters:@{@"action":@"save", @"profile":profile.uniqueId}
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              NSLog(@"JSON: %@", responseObject);
+              NSDictionary *responseDictionary = (NSDictionary *)responseObject;
+              NSDictionary *results = responseDictionary[@"results"];
+              
+              if ([results[@"confirmation"] isEqualToString:@"success"]==NO){
+                  if (completionBlock){
+                      completionBlock(results, [NSError errorWithDomain:kErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey:results[@"message"]}]);
+                  }
+
+                  return;
+              }
+              
+              if (completionBlock)
+                  completionBlock(results, nil);
+          }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              NSLog(@"FAILURE BLOCK: %@", [error localizedDescription]);
+              if (completionBlock)
+                  completionBlock(nil, error);
+          }];
 }
 
 
@@ -353,9 +378,6 @@
               if (completionBlock)
                   completionBlock(nil, error);
           }];
-    
-    
-    
 }
 
 

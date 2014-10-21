@@ -315,6 +315,32 @@
           }];
 }
 
+- (void)fetchSavedListings:(MQProfile *)profile completion:(MQWebServiceRequestCompletionBlock)completionBlock
+{
+    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:kBaseUrl]];
+    [manager GET:kPathListings
+      parameters:@{@"saved":profile.uniqueId}
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSDictionary *responseDictionary = (NSDictionary *)responseObject;
+             NSDictionary *results = [responseDictionary objectForKey:@"results"];
+             NSString *confirmation = [results objectForKey:@"confirmation"];
+             
+             if ([confirmation isEqualToString:@"success"]){ // profile successfully registered
+                 if (completionBlock)
+                     completionBlock(results, nil);
+             }
+             else{ // registration failed.
+                 if (completionBlock)
+                     completionBlock(results, [NSError errorWithDomain:kErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey:results[@"message"]}]);
+                 
+             }
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"FAILURE BLOCK: %@", [error localizedDescription]);
+             if (completionBlock)
+                 completionBlock(nil, error);
+         }];
+}
 
 
 // - - - - - - - - - - - - - - - - - - APPLICATIONS - - - - - - - - - - - - - - - - - -

@@ -15,6 +15,8 @@
 #import "MQLoginViewController.h"
 #import "MQSubmitApplicationViewController.h"
 #import "MQApplication.h"
+#import "MQWebServices.h"
+
 
 
 @interface MQListingViewController ()
@@ -96,17 +98,25 @@
     lblTitle.layer.cornerRadius = 4.0f;
     lblTitle.layer.masksToBounds = YES;
     [self.theScrollview addSubview:lblTitle];
+    y = 2*padding+lblTitle.frame.size.height+8.0f;
     
+    UIButton *btnSave = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnSave.frame = CGRectMake(padding, y, 60, 60);
+    btnSave.backgroundColor = [UIColor redColor];
+    [btnSave addTarget:self action:@selector(saveListing:) forControlEvents:UIControlEventTouchUpInside];
+    [self.theScrollview addSubview:btnSave];
+    y += btnSave.frame.size.height+padding;
+    
+    UIFont *summaryFont = [UIFont systemFontOfSize:14.0f];
     CGRect boudingRect = [self.listing.summary boundingRectWithSize:CGSizeMake(width, 450.0f)
                                                             options:NSStringDrawingUsesLineFragmentOrigin
-                                                         attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.0f]}
+                                                         attributes:@{NSFontAttributeName:summaryFont}
                                                             context:NULL];
 
     
-    y = 2*padding+lblTitle.frame.size.height+8.0f;
     UILabel *lblDescription = [[UILabel alloc] initWithFrame:CGRectMake(padding, y, width, boudingRect.size.height)];
     lblDescription.textColor = [UIColor darkGrayColor];
-    lblDescription.font = [UIFont systemFontOfSize:14.0f];
+    lblDescription.font = summaryFont;
     lblDescription.numberOfLines = 0;
     lblDescription.text = self.listing.summary;
     lblDescription.lineBreakMode = NSLineBreakByWordWrapping;
@@ -232,7 +242,25 @@
     return NO;
 }
 
-
+- (void)saveListing:(UIButton *)btn
+{
+    if ([self.listing.saved containsObject:self.profile.uniqueId]) // already saved, ignore
+        return;
+    
+    [self.loadingIndicator startLoading];
+    [[MQWebServices sharedInstance] saveListing:self.listing forProfile:self.profile completion:^(id result, NSError *error){
+        [self.loadingIndicator stopLoading];
+        
+        if (error){
+            [self showAlertWithtTitle:@"Error" message:[error localizedDescription]];
+            return;
+        }
+        
+        NSDictionary *results = (NSDictionary *)result;
+        NSLog(@"%@", [results description]);
+        
+    }];
+}
 
 - (void)apply:(UIButton *)btn
 {

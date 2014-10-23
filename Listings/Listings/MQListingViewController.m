@@ -164,7 +164,7 @@
     
     y += boudingRect.size.height+padding;
     
-    NSLog(@"HEIGHT = %.2f", lblDescription.frame.size.height);
+//    NSLog(@"HEIGHT = %.2f", lblDescription.frame.size.height);
     if (lblDescription.frame.size.height < 110.0f)
         y += 110.0f;
 

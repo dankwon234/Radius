@@ -217,7 +217,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if (textField.tag < 1000+self.textFields.count-1){
-        int nextTag = textField.tag+1;
+        int nextTag = (int)textField.tag+1;
         UITextField *nextTextField = (UITextField *)[self.view viewWithTag:nextTag];
         [nextTextField becomeFirstResponder];
         return YES;

@@ -1073,7 +1073,7 @@ NSString *bioPlaceholder = @"Bio (250 character max)";
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"actionSheet clickedButtonAtIndex: %d", buttonIndex);
+    NSLog(@"actionSheet clickedButtonAtIndex: %d", (int)buttonIndex);
     if (buttonIndex==0){
         [self launchImageSelector:UIImagePickerControllerSourceTypePhotoLibrary];
     }

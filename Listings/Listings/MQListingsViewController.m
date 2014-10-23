@@ -96,7 +96,7 @@ static NSString *cellId = @"cellId";
     self.lblLocation.font = [UIFont fontWithName:@"Heiti SC" size:14.0f];
     self.lblLocation.textColor = [UIColor blackColor];
     self.lblLocation.userInteractionEnabled = YES;
-    [self.lblLocation addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showMap:)]];
+    [self.lblLocation addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showSearchOptions:)]];
     [view addSubview:self.lblLocation];
     
     UIImage *imgLocationPin = [UIImage imageNamed:@"iconLocation.png"];
@@ -104,7 +104,7 @@ static NSString *cellId = @"cellId";
     self.btnLocation = [UIButton buttonWithType:UIButtonTypeCustom];
     self.btnLocation.frame = CGRectMake(x, self.lblLocation.frame.origin.y-6.0f, imgLocationPin.size.width, imgLocationPin.size.height);
     [self.btnLocation setBackgroundImage:imgLocationPin forState:UIControlStateNormal];
-    [self.btnLocation addTarget:self action:@selector(showMap:) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnLocation addTarget:self action:@selector(showSearchOptions:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:self.btnLocation];
 
     self.view = view;
@@ -289,7 +289,6 @@ static NSString *cellId = @"cellId";
 - (void)refreshListingsCollectionView
 {
     // IMPORTANT: Have to call this on main thread! Otherwise, data models in array might not be synced, and reload acts funky
-    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.listingsTable.collectionViewLayout invalidateLayout];
         [self.listingsTable reloadData];
@@ -302,8 +301,23 @@ static NSString *cellId = @"cellId";
     });
 }
 
+- (void)showSearchOptions:(UIGestureRecognizer *)tap
+{
+    if (self.profile.searches.count > 0){
+        UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"Search" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Previous Searches", @"Show Map", nil];
+        actionsheet.frame = CGRectMake(0, 150, self.view.frame.size.width, 100);
+        actionsheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+        [actionsheet showInView:[UIApplication sharedApplication].keyWindow];
+        return;
+    }
+    
+    [self showMap:nil];
+}
+
 - (void)showMap:(UIButton *)btn
 {
+    
+    
     MQMapViewController *mapVc = [[MQMapViewController alloc] init];
     mapVc.locations = self.locations;
     UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:mapVc];
@@ -516,26 +530,38 @@ static NSString *cellId = @"cellId";
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSLog(@"actionSheet clickedButtonAtIndex: %d", (int)buttonIndex);
-    
-    if (buttonIndex==0) { // sign up
-        MQSignupViewController *signupVc = [[MQSignupViewController alloc] init];
-        UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:signupVc];
-        [self presentViewController:navCtr animated:YES completion:^{
-            
-        }];
+    if ([actionSheet.title isEqualToString:@"Radius"]){
+        if (buttonIndex==0) { // sign up
+            MQSignupViewController *signupVc = [[MQSignupViewController alloc] init];
+            UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:signupVc];
+            [self presentViewController:navCtr animated:YES completion:^{
+                
+            }];
+        }
         
+        if (buttonIndex==1) { // log in
+            MQLoginViewController *loginVc = [[MQLoginViewController alloc] init];
+            UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:loginVc];
+            [self presentViewController:navCtr animated:YES completion:^{
+                
+            }];
+        }
+        
+        return;
     }
     
-    if (buttonIndex==1) { // log in
-        MQLoginViewController *loginVc = [[MQLoginViewController alloc] init];
-        UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:loginVc];
-        [self presentViewController:navCtr animated:YES completion:^{
-            
-        }];
+
+    if ([actionSheet.title isEqualToString:@"Search"]){
+        if (buttonIndex==0) { // previous searchs
+            NSLog(@"Show previous searches: %@", [self.profile.searches description]);
+        }
         
+        if (buttonIndex==1) { // show map
+            [self showMap:nil];
+        }
+        
+        return;
     }
-    
-    
 }
 
 

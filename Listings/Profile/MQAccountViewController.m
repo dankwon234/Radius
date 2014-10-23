@@ -161,8 +161,10 @@
         [self.navigationController pushViewController:applicationsVc animated:YES];
     }
 
-    if (tag==1002){ // Premium Services
-        
+    if (tag==1002){ // Saved Listings
+        MQProfileListingsViewController *savedVc = [[MQProfileListingsViewController alloc] init];
+        savedVc.mode = @"saved";
+        [self.navigationController pushViewController:savedVc animated:YES];
         
     }
 

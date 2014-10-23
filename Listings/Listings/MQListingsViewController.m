@@ -321,6 +321,10 @@ static NSString *cellId = @"cellId";
         self.locationManager.delegate = self;
     }
     
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) // required in iOS 8 and up
+        [self.locationManager requestWhenInUseAuthorization];
+
+    
     [self.loadingIndicator startLoading];
     self.now = [[NSDate date] timeIntervalSinceNow];
     [self.locationManager startUpdatingLocation];

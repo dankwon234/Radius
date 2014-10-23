@@ -367,6 +367,10 @@ static NSString *cellId = @"cellId";
                     continue;
                 
                 [self.locations addObject:cityState];
+                if ([self.profile.searches containsObject:cityState]==NO){
+                    [self.profile.searches addObject:cityState];
+                    [self.profile updateProfile]; // update profile on backend with new search entries
+                }
                 
                 
             }

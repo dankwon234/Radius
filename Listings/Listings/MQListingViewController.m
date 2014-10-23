@@ -90,15 +90,13 @@
     CGFloat width = base.frame.size.width-2*padding;
     
     UILabel *lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 56.0f)];
-    lblTitle.alpha = 0.75f;
-    lblTitle.backgroundColor = kGreen;
-    lblTitle.textColor = [UIColor whiteColor];
+    lblTitle.textColor = [UIColor darkGrayColor];
     lblTitle.textAlignment = NSTextAlignmentCenter;
     lblTitle.text = self.listing.title;
     lblTitle.font = [UIFont fontWithName:@"Heiti SC" size:18.0f];
     [self.theScrollview addSubview:lblTitle];
 
-    y = 2*padding+lblTitle.frame.size.height;
+    y = padding+lblTitle.frame.size.height;
     
     
     CGFloat dimen = 70.0f;

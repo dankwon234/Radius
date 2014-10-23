@@ -96,6 +96,7 @@
     [self.geoCoder reverseGeocodeLocation:loc completionHandler:^(NSArray *placemarks, NSError *error) { // Getting Human readable Address from Lat long...
         
         if (placemarks.count > 0){
+            BOOL needsUpdate = NO;
             for (CLPlacemark *placeMark in placemarks) {
                 NSDictionary *locationInfo = placeMark.addressDictionary;
                 NSString *cityState = @"";
@@ -115,8 +116,17 @@
                 
                 if ([self.locations containsObject:cityState]==NO)
                     [self.locations addObject:cityState];
-
+                
+                if ([self.profile.searches containsObject:cityState]==NO){
+                    [self.profile.searches addObject:cityState];
+                    needsUpdate = YES;
+                }
             }
+            
+            if (needsUpdate)
+                [self.profile updateProfile];
+            
+            
         }
         
         if (completion != nil)

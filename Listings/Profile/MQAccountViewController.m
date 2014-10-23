@@ -8,7 +8,8 @@
 
 #import "MQAccountViewController.h"
 #import "MQProfileViewController.h"
-#import "MQApplicationsViewController.h"
+//#import "MQApplicationsViewController.h"
+#import "MQProfileListingsViewController.h"
 
 
 @interface MQAccountViewController ()
@@ -156,7 +157,7 @@
     }
     
     if (tag==1001){ // Applications
-        MQApplicationsViewController *applicationsVc = [[MQApplicationsViewController alloc] init];
+        MQProfileListingsViewController *applicationsVc = [[MQProfileListingsViewController alloc] init];
         [self.navigationController pushViewController:applicationsVc animated:YES];
     }
 

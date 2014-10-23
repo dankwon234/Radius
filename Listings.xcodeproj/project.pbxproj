@@ -10,6 +10,7 @@
 		0C2EDED419F8BDF400C259D2 /* iconLocationBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2EDED319F8BDF400C259D2 /* iconLocationBlue@2x.png */; };
 		0C2EDED619F8BF8F00C259D2 /* iconCalendarGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2EDED519F8BF8F00C259D2 /* iconCalendarGreen@2x.png */; };
 		0C2EDED819F8C13A00C259D2 /* iconSaveRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2EDED719F8C13A00C259D2 /* iconSaveRed@2x.png */; };
+		0CFD420719F980BE0020DC4B /* MQProfileListingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFD420619F980BE0020DC4B /* MQProfileListingsViewController.m */; };
 		5C0A674719ECE520007BF8BA /* bgBlurry1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C0A674619ECE520007BF8BA /* bgBlurry1@2x.png */; };
 		5C0C93CA19BEB4B60011086B /* shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C0C93C919BEB4B60011086B /* shadow@2x.png */; };
 		5C101A0919E891EF0046F7F1 /* header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C101A0819E891EF0046F7F1 /* header@2x.png */; };
@@ -66,7 +67,6 @@
 		5C911C5019EBAED8002AD978 /* MQSelectNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C911C4B19EBAED8002AD978 /* MQSelectNetworkViewController.m */; };
 		5C911C5119EBAED8002AD978 /* MQSelectTwitterAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C911C4D19EBAED8002AD978 /* MQSelectTwitterAccountViewController.m */; };
 		5C911C5219EBAED8002AD978 /* MQSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C911C4F19EBAED8002AD978 /* MQSignupViewController.m */; };
-		5C9ED4D219F35C1C007597BD /* MQApplicationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9ED4D119F35C1C007597BD /* MQApplicationsViewController.m */; };
 		5CC6E10419EF4DB600373C9A /* MQLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6E10319EF4DB600373C9A /* MQLoginViewController.m */; };
 		5CDD2A8319C3B1DE003B3169 /* MQProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDD2A8119C3B1DE003B3169 /* MQProfile.m */; };
 		5CE03D7819C6385F00BE577D /* iconLocation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE03D7719C6385F00BE577D /* iconLocation@2x.png */; };
@@ -107,6 +107,8 @@
 		0C2EDED319F8BDF400C259D2 /* iconLocationBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconLocationBlue@2x.png"; sourceTree = "<group>"; };
 		0C2EDED519F8BF8F00C259D2 /* iconCalendarGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconCalendarGreen@2x.png"; sourceTree = "<group>"; };
 		0C2EDED719F8C13A00C259D2 /* iconSaveRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconSaveRed@2x.png"; sourceTree = "<group>"; };
+		0CFD420519F980BE0020DC4B /* MQProfileListingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQProfileListingsViewController.h; sourceTree = "<group>"; };
+		0CFD420619F980BE0020DC4B /* MQProfileListingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQProfileListingsViewController.m; sourceTree = "<group>"; };
 		5C0A674619ECE520007BF8BA /* bgBlurry1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgBlurry1@2x.png"; sourceTree = "<group>"; };
 		5C0C93C919BEB4B60011086B /* shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shadow@2x.png"; sourceTree = "<group>"; };
 		5C101A0819E891EF0046F7F1 /* header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header@2x.png"; sourceTree = "<group>"; };
@@ -197,8 +199,6 @@
 		5C911C4D19EBAED8002AD978 /* MQSelectTwitterAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQSelectTwitterAccountViewController.m; sourceTree = "<group>"; };
 		5C911C4E19EBAED8002AD978 /* MQSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQSignupViewController.h; sourceTree = "<group>"; };
 		5C911C4F19EBAED8002AD978 /* MQSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQSignupViewController.m; sourceTree = "<group>"; };
-		5C9ED4D019F35C1C007597BD /* MQApplicationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQApplicationsViewController.h; sourceTree = "<group>"; };
-		5C9ED4D119F35C1C007597BD /* MQApplicationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQApplicationsViewController.m; sourceTree = "<group>"; };
 		5CC6E10219EF4DB600373C9A /* MQLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQLoginViewController.h; sourceTree = "<group>"; };
 		5CC6E10319EF4DB600373C9A /* MQLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQLoginViewController.m; sourceTree = "<group>"; };
 		5CDD2A8119C3B1DE003B3169 /* MQProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQProfile.m; sourceTree = "<group>"; };
@@ -541,8 +541,8 @@
 				5CF8482619F1BEDA00DCCD7F /* MQAccountViewController.m */,
 				5CECCD5619EBAFF3006BDE56 /* MQProfileViewController.h */,
 				5CECCD5719EBAFF3006BDE56 /* MQProfileViewController.m */,
-				5C9ED4D019F35C1C007597BD /* MQApplicationsViewController.h */,
-				5C9ED4D119F35C1C007597BD /* MQApplicationsViewController.m */,
+				0CFD420519F980BE0020DC4B /* MQProfileListingsViewController.h */,
+				0CFD420619F980BE0020DC4B /* MQProfileListingsViewController.m */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -707,7 +707,6 @@
 				5C5ADB2E19C5623B00B5E29D /* AFSecurityPolicy.m in Sources */,
 				5CC6E10419EF4DB600373C9A /* MQLoginViewController.m in Sources */,
 				5CEA0D9D19C68E37004234C7 /* MQListingSummaryCell.m in Sources */,
-				5C9ED4D219F35C1C007597BD /* MQApplicationsViewController.m in Sources */,
 				5C573F7F19BAA86500677DDF /* main.m in Sources */,
 				5C5ADB2D19C5623B00B5E29D /* AFNetworkReachabilityManager.m in Sources */,
 				5C5ADB3219C5623B00B5E29D /* AFURLSessionManager.m in Sources */,
@@ -717,6 +716,7 @@
 				5C573FC619BAB72700677DDF /* MQListingsViewController.m in Sources */,
 				5C573FB619BAB0CD00677DDF /* MQWebServices.m in Sources */,
 				5C1636E319EB29AF00BACC3E /* LIALinkedInApplication.m in Sources */,
+				0CFD420719F980BE0020DC4B /* MQProfileListingsViewController.m in Sources */,
 				5C5ADB3419C5623B00B5E29D /* SignalCheck.m in Sources */,
 				5C573FCF19BAC1B400677DDF /* MQListingCell.m in Sources */,
 				5CEA0D9A19C688F0004234C7 /* MQListingHeaderCell.m in Sources */,

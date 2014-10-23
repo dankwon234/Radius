@@ -19,6 +19,7 @@
 @end
 
 @implementation MQProfileListingsViewController
+@synthesize mode;
 static NSString *applicationCellId = @"applicationCellId";
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -26,8 +27,8 @@ static NSString *applicationCellId = @"applicationCellId";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"Applied";
+        self.mode = @"applications";
         self.listings = [NSMutableArray array];
-        
     }
     
     return self;
@@ -39,34 +40,53 @@ static NSString *applicationCellId = @"applicationCellId";
     CGRect frame = view.frame;
     view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgLegsBlue.png"]];
     
-    
-    if (self.profile.applications != nil){
-        self.applicationsCollection = [[UICollectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height) collectionViewLayout:[[MQCollectionViewFlowLayout alloc] init]];
-        self.applicationsCollection.backgroundColor = [UIColor clearColor];
-        
-        UIView *background = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height)];
-        background.backgroundColor = [UIColor whiteColor];
-        background.alpha = 0.65f;
-        
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(80.0f, 0.0f, 2.0f, frame.size.height)];
-        line.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight);
-        line.backgroundColor = [UIColor darkGrayColor];
-        [background addSubview:line];
-        
-        self.applicationsCollection.backgroundView = background;
-        [self.applicationsCollection registerClass:[MQListingCell class] forCellWithReuseIdentifier:applicationCellId];
-        self.applicationsCollection.contentInset = UIEdgeInsetsMake(0.0f, 0, 12.0f, 0);
-        self.applicationsCollection.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight);
-        self.applicationsCollection.dataSource = self;
-        self.applicationsCollection.delegate = self;
-        self.applicationsCollection.showsVerticalScrollIndicator = NO;
-        [view addSubview:self.applicationsCollection];
-        
-        [self refreshListingsCollectionView];
+    BOOL populated = NO;
+    if ([self.mode isEqualToString:@"applications"]){
+        if (self.profile.applications != nil){
+            populated = YES;
+            for (int i=0; i<self.profile.applications.count; i++) {
+                MQApplication *application = self.profile.applications[i];
+                [self.listings addObject:application.listing];
+            }
+        }
     }
     
+    if ([self.mode isEqualToString:@"saved"]){
+        if (self.profile.saved != nil){
+            populated = YES;
+            for (int i=0; i<self.profile.saved.count; i++)
+                [self.listings addObject:self.profile.saved[i]];
+
+        }
+    }
     
+    if (populated==NO){
+        self.view = view;
+        return;
+    }
     
+    self.applicationsCollection = [[UICollectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height) collectionViewLayout:[[MQCollectionViewFlowLayout alloc] init]];
+    self.applicationsCollection.backgroundColor = [UIColor clearColor];
+    
+    UIView *background = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height)];
+    background.backgroundColor = [UIColor whiteColor];
+    background.alpha = 0.65f;
+    
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(80.0f, 0.0f, 2.0f, frame.size.height)];
+    line.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight);
+    line.backgroundColor = [UIColor darkGrayColor];
+    [background addSubview:line];
+    
+    self.applicationsCollection.backgroundView = background;
+    [self.applicationsCollection registerClass:[MQListingCell class] forCellWithReuseIdentifier:applicationCellId];
+    self.applicationsCollection.contentInset = UIEdgeInsetsMake(0.0f, 0, 12.0f, 0);
+    self.applicationsCollection.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight);
+    self.applicationsCollection.dataSource = self;
+    self.applicationsCollection.delegate = self;
+    self.applicationsCollection.showsVerticalScrollIndicator = NO;
+    [view addSubview:self.applicationsCollection];
+    
+    [self refreshListingsCollectionView];
     
     self.view = view;
 }
@@ -86,75 +106,131 @@ static NSString *applicationCellId = @"applicationCellId";
     [super viewDidLoad];
     NSDictionary *titleAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Heiti SC" size:18.0f], NSForegroundColorAttributeName : [UIColor whiteColor]};
     [self.navigationController.navigationBar setTitleTextAttributes:titleAttributes];
+    self.title = [self.mode capitalizedString];
     
-    if (self.profile.applications != nil)
-        return;
     
-    [self.loadingIndicator startLoading];
-    [[MQWebServices sharedInstance] fetchApplications:self.profile completion:^(id result, NSError *error){
-        [self.loadingIndicator stopLoading];
-        
-        if (error){
-            [self showAlertWithtTitle:@"Error" message:[error localizedDescription]];
+    if ([self.mode isEqualToString:@"applications"]){
+        if (self.profile.applications != nil)
             return;
-        }
         
-        NSDictionary *results = (NSDictionary *)result;
-        NSLog(@"%@", [results description]);
-        
-        NSString *confirmation = results[@"confirmation"];
-        if ([confirmation isEqualToString:@"success"]==NO){
-            [self showAlertWithtTitle:@"Error" message:results[@"message"]];
-            return;
-        }
-        
-        NSArray *a = results[@"applications"];
-        self.profile.applications = [NSMutableArray array];
-        for (int i=0; i<a.count; i++){
-            MQApplication *application = [MQApplication applicationWithInfo:a[i]];
-            [self.profile.applications addObject:application];
-            [self.listings addObject:application.listing];
-            if ([application.listing.image isEqualToString:@"none"])
-                continue;
+        [self.loadingIndicator startLoading];
+        [[MQWebServices sharedInstance] fetchApplications:self.profile completion:^(id result, NSError *error){
+            [self.loadingIndicator stopLoading];
             
-            if (application.listing.imageData)
-                continue;
-            
-            [application.listing fetchImage];
-        }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (self.profile.applications.count==0){
-                [self showAlertWithtTitle:@"No Applications" message:@"You have not applied to any jobs."];
+            if (error){
+                [self showAlertWithtTitle:@"Error" message:[error localizedDescription]];
                 return;
             }
             
-            if (self.applicationsCollection){
-                [UIView animateWithDuration:0.40f
-                                      delay:0
-                                    options:UIViewAnimationOptionCurveEaseInOut
-                                 animations:^{
-                                     CGRect frame = self.applicationsCollection.frame;
-                                     self.applicationsCollection.frame = CGRectMake(frame.origin.x, self.view.frame.size.height, frame.size.width, frame.size.height);
-                                     
-                                 }
-                                 completion:^(BOOL finished){
-                                     self.applicationsCollection.delegate = nil;
-                                     self.applicationsCollection.dataSource = nil;
-                                     [self.applicationsCollection removeFromSuperview];
-                                     self.applicationsCollection = nil;
-                                     [self layoutListsCollectionView:self.view];
-                                 }];
+            NSDictionary *results = (NSDictionary *)result;
+            NSLog(@"%@", [results description]);
+            
+            NSArray *a = results[@"applications"];
+            self.profile.applications = [NSMutableArray array];
+            for (int i=0; i<a.count; i++){
+                MQApplication *application = [MQApplication applicationWithInfo:a[i]];
+                [self.profile.applications addObject:application];
+                [self.listings addObject:application.listing];
+                if ([application.listing.image isEqualToString:@"none"])
+                    continue;
                 
+                if (application.listing.imageData)
+                    continue;
+                
+                [application.listing fetchImage];
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (self.listings.count==0){
+                    [self showAlertWithtTitle:@"No Applications" message:@"You have not applied to any jobs."];
+                    return;
+                }
+                
+                if (self.applicationsCollection){
+                    [self removeCollectionView];
+                    return;
+                }
+                
+                [self layoutListsCollectionView:self.view];
+                
+            });
+            
+        }];
+    }
+
+    
+    if ([self.mode isEqualToString:@"saved"]){
+        if (self.profile.saved != nil)
+            return;
+        
+        [self.loadingIndicator startLoading];
+        [[MQWebServices sharedInstance] fetchSavedListings:self.profile completion:^(id result, NSError *error){
+            [self.loadingIndicator stopLoading];
+            
+            if (error){
+                [self showAlertWithtTitle:@"Error" message:[error localizedDescription]];
                 return;
             }
             
-            [self layoutListsCollectionView:self.view];
+            NSDictionary *results = (NSDictionary *)result;
+            NSLog(@"%@", [results description]);
             
-        });
-        
-    }];
+            NSArray *a = results[@"listings"];
+            self.profile.saved = [NSMutableArray array];
+            for (int i=0; i<a.count; i++){
+                MQListing *listing = [[MQListing alloc] init];
+                [listing populate:a[i]];
+                [self.profile.saved addObject:listing];
+                [self.listings addObject:listing];
+                if ([listing.image isEqualToString:@"none"])
+                    continue;
+                
+                if (listing.imageData)
+                    continue;
+                
+                [listing fetchImage];
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (self.listings.count==0){
+                    [self showAlertWithtTitle:@"No Saved Applications" message:@"You have not saved any jobs."];
+                    return;
+                }
+                
+                if (self.applicationsCollection){
+                    [self removeCollectionView];
+                    return;
+                }
+                
+                [self layoutListsCollectionView:self.view];
+                
+            });
+            
+        }];
+    }
+    
 }
+
+- (void)removeCollectionView
+{
+    [UIView animateWithDuration:0.40f
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         CGRect frame = self.applicationsCollection.frame;
+                         self.applicationsCollection.frame = CGRectMake(frame.origin.x, self.view.frame.size.height, frame.size.width, frame.size.height);
+                         
+                     }
+                     completion:^(BOOL finished){
+                         self.applicationsCollection.delegate = nil;
+                         self.applicationsCollection.dataSource = nil;
+                         [self.applicationsCollection removeFromSuperview];
+                         self.applicationsCollection = nil;
+                         [self layoutListsCollectionView:self.view];
+                     }];
+}
+
+
 
 - (void)layoutListsCollectionView:(UIView *)view
 {
@@ -210,7 +286,7 @@ static NSString *applicationCellId = @"applicationCellId";
         [self.applicationsCollection reloadData];
         
         NSMutableArray *indexPaths = [NSMutableArray array];
-        for (int i=0; i<self.profile.applications.count; i++)
+        for (int i=0; i<self.listings.count; i++)
             [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
         
         [self.applicationsCollection reloadItemsAtIndexPaths:indexPaths];
@@ -252,17 +328,14 @@ static NSString *applicationCellId = @"applicationCellId";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    //    NSLog(@"collectionView numberOfItemsInSection: %d", self.posts.count);
-    return self.profile.applications.count;
+    return self.listings.count;
 }
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     MQListingCell *cell = (MQListingCell *)[collectionView dequeueReusableCellWithReuseIdentifier:applicationCellId forIndexPath:indexPath];
-    
-    MQApplication *application = (MQApplication *)self.profile.applications[indexPath.row];
-    MQListing *listing = application.listing;
+    MQListing *listing = (MQListing *)self.listings[indexPath.row];
     cell.lblTitle.text = listing.title;
     cell.lblVenue.text = listing.venue;
     cell.lblDate.text = listing.formattedDate;
@@ -290,9 +363,9 @@ static NSString *applicationCellId = @"applicationCellId";
     if (cell.isRotated)
         return;
     
-    MQApplication *application = self.profile.applications[indexPath.row];
+    MQListing *listing = self.listings[indexPath.row];
     MQListingViewController *listingVc = [[MQListingViewController alloc] init];
-    listingVc.listing = application.listing;
+    listingVc.listing = listing;
     
     listingVc.view.backgroundColor = self.view.backgroundColor;
     
@@ -308,10 +381,6 @@ static NSString *applicationCellId = @"applicationCellId";
 
 
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//
-//}
 
 
 

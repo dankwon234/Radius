@@ -10,4 +10,5 @@
 
 @interface MQProfileListingsViewController : MQViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
+@property (copy, nonatomic) NSString *mode; // 'applications' or 'saved'
 @end

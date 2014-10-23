@@ -117,8 +117,6 @@
     [defaults synchronize];
 }
 
-
-
 - (void)populateFromCache
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -136,6 +134,18 @@
     [self populate:profileInfo];
 }
 
+- (void)updateProfile
+{
+    [[MQWebServices sharedInstance] updateProfile:self completion:^(id result, NSError *error){
+        if (error)
+            return;
+        
+        NSDictionary *results = (NSDictionary *)result;
+        NSLog(@"PROFILE UPDATED: %@", [results description]);
+        [self cacheProfile];
+        
+    }];
+}
 
 
 - (void)fetchImage

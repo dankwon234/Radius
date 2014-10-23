@@ -40,4 +40,5 @@
 - (NSDictionary *)parametersDictionary;
 - (NSString *)jsonRepresentation;
 - (void)fetchImage;
+- (void)updateProfile;
 @end

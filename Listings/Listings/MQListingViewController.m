@@ -129,6 +129,12 @@
         lblDetail.text = detailTitles[i];
         [detailView addSubview:lblDetail];
         
+        if (i==2){
+            if ([self.listing.saved containsObject:self.profile.uniqueId]) // already saved
+                lblDetail.text = @"Saved";
+            else
+                [detailView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveListing:)]];
+        }
         
         [self.theScrollview addSubview:detailView];
     }
@@ -268,10 +274,7 @@
             frame.origin.y = -0.12f*distance;
             self.blurryBackground.frame = frame;
             self.background.frame = frame;
-            
         }
-
-
         
         // closer to zero, less blur applied
         double blurFactor = (offset + scrollview.contentInset.top) / (2 * CGRectGetHeight(scrollview.bounds) / 6.5f);
@@ -284,7 +287,7 @@
     return NO;
 }
 
-- (void)saveListing:(UIButton *)btn
+- (void)saveListing:(UIGestureRecognizer *)tap
 {
     if ([self.listing.saved containsObject:self.profile.uniqueId]) // already saved, ignore
         return;

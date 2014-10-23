@@ -30,7 +30,7 @@
 @implementation MQListingViewController
 @synthesize listing;
 
-#define kTopInset 80.0f
+#define kTopInset 70.0f
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -81,31 +81,74 @@
     
     UIView *base = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 1000.0f)];
     base.backgroundColor = [UIColor whiteColor];
-    base.alpha = 0.84f;
+    base.alpha = 0.90f;
     
     [self.theScrollview addSubview:base];
     
     CGFloat padding = 12.0f;
     y = padding+8.0f;
     CGFloat width = base.frame.size.width-2*padding;
-    UILabel *lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(padding, y, width, 44.0f)];
-    lblTitle.alpha = 0.95f;
-    lblTitle.backgroundColor = [UIColor colorFromHexString:@"#95ad8a"];
+//    UILabel *lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(padding, y, width, 44.0f)];
+//    lblTitle.alpha = 0.95f;
+//    lblTitle.backgroundColor = [UIColor colorFromHexString:@"#95ad8a"];
+//    lblTitle.textColor = [UIColor whiteColor];
+//    lblTitle.textAlignment = NSTextAlignmentCenter;
+//    lblTitle.text = self.listing.title;
+//    lblTitle.font = [UIFont fontWithName:@"Heiti SC" size:18.0f];
+//    lblTitle.layer.cornerRadius = 4.0f;
+//    lblTitle.layer.masksToBounds = YES;
+//    [self.theScrollview addSubview:lblTitle];
+    
+    UILabel *lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 56.0f)];
+    lblTitle.alpha = 0.75f;
+    lblTitle.backgroundColor = kGreen;
     lblTitle.textColor = [UIColor whiteColor];
     lblTitle.textAlignment = NSTextAlignmentCenter;
     lblTitle.text = self.listing.title;
     lblTitle.font = [UIFont fontWithName:@"Heiti SC" size:18.0f];
-    lblTitle.layer.cornerRadius = 4.0f;
-    lblTitle.layer.masksToBounds = YES;
+//    lblTitle.layer.cornerRadius = 4.0f;
+//    lblTitle.layer.masksToBounds = YES;
     [self.theScrollview addSubview:lblTitle];
-    y = 2*padding+lblTitle.frame.size.height+8.0f;
+
+    y = 2*padding+lblTitle.frame.size.height;
     
-    UIButton *btnSave = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnSave.frame = CGRectMake(padding, y, 60, 60);
-    btnSave.backgroundColor = [UIColor redColor];
-    [btnSave addTarget:self action:@selector(saveListing:) forControlEvents:UIControlEventTouchUpInside];
-    [self.theScrollview addSubview:btnSave];
-    y += btnSave.frame.size.height+padding;
+    
+    CGFloat dimen = 70.0f;
+    double centers[] = {0.20f, 0.50f, 0.80f};
+    NSArray *detailTitles = @[[self.listing.city capitalizedString], self.listing.formattedDate, @"Save"];
+    
+    for (int i=0; i<3; i++) {
+        UIView *detailView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, y, dimen, dimen)];
+        detailView.layer.cornerRadius = 0.5f*dimen;
+        detailView.layer.borderWidth = 0.5f;
+        detailView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+        detailView.layer.masksToBounds = YES;
+        detailView.center = CGPointMake(centers[i]*frame.size.width, detailView.center.y);
+        
+        UIButton *btnSave = [UIButton buttonWithType:UIButtonTypeCustom];
+        btnSave.frame = CGRectMake(padding, y, 0.5f*dimen, 0.5f*dimen);
+        btnSave.center = CGPointMake(0.5f*dimen, 0.4f*dimen);
+        btnSave.backgroundColor = [UIColor clearColor];
+        [btnSave setBackgroundImage:[UIImage imageNamed:@"iconLocation.png"] forState:UIControlStateNormal];
+        [btnSave addTarget:self action:@selector(saveListing:) forControlEvents:UIControlEventTouchUpInside];
+        [detailView addSubview:btnSave];
+        
+        UILabel *lblDetail = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, dimen, 12.0f)];
+        lblDetail.center = CGPointMake(0.5f*dimen, 0.77f*dimen);
+        lblDetail.font = [UIFont fontWithName:@"Heiti SC" size:10.0f];
+        lblDetail.textAlignment = NSTextAlignmentCenter;
+        lblDetail.textColor = [UIColor darkGrayColor];
+        lblDetail.text = detailTitles[i];
+        [detailView addSubview:lblDetail];
+        
+        
+        [self.theScrollview addSubview:detailView];
+    }
+    
+
+    
+    
+    y += dimen+2*padding;
     
     UIFont *summaryFont = [UIFont systemFontOfSize:14.0f];
     CGRect boudingRect = [self.listing.summary boundingRectWithSize:CGSizeMake(width, 450.0f)
@@ -113,6 +156,9 @@
                                                          attributes:@{NSFontAttributeName:summaryFont}
                                                             context:NULL];
 
+    NSLog(@"HEIGHT = %.2f", boudingRect.size.height);
+    if (boudingRect.size.height < 80.0f)
+        boudingRect.size.height = 80.0f;
     
     UILabel *lblDescription = [[UILabel alloc] initWithFrame:CGRectMake(padding, y, width, boudingRect.size.height)];
     lblDescription.textColor = [UIColor darkGrayColor];
@@ -129,18 +175,17 @@
     btnApply.layer.cornerRadius = 4.0f;
     btnApply.layer.masksToBounds = YES;
     
+    btnApply.backgroundColor = [UIColor clearColor];
+    btnApply.layer.borderColor = [[UIColor darkGrayColor] CGColor];
+    [btnApply setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+
+    
     if ([self.listing.applications containsObject:self.profile.uniqueId]){
-        btnApply.backgroundColor = kGreen;
-        btnApply.layer.borderColor = [kGreen CGColor];
         [btnApply setTitle:@"APPLIED" forState:UIControlStateNormal];
-        [btnApply setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
     else{
-        btnApply.backgroundColor = [UIColor clearColor];
-        btnApply.layer.borderColor = [[UIColor darkGrayColor] CGColor];
         [btnApply setTitle:@"APPLY" forState:UIControlStateNormal];
         [btnApply addTarget:self action:@selector(apply:) forControlEvents:UIControlEventTouchUpInside];
-        [btnApply setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     }
 
     [self.theScrollview addSubview:btnApply];
@@ -163,16 +208,16 @@
     [view addSubview:self.venueIcon];
 
     
-    CGFloat iconDimen = 55.0f;
-    CGFloat offsets[] = {0.30f, 0.70f, 0.12f, 0.88f};
-    NSArray *details = @[@"9/20", @"$10", @"NEW YORK\nNY", @"SAVE"];
-    for (int i=0; i<4; i++) {
-        MQDetailIcon *icon = [[MQDetailIcon alloc] initWithFrame:CGRectMake(0.0f, 94.0f, iconDimen, 60.0f)];
-        icon.center = CGPointMake(offsets[i]*frame.size.width, icon.center.y);
-        icon.lblDetail.text = details[i];
-        [view addSubview:icon];
-        [self.detailIcons addObject:icon];
-    }
+//    CGFloat iconDimen = 55.0f;
+//    CGFloat offsets[] = {0.30f, 0.70f, 0.12f, 0.88f};
+//    NSArray *details = @[@"9/20", @"$10", @"NEW YORK\nNY", @"SAVE"];
+//    for (int i=0; i<4; i++) {
+//        MQDetailIcon *icon = [[MQDetailIcon alloc] initWithFrame:CGRectMake(0.0f, 94.0f, iconDimen, 60.0f)];
+//        icon.center = CGPointMake(offsets[i]*frame.size.width, icon.center.y);
+//        icon.lblDetail.text = details[i];
+//        [view addSubview:icon];
+//        [self.detailIcons addObject:icon];
+//    }
     
     
     

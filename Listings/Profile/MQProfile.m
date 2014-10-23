@@ -32,6 +32,7 @@
 @synthesize resume;
 @synthesize video;
 @synthesize saved;
+@synthesize searches;
 
 - (id)init
 {
@@ -54,6 +55,7 @@
         self.video = @"none";
         self.schools = [NSMutableArray array];
         self.skills = [NSMutableArray array];
+        self.searches = [NSMutableArray array];
         self.applications = nil;
         self.saved = nil;
         self.populated = NO;
@@ -99,6 +101,7 @@
     self.video = [profileInfo objectForKey:@"video"];
     self.skills = [NSMutableArray arrayWithArray:[profileInfo objectForKey:@"skills"]];
     self.schools = [NSMutableArray arrayWithArray:[profileInfo objectForKey:@"schools"]];
+    self.searches = [NSMutableArray arrayWithArray:[profileInfo objectForKey:@"searches"]];
 //    self.applications = [NSMutableArray arrayWithArray:[profileInfo objectForKey:@"applications"]];
     self.populated = YES;
     
@@ -173,6 +176,9 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"id":self.uniqueId, @"image":self.image, @"city":self.city, @"state":self.state, @"firstName":self.firstName, @"lastName":self.lastName, @"email":self.email, @"facebookId":self.facebookId, @"twitterId":self.twitterId, @"linkedinId":self.linkedinId, @"schools":self.schools, @"bio":self.bio, @"phone":self.phone, @"skills":self.skills}];
     
     // for properties that were added later, have to check for nil first
+    if (self.searches != nil)
+        params[@"searches"] = self.searches;
+
     if (self.resume != nil)
         params[@"resume"] = self.resume;
 

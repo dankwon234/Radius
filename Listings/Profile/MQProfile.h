@@ -31,6 +31,7 @@
 @property (strong, nonatomic) NSMutableArray *skills;
 @property (strong, nonatomic) NSMutableArray *applications;
 @property (strong, nonatomic) NSMutableArray *saved;
+@property (strong, nonatomic) NSMutableArray *searches; // array of city, state of search history
 @property (strong, nonatomic) UIImage *imageData;
 @property (nonatomic) CLLocationCoordinate2D currentLocation;
 @property (nonatomic) BOOL populated;

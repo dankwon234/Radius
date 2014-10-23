@@ -102,6 +102,7 @@
     CGFloat dimen = 70.0f;
     double centers[] = {0.20f, 0.50f, 0.80f};
     NSArray *detailTitles = @[[self.listing.city capitalizedString], self.listing.formattedDate, @"Save"];
+    NSArray *icons = @[@"iconLocationBlue.png", @"iconCalendarGreen.png", @"iconSaveRed.png"];
     
     for (int i=0; i<3; i++) {
         UIView *detailView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, y, dimen, dimen)];
@@ -115,8 +116,8 @@
         circle.layer.masksToBounds = YES;
         [detailView addSubview:circle];
         
-        UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iconLocation.png"]];
-        icon.frame = CGRectMake(padding, y, 0.50f*dimen, 0.50f*dimen);
+        UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:icons[i]]];
+        icon.frame = CGRectMake(padding, y, 0.45f*dimen, 0.45f*dimen);
         icon.center = circle.center;
         [detailView addSubview:icon];
         

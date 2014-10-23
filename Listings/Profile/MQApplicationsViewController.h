@@ -8,6 +8,6 @@
 
 #import "MQViewController.h"
 
-@interface MQApplicationsViewController : MQViewController <UITableViewDataSource, UITableViewDelegate>
+@interface MQApplicationsViewController : MQViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @end

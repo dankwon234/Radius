@@ -89,14 +89,14 @@
     y = padding+8.0f;
     CGFloat width = base.frame.size.width-2*padding;
     
-    UILabel *lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 56.0f)];
+    UILabel *lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 50.0f)];
     lblTitle.textColor = [UIColor darkGrayColor];
     lblTitle.textAlignment = NSTextAlignmentCenter;
     lblTitle.text = self.listing.title;
     lblTitle.font = [UIFont fontWithName:@"Heiti SC" size:18.0f];
     [self.theScrollview addSubview:lblTitle];
 
-    y = padding+lblTitle.frame.size.height;
+    y = lblTitle.frame.size.height;
     
     
     CGFloat dimen = 70.0f;
@@ -105,22 +105,23 @@
     
     for (int i=0; i<3; i++) {
         UIView *detailView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, y, dimen, dimen)];
-        detailView.layer.cornerRadius = 0.5f*dimen;
-        detailView.layer.borderWidth = 0.5f;
-        detailView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
-        detailView.layer.masksToBounds = YES;
         detailView.center = CGPointMake(centers[i]*frame.size.width, detailView.center.y);
         
-        UIButton *btnSave = [UIButton buttonWithType:UIButtonTypeCustom];
-        btnSave.frame = CGRectMake(padding, y, 0.5f*dimen, 0.5f*dimen);
-        btnSave.center = CGPointMake(0.5f*dimen, 0.4f*dimen);
-        btnSave.backgroundColor = [UIColor clearColor];
-        [btnSave setBackgroundImage:[UIImage imageNamed:@"iconLocation.png"] forState:UIControlStateNormal];
-        [btnSave addTarget:self action:@selector(saveListing:) forControlEvents:UIControlEventTouchUpInside];
-        [detailView addSubview:btnSave];
+        UIView *circle = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.8f*dimen, 0.8f*dimen)];
+        circle.center = CGPointMake(0.5f*dimen, 0.5f*dimen);
+        circle.layer.cornerRadius = 0.5f*circle.frame.size.width;
+        circle.layer.borderWidth = 0.5f;
+        circle.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+        circle.layer.masksToBounds = YES;
+        [detailView addSubview:circle];
+        
+        UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iconLocation.png"]];
+        icon.frame = CGRectMake(padding, y, 0.50f*dimen, 0.50f*dimen);
+        icon.center = circle.center;
+        [detailView addSubview:icon];
         
         UILabel *lblDetail = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, dimen, 12.0f)];
-        lblDetail.center = CGPointMake(0.5f*dimen, 0.77f*dimen);
+        lblDetail.center = CGPointMake(0.5f*dimen, dimen+1.0f);
         lblDetail.font = [UIFont fontWithName:@"Heiti SC" size:10.0f];
         lblDetail.textAlignment = NSTextAlignmentCenter;
         lblDetail.textColor = [UIColor darkGrayColor];

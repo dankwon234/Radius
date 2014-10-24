@@ -104,6 +104,8 @@ static NSString *applicationCellId = @"applicationCellId";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self addCustomBackButton];
+    
     NSDictionary *titleAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Heiti SC" size:18.0f], NSForegroundColorAttributeName : [UIColor whiteColor]};
     [self.navigationController.navigationBar setTitleTextAttributes:titleAttributes];
     self.title = [self.mode capitalizedString];
@@ -210,6 +212,12 @@ static NSString *applicationCellId = @"applicationCellId";
     }
     
 }
+
+- (void)back:(UIBarButtonItem *)btn
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 - (void)removeCollectionView
 {

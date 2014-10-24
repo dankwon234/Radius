@@ -24,4 +24,5 @@
 - (void)addNavigationTitleView;
 - (void)shiftUp:(CGFloat)distance;
 - (void)shiftBack:(CGFloat)origin;
+- (void)addCustomBackButton;
 @end

@@ -75,6 +75,27 @@
     
 }
 
+- (void)addCustomBackButton
+{
+    UIColor *white = [UIColor whiteColor];
+    self.navigationItem.hidesBackButton = YES;
+    self.navigationController.navigationBar.tintColor = white;
+    
+    NSDictionary *titleAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Heiti SC" size:18.0f], NSForegroundColorAttributeName : white};
+    [self.navigationController.navigationBar setTitleTextAttributes:titleAttributes];
+    
+    UIImage *imgExit = [UIImage imageNamed:@"backArrow.png"];
+    UIButton *btnExit = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnExit.frame = CGRectMake(0.0f, 0.0f, 0.8f*imgExit.size.width, 0.8f*imgExit.size.height);
+    [btnExit setBackgroundImage:imgExit forState:UIControlStateNormal];
+    [btnExit addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnExit];
+}
+
+- (void)back:(UIBarButtonItem *)btn
+{
+    
+}
 
 - (void)shiftUp:(CGFloat)distance
 {

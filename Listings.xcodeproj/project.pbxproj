@@ -10,6 +10,7 @@
 		0C2EDED419F8BDF400C259D2 /* iconLocationBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2EDED319F8BDF400C259D2 /* iconLocationBlue@2x.png */; };
 		0C2EDED619F8BF8F00C259D2 /* iconCalendarGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2EDED519F8BF8F00C259D2 /* iconCalendarGreen@2x.png */; };
 		0C2EDED819F8C13A00C259D2 /* iconSaveRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2EDED719F8C13A00C259D2 /* iconSaveRed@2x.png */; };
+		0CFB269419FA047B00285121 /* MQMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFB269319FA047B00285121 /* MQMapViewController.m */; };
 		0CFD420719F980BE0020DC4B /* MQProfileListingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFD420619F980BE0020DC4B /* MQProfileListingsViewController.m */; };
 		5C0A674719ECE520007BF8BA /* bgBlurry1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C0A674619ECE520007BF8BA /* bgBlurry1@2x.png */; };
 		5C0C93CA19BEB4B60011086B /* shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C0C93C919BEB4B60011086B /* shadow@2x.png */; };
@@ -88,7 +89,6 @@
 		5CF8482B19F2283F00DCCD7F /* bgLegsBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF8482A19F2283F00DCCD7F /* bgLegsBlue@2x.png */; };
 		5CF8483119F2307900DCCD7F /* iconProfile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF8483019F2307900DCCD7F /* iconProfile@2x.png */; };
 		5CF8483319F2356100DCCD7F /* iconCheckMark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF8483219F2356100DCCD7F /* iconCheckMark@2x.png */; };
-		5CFC6AD119E90FE500472995 /* MQMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFC6AD019E90FE500472995 /* MQMapViewController.m */; };
 		5CFCB93F19F2496C00681270 /* MQSubmitApplicationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFCB93E19F2496C00681270 /* MQSubmitApplicationViewController.m */; };
 		5CFCB94219F2563C00681270 /* MQApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFCB94119F2563C00681270 /* MQApplication.m */; };
 /* End PBXBuildFile section */
@@ -107,6 +107,8 @@
 		0C2EDED319F8BDF400C259D2 /* iconLocationBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconLocationBlue@2x.png"; sourceTree = "<group>"; };
 		0C2EDED519F8BF8F00C259D2 /* iconCalendarGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconCalendarGreen@2x.png"; sourceTree = "<group>"; };
 		0C2EDED719F8C13A00C259D2 /* iconSaveRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconSaveRed@2x.png"; sourceTree = "<group>"; };
+		0CFB269219FA047B00285121 /* MQMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQMapViewController.h; sourceTree = "<group>"; };
+		0CFB269319FA047B00285121 /* MQMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQMapViewController.m; sourceTree = "<group>"; };
 		0CFD420519F980BE0020DC4B /* MQProfileListingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQProfileListingsViewController.h; sourceTree = "<group>"; };
 		0CFD420619F980BE0020DC4B /* MQProfileListingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQProfileListingsViewController.m; sourceTree = "<group>"; };
 		5C0A674619ECE520007BF8BA /* bgBlurry1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgBlurry1@2x.png"; sourceTree = "<group>"; };
@@ -230,8 +232,6 @@
 		5CF8482A19F2283F00DCCD7F /* bgLegsBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgLegsBlue@2x.png"; sourceTree = "<group>"; };
 		5CF8483019F2307900DCCD7F /* iconProfile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconProfile@2x.png"; sourceTree = "<group>"; };
 		5CF8483219F2356100DCCD7F /* iconCheckMark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconCheckMark@2x.png"; sourceTree = "<group>"; };
-		5CFC6ACF19E90FE500472995 /* MQMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQMapViewController.h; sourceTree = "<group>"; };
-		5CFC6AD019E90FE500472995 /* MQMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQMapViewController.m; sourceTree = "<group>"; };
 		5CFCB93D19F2496C00681270 /* MQSubmitApplicationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQSubmitApplicationViewController.h; sourceTree = "<group>"; };
 		5CFCB93E19F2496C00681270 /* MQSubmitApplicationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQSubmitApplicationViewController.m; sourceTree = "<group>"; };
 		5CFCB94019F2563C00681270 /* MQApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQApplication.h; sourceTree = "<group>"; };
@@ -266,6 +266,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0CFB269119FA045100285121 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				0CFB269219FA047B00285121 /* MQMapViewController.h */,
+				0CFB269319FA047B00285121 /* MQMapViewController.m */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		5C1636D719EB29AF00BACC3E /* IOSLinkedInAPI */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,6 +343,7 @@
 				5C573F8219BAA86500677DDF /* MQAppDelegate.m */,
 				5C573FB119BAAB0A00677DDF /* MQContainerViewController.h */,
 				5C573FB219BAAB0A00677DDF /* MQContainerViewController.m */,
+				0CFB269119FA045100285121 /* Search */,
 				5C573FA219BAA8E900677DDF /* BaseClasses */,
 				5CF7408119C3A1AF001A0AF9 /* Profile */,
 				5C573FC319BAB6D300677DDF /* Listings */,
@@ -550,8 +560,6 @@
 		5CFC6ACE19E90F9500472995 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				5CFC6ACF19E90FE500472995 /* MQMapViewController.h */,
-				5CFC6AD019E90FE500472995 /* MQMapViewController.m */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -686,7 +694,6 @@
 				5CFCB93F19F2496C00681270 /* MQSubmitApplicationViewController.m in Sources */,
 				5CFCB94219F2563C00681270 /* MQApplication.m in Sources */,
 				5C911C5019EBAED8002AD978 /* MQSelectNetworkViewController.m in Sources */,
-				5CFC6AD119E90FE500472995 /* MQMapViewController.m in Sources */,
 				5C573FAD19BAAA0800677DDF /* UIImage+MQImageEffects.m in Sources */,
 				5C1636E619EB29AF00BACC3E /* NSString+LIAEncode.m in Sources */,
 				5CF8482719F1BEDA00DCCD7F /* MQAccountViewController.m in Sources */,
@@ -706,6 +713,7 @@
 				5C573FA719BAA94900677DDF /* MQViewController.m in Sources */,
 				5C5ADB2E19C5623B00B5E29D /* AFSecurityPolicy.m in Sources */,
 				5CC6E10419EF4DB600373C9A /* MQLoginViewController.m in Sources */,
+				0CFB269419FA047B00285121 /* MQMapViewController.m in Sources */,
 				5CEA0D9D19C68E37004234C7 /* MQListingSummaryCell.m in Sources */,
 				5C573F7F19BAA86500677DDF /* main.m in Sources */,
 				5C5ADB2D19C5623B00B5E29D /* AFNetworkReachabilityManager.m in Sources */,

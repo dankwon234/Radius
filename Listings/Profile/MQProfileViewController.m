@@ -400,6 +400,8 @@ NSString *bioPlaceholder = @"Bio (250 character max)";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self addCustomBackButton];
+
     self.navigationController.navigationBar.barTintColor = kGreen;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
@@ -418,6 +420,12 @@ NSString *bioPlaceholder = @"Bio (250 character max)";
     [self.profile addObserver:self forKeyPath:@"imageData" options:0 context:nil];
     [self.profile fetchImage];
 }
+
+- (void)back:(UIBarButtonItem *)btn
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 - (void)exit
 {

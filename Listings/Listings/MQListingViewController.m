@@ -237,7 +237,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self addCustomBackButton];
     
     [UIView animateWithDuration:0.75f
                           delay:0.1f
@@ -285,6 +285,11 @@
 - (BOOL)automaticallyAdjustsScrollViewInsets
 {
     return NO;
+}
+
+- (void)back:(UIBarButtonItem *)btn
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)saveListing:(UIGestureRecognizer *)tap

@@ -48,15 +48,25 @@
     [self.mapView setRegion:adjustedRegion animated:YES];
     [view addSubview:self.mapView];
     
+    UIView *search = [[UIView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height-64.0f, frame.size.width, 64.0f)];
+    search.backgroundColor = [UIColor grayColor];
+    search.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    
     self.btnSearch = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.btnSearch.frame = CGRectMake(20.0f, height-64.0f, frame.size.width-40.0f, 44.0f);
-    self.btnSearch.backgroundColor = kGreen;
-    self.btnSearch.layer.cornerRadius = 3.0f;
+    self.btnSearch.frame = CGRectMake(12.0, 12.0f, frame.size.width-24.0f, 44.0f);
+    self.btnSearch.backgroundColor = [UIColor clearColor];
+    self.btnSearch.layer.borderColor = [[UIColor whiteColor] CGColor];
+    self.btnSearch.layer.borderWidth = 1.5f;
+    self.btnSearch.layer.cornerRadius = 4.0f;
     self.btnSearch.layer.masksToBounds = YES;
-    [self.btnSearch setTitle:@"Search" forState:UIControlStateNormal];
+    self.btnSearch.titleLabel.font = [UIFont fontWithName:@"Heiti SC" size:16.0f];
+    [self.btnSearch setTitle:@"SEARCH" forState:UIControlStateNormal];
     [self.btnSearch setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.btnSearch addTarget:self action:@selector(searchListings:) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:self.btnSearch];
+    [search addSubview:self.btnSearch];
+    
+    [view addSubview:search];
+
     
     self.view = view;
 }

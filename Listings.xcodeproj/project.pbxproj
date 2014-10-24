@@ -11,6 +11,7 @@
 		0C2EDED619F8BF8F00C259D2 /* iconCalendarGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2EDED519F8BF8F00C259D2 /* iconCalendarGreen@2x.png */; };
 		0C2EDED819F8C13A00C259D2 /* iconSaveRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2EDED719F8C13A00C259D2 /* iconSaveRed@2x.png */; };
 		0CFB269419FA047B00285121 /* MQMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFB269319FA047B00285121 /* MQMapViewController.m */; };
+		0CFB269719FA04E800285121 /* MQSearchHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFB269619FA04E800285121 /* MQSearchHistoryViewController.m */; };
 		0CFD420719F980BE0020DC4B /* MQProfileListingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFD420619F980BE0020DC4B /* MQProfileListingsViewController.m */; };
 		5C0A674719ECE520007BF8BA /* bgBlurry1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C0A674619ECE520007BF8BA /* bgBlurry1@2x.png */; };
 		5C0C93CA19BEB4B60011086B /* shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C0C93C919BEB4B60011086B /* shadow@2x.png */; };
@@ -109,6 +110,8 @@
 		0C2EDED719F8C13A00C259D2 /* iconSaveRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconSaveRed@2x.png"; sourceTree = "<group>"; };
 		0CFB269219FA047B00285121 /* MQMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQMapViewController.h; sourceTree = "<group>"; };
 		0CFB269319FA047B00285121 /* MQMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQMapViewController.m; sourceTree = "<group>"; };
+		0CFB269519FA04E800285121 /* MQSearchHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQSearchHistoryViewController.h; sourceTree = "<group>"; };
+		0CFB269619FA04E800285121 /* MQSearchHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQSearchHistoryViewController.m; sourceTree = "<group>"; };
 		0CFD420519F980BE0020DC4B /* MQProfileListingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQProfileListingsViewController.h; sourceTree = "<group>"; };
 		0CFD420619F980BE0020DC4B /* MQProfileListingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQProfileListingsViewController.m; sourceTree = "<group>"; };
 		5C0A674619ECE520007BF8BA /* bgBlurry1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgBlurry1@2x.png"; sourceTree = "<group>"; };
@@ -271,6 +274,8 @@
 			children = (
 				0CFB269219FA047B00285121 /* MQMapViewController.h */,
 				0CFB269319FA047B00285121 /* MQMapViewController.m */,
+				0CFB269519FA04E800285121 /* MQSearchHistoryViewController.h */,
+				0CFB269619FA04E800285121 /* MQSearchHistoryViewController.m */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -705,6 +710,7 @@
 				5C1636E419EB29AF00BACC3E /* LIALinkedInAuthorizationViewController.m in Sources */,
 				5C18053519CDF15000E171E6 /* UIColor+MQColorAdditions.m in Sources */,
 				5C5ADB3019C5623B00B5E29D /* AFURLRequestSerialization.m in Sources */,
+				0CFB269719FA04E800285121 /* MQSearchHistoryViewController.m in Sources */,
 				5C1636E519EB29AF00BACC3E /* LIALinkedInHttpClient.m in Sources */,
 				5C573FCC19BAB83300677DDF /* MQListing.m in Sources */,
 				5C5ADB2C19C5623B00B5E29D /* AFHTTPSessionManager.m in Sources */,

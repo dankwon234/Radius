@@ -128,7 +128,7 @@
                     [self.locations addObject:cityState];
                 
                 if ([self.profile.searches containsObject:cityState]==NO){
-                    [self.profile.searches addObject:cityState];
+                    [self.profile.searches insertObject:cityState atIndex:0];
                     needsUpdate = YES;
                 }
             }

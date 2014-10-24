@@ -11,6 +11,7 @@
 #import "MQCollectionViewFlowLayout.h"
 #import "MQWebServices.h"
 #import "MQMapViewController.h"
+#import "MQSearchHistoryViewController.h"
 #import "MQListingViewController.h"
 #import "MQSignupViewController.h"
 #import "MQLoginViewController.h"
@@ -316,8 +317,6 @@ static NSString *cellId = @"cellId";
 
 - (void)showMap:(UIButton *)btn
 {
-    
-    
     MQMapViewController *mapVc = [[MQMapViewController alloc] init];
     mapVc.locations = self.locations;
     UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:mapVc];
@@ -554,6 +553,12 @@ static NSString *cellId = @"cellId";
     if ([actionSheet.title isEqualToString:@"Search"]){
         if (buttonIndex==0) { // previous searchs
             NSLog(@"Show previous searches: %@", [self.profile.searches description]);
+            MQSearchHistoryViewController *searchHistoryVc = [[MQSearchHistoryViewController alloc] init];
+            searchHistoryVc.locations = self.locations;
+            UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:searchHistoryVc];
+            [self presentViewController:navCtr animated:YES completion:^{
+                
+            }];
         }
         
         if (buttonIndex==1) { // show map

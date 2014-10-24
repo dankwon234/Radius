@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C22AEC719FA21180067F8D7 /* MQResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C22AEC619FA21180067F8D7 /* MQResumeViewController.m */; };
 		0C2EDED419F8BDF400C259D2 /* iconLocationBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2EDED319F8BDF400C259D2 /* iconLocationBlue@2x.png */; };
 		0C2EDED619F8BF8F00C259D2 /* iconCalendarGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2EDED519F8BF8F00C259D2 /* iconCalendarGreen@2x.png */; };
 		0C2EDED819F8C13A00C259D2 /* iconSaveRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C2EDED719F8C13A00C259D2 /* iconSaveRed@2x.png */; };
@@ -105,6 +106,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C22AEC519FA21180067F8D7 /* MQResumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQResumeViewController.h; sourceTree = "<group>"; };
+		0C22AEC619FA21180067F8D7 /* MQResumeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQResumeViewController.m; sourceTree = "<group>"; };
 		0C2EDED319F8BDF400C259D2 /* iconLocationBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconLocationBlue@2x.png"; sourceTree = "<group>"; };
 		0C2EDED519F8BF8F00C259D2 /* iconCalendarGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconCalendarGreen@2x.png"; sourceTree = "<group>"; };
 		0C2EDED719F8C13A00C259D2 /* iconSaveRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconSaveRed@2x.png"; sourceTree = "<group>"; };
@@ -558,6 +561,8 @@
 				5CECCD5719EBAFF3006BDE56 /* MQProfileViewController.m */,
 				0CFD420519F980BE0020DC4B /* MQProfileListingsViewController.h */,
 				0CFD420619F980BE0020DC4B /* MQProfileListingsViewController.m */,
+				0C22AEC519FA21180067F8D7 /* MQResumeViewController.h */,
+				0C22AEC619FA21180067F8D7 /* MQResumeViewController.m */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -736,6 +741,7 @@
 				5CEA0D9A19C688F0004234C7 /* MQListingHeaderCell.m in Sources */,
 				5C911C5219EBAED8002AD978 /* MQSignupViewController.m in Sources */,
 				5C5ADB3119C5623B00B5E29D /* AFURLResponseSerialization.m in Sources */,
+				0C22AEC719FA21180067F8D7 /* MQResumeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

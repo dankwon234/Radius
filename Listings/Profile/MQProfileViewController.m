@@ -8,6 +8,7 @@
 
 #import "MQProfileViewController.h"
 #import "MQSelectTwitterAccountViewController.h"
+#import "MQResumeViewController.h"
 #import "MQWebServices.h"
 
 
@@ -933,7 +934,6 @@ NSString *bioPlaceholder = @"Bio (250 character max)";
     if (tag==1005){ // resume text field
         [self dismissKeyboard];
         if ([self.profile.resume isEqualToString:@"none"]){
-            
             [self.loadingIndicator startLoading];
             [[MQWebServices sharedInstance] resumeRequest:self.profile completionBlock:^(id result, NSError *error){
                 [self.loadingIndicator stopLoading];
@@ -950,11 +950,12 @@ NSString *bioPlaceholder = @"Bio (250 character max)";
                 [self showAlertWithtTitle:@"Upload Resume" message:msg];
             }];
             
-            
             return NO;
         }
         
         // segue to resume view controller
+        MQResumeViewController *resumeVc = [[MQResumeViewController alloc] init];
+        [self.navigationController pushViewController:resumeVc animated:YES];
         return NO;
     }
     

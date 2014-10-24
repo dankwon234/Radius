@@ -35,7 +35,8 @@
 {
     UIView *view = [self baseView:YES];
     CGRect frame = view.frame;
-    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgLegsBlue.png"]];
+//    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgLegsBlue.png"]];
+    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGrandCentral.png"]];
     
     CGFloat height = view.frame.size.height/3.0f;
     CGFloat width = frame.size.width;
@@ -43,7 +44,7 @@
     UIFont *titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16.0f];
     UIFont *detailFont = [UIFont fontWithName:@"Heiti SC" size:14.0f];
     
-    NSArray *sections = @[@{@"title":@"Profile", @"details":@"Manage your profile details", @"icon":@"iconProfile.png", @"color":[UIColor redColor]}, @{@"title":@"Applied", @"details":@"View your job applications", @"icon":@"iconCheckMark.png", @"color":kBaseGray}, @{@"title":@"Saved", @"details":@"View your saved jobs", @"icon":@"iconSave.png", @"color":kGreen}];
+    NSArray *sections = @[@{@"title":@"Profile", @"details":@"Manage your profile details", @"icon":@"iconProfile.png", @"color":[UIColor redColor]}, @{@"title":@"Applied", @"details":@"View your job applications", @"icon":@"iconCheckMark.png", @"color":[UIColor darkGrayColor]}, @{@"title":@"Saved", @"details":@"View your saved jobs", @"icon":@"iconSave.png", @"color":kGreen}];
 
     for (int i=0; i<sections.count; i++){
         NSDictionary *section = sections[i];

@@ -43,7 +43,7 @@
     UIFont *titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16.0f];
     UIFont *detailFont = [UIFont fontWithName:@"Heiti SC" size:14.0f];
     
-    NSArray *sections = @[@{@"title":@"Profile", @"details":@"Manage your profile details", @"icon":@"iconProfile.png", @"color":[UIColor redColor]}, @{@"title":@"Applied", @"details":@"View your job applications", @"icon":@"iconCheckMark.png", @"color":[UIColor lightGrayColor]}, @{@"title":@"Saved", @"details":@"View your saved jobs", @"icon":@"iconSave.png", @"color":[UIColor yellowColor]}];
+    NSArray *sections = @[@{@"title":@"Profile", @"details":@"Manage your profile details", @"icon":@"iconProfile.png", @"color":[UIColor redColor]}, @{@"title":@"Applied", @"details":@"View your job applications", @"icon":@"iconCheckMark.png", @"color":kBaseGray}, @{@"title":@"Saved", @"details":@"View your saved jobs", @"icon":@"iconSave.png", @"color":kGreen}];
 
     for (int i=0; i<sections.count; i++){
         NSDictionary *section = sections[i];

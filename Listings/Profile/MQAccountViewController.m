@@ -26,6 +26,10 @@
         self.panels = [NSMutableArray array];
         self.loaded = NO;
         
+        UIImage *imgHeader = [UIImage imageNamed:@"header.png"];
+        UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, imgHeader.size.width, imgHeader.size.height)];
+        header.backgroundColor = [UIColor colorWithPatternImage:imgHeader];
+        self.navigationItem.titleView = header;
     }
     return self;
 }
@@ -35,7 +39,6 @@
 {
     UIView *view = [self baseView:YES];
     CGRect frame = view.frame;
-//    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgLegsBlue.png"]];
     view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGrandCentral.png"]];
     
     CGFloat height = view.frame.size.height/3.0f;
@@ -44,7 +47,7 @@
     UIFont *titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16.0f];
     UIFont *detailFont = [UIFont fontWithName:@"Heiti SC" size:14.0f];
     
-    NSArray *sections = @[@{@"title":@"Profile", @"details":@"Manage your profile details", @"icon":@"iconProfile.png", @"color":[UIColor redColor]}, @{@"title":@"Applied", @"details":@"View your job applications", @"icon":@"iconCheckMark.png", @"color":[UIColor darkGrayColor]}, @{@"title":@"Saved", @"details":@"View your saved jobs", @"icon":@"iconSave.png", @"color":kGreen}];
+    NSArray *sections = @[@{@"title":@"Profile", @"details":@"Manage your profile details", @"icon":@"iconProfile.png", @"color":kLightBlue}, @{@"title":@"Applied", @"details":@"View your job applications", @"icon":@"iconCheckMark.png", @"color":[UIColor darkGrayColor]}, @{@"title":@"Saved", @"details":@"View your saved jobs", @"icon":@"iconSave.png", @"color":kGreen}];
 
     for (int i=0; i<sections.count; i++){
         NSDictionary *section = sections[i];
@@ -97,10 +100,13 @@
     NSDictionary *titleAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Heiti SC" size:18.0f], NSForegroundColorAttributeName : self.navigationController.navigationBar.tintColor};
     [self.navigationController.navigationBar setTitleTextAttributes:titleAttributes];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"exit"
-                                                                             style:UIBarButtonItemStylePlain
-                                                                            target:self
-                                                                            action:@selector(exit)];
+    UIImage *imgExit = [UIImage imageNamed:@"exit.png"];
+    UIButton *btnExit = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnExit.frame = CGRectMake(0.0f, 0.0f, 0.8f*imgExit.size.width, 0.8f*imgExit.size.height);
+    [btnExit setBackgroundImage:imgExit forState:UIControlStateNormal];
+    [btnExit addTarget:self action:@selector(exit) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnExit];
 
 }
 

@@ -22,9 +22,10 @@
 #define kNewSearchNotification @"NewSearchNotification"
 
 
-#define kRGBMax 255.0f
-#define kBaseGray [UIColor colorWithRed:240.0f/255.0f green:240.0f/255.0f blue:230.0f/255.0f alpha:1.0f]
-#define kGreen [UIColor colorWithRed:110.0f/255.0f green:155.0f/255.0f blue:166.0f/255.0f alpha:1.0f]
+#define kRGBMax     255.0f
+#define kBaseGray   [UIColor colorWithRed:240.0f/255.0f green:240.0f/255.0f blue:230.0f/255.0f alpha:1.0f]
+#define kGreen      [UIColor colorWithRed:110.0f/255.0f green:155.0f/255.0f blue:166.0f/255.0f alpha:1.0f]
+#define kLightBlue  [UIColor colorWithRed:109.0f/255.0f green:132.0f/255.0f blue:167.0f/255.0f alpha:1.0f]
 
 
 

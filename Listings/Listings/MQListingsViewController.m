@@ -115,6 +115,8 @@ static NSString *cellId = @"cellId";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.navigationBar.barTintColor = kLightBlue;
+
     if (self.profile.populated==NO)
         return;
     

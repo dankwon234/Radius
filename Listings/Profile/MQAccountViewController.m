@@ -102,7 +102,7 @@
     
     UIImage *imgExit = [UIImage imageNamed:@"exit.png"];
     UIButton *btnExit = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnExit.frame = CGRectMake(0.0f, 0.0f, 0.8f*imgExit.size.width, 0.8f*imgExit.size.height);
+    btnExit.frame = CGRectMake(0.0f, 0.0f, 0.7f*imgExit.size.width, 0.7f*imgExit.size.height);
     [btnExit setBackgroundImage:imgExit forState:UIControlStateNormal];
     [btnExit addTarget:self action:@selector(exit) forControlEvents:UIControlEventTouchUpInside];
     

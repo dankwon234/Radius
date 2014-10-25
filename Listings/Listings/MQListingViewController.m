@@ -214,24 +214,8 @@
     self.venueIcon.image = (self.listing.iconData) ? self.listing.iconData : [UIImage imageNamed:@"logo.png"];
     [view addSubview:self.venueIcon];
     
-    
+    [self setupFullImage:view];
 
-    self.fullImageView = [[UIView alloc] initWithFrame:view.frame];
-    self.fullImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    self.fullImageView.backgroundColor = [UIColor blackColor];
-    self.fullImageView.alpha = 0.0f;
-    
-    width = frame.size.width;
-    self.fullImage = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, width, width)];
-    self.fullImage.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-    self.fullImage.center = CGPointMake(self.fullImage.center.x, self.fullImageView.center.y);
-    [self.fullImageView addSubview:self.fullImage];
-
-    
-    [view addSubview:self.fullImageView];
-
-
-    
 //    CGFloat iconDimen = 55.0f;
 //    CGFloat offsets[] = {0.30f, 0.70f, 0.12f, 0.88f};
 //    NSArray *details = @[@"9/20", @"$10", @"NEW YORK\nNY", @"SAVE"];

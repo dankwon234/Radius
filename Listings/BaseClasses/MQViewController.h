@@ -27,6 +27,7 @@
 - (void)shiftUp:(CGFloat)distance;
 - (void)shiftBack:(CGFloat)origin;
 - (void)addCustomBackButton;
+- (void)setupFullImage:(UIView *)view;
 - (void)exitFullImage:(UIButton *)btn;
 - (void)viewFullImage:(UIImage *)image;
 @end

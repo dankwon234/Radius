@@ -126,6 +126,23 @@
     
 }
 
+- (void)setupFullImage:(UIView *)view
+{
+    CGRect frame = view.frame;
+    self.fullImageView = [[UIView alloc] initWithFrame:frame];
+    self.fullImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    self.fullImageView.backgroundColor = [UIColor blackColor];
+    self.fullImageView.alpha = 0.0f;
+    
+    CGFloat width = frame.size.width;
+    self.fullImage = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, width, width)];
+    self.fullImage.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    self.fullImage.center = CGPointMake(self.fullImage.center.x, self.fullImageView.center.y);
+    [self.fullImageView addSubview:self.fullImage];
+    
+    [view addSubview:self.fullImageView];
+}
+
 - (void)viewFullImage:(UIImage *)image
 {
     NSLog(@"viewImage:");

@@ -358,7 +358,6 @@
 				5CF7408119C3A1AF001A0AF9 /* Profile */,
 				5C573FC319BAB6D300677DDF /* Listings */,
 				5C573FB719BAB31E00677DDF /* Welcome */,
-				5CFC6ACE19E90F9500472995 /* Map */,
 				5C573FA419BAA90600677DDF /* Images */,
 				5C573FA319BAA8FA00677DDF /* ThirdParty */,
 				5C573F8419BAA86500677DDF /* Images.xcassets */,
@@ -568,13 +567,6 @@
 				0C22AEC619FA21180067F8D7 /* MQResumeViewController.m */,
 			);
 			path = Profile;
-			sourceTree = "<group>";
-		};
-		5CFC6ACE19E90F9500472995 /* Map */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Map;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

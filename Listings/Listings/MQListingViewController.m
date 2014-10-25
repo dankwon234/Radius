@@ -260,6 +260,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = self.listing.venue;
     [self addCustomBackButton];
     
     [UIView animateWithDuration:0.75f

@@ -382,7 +382,9 @@ NSString *bioPlaceholder = @"Bio (250 character max)";
     self.statePicker.backgroundColor = [UIColor whiteColor];
     [view addSubview:self.statePicker];
 
-    
+
+    [self setupFullImage:view];
+
     self.view = view;
 }
 
@@ -423,6 +425,11 @@ NSString *bioPlaceholder = @"Bio (250 character max)";
 
 - (void)back:(UIBarButtonItem *)btn
 {
+    if (self.fullImageView.alpha==1.0f){
+        [self exitFullImage:nil];
+        return;
+    }
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -929,6 +936,15 @@ NSString *bioPlaceholder = @"Bio (250 character max)";
     [self dismissKeyboard];
     [self dismissStatePicker];
 }
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    NSLog(@"scrollViewDidEndDragging: %.2f", scrollView.contentOffset.y);
+    if (scrollView.contentOffset.y < -80.0f)
+        [self viewFullImage:self.profile.imageData];
+}
+
+
 
 
 #pragma mark - UITextFieldDelegate

@@ -198,8 +198,8 @@ static NSString *cellId = @"cellId";
     if (self.locations.count==0)
         return;
     
-    
-    self.listings = [NSMutableArray array];
+    self.lblLocation.text = [self.locations[0] uppercaseString];
+
     [self.loadingIndicator startLoading];
     [[MQWebServices sharedInstance] fetchListings:self.locations completion:^(id result, NSError *error){
         [self.loadingIndicator stopLoading];
@@ -209,8 +209,16 @@ static NSString *cellId = @"cellId";
         
         NSDictionary *results = (NSDictionary *)result;
         NSLog(@"%@", [results description]);
-        
         NSArray *list = results[@"listings"];
+        
+        if (list.count == 0){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showAlertWithtTitle:@"No Listings!" message:@"To change the search area, tap the pin icon on the upper right corner."];
+            });
+            return;
+        }
+        
+        self.listings = [NSMutableArray array];
         for (int i=0; i<list.count; i++) {
             MQListing *listing = [[MQListing alloc] init];
             [listing populate:list[i]];
@@ -220,10 +228,6 @@ static NSString *cellId = @"cellId";
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (self.listings.count==0){
-                [self showAlertWithtTitle:@"No Listings!" message:@"To change the search area, tap the pin icon on the upper right corner."];
-                return;
-            }
             
             if (self.listingsTable){
                 [UIView animateWithDuration:0.40f
@@ -248,6 +252,7 @@ static NSString *cellId = @"cellId";
             [self layoutListsCollectionView];
             
         });
+        
         
     }];
     

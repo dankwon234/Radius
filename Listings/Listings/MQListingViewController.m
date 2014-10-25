@@ -25,8 +25,6 @@
 @property (strong, nonatomic) UIImageView *background;
 @property (strong, nonatomic) UIImageView *blurryBackground;
 @property (strong, nonatomic) NSMutableArray *detailIcons;
-@property (strong, nonatomic) UIView *fullImageView;
-@property (strong, nonatomic) UIImageView *fullImage;
 @end
 
 @implementation MQListingViewController
@@ -361,47 +359,13 @@
     [actionsheet showInView:[UIApplication sharedApplication].keyWindow];
 }
 
-- (void)viewImage:(UITapGestureRecognizer *)tap
-{
-    NSLog(@"viewImage:");
-    
-    self.fullImage.image = self.listing.imageData;
-    [UIView animateWithDuration:0.25f
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         self.fullImage.alpha = 1.0f;
-                         self.fullImageView.alpha = 1.0f;
-                         
-                         
-                     }
-                     completion:^(BOOL finished){
-                     }];
-    
-}
-
-- (void)exitFullImage:(UIButton *)btn
-{
-    [UIView animateWithDuration:0.25f
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         self.fullImage.alpha = 0.0f;
-                         self.fullImageView.alpha = 0.0f;
-                         
-                         
-                     }
-                     completion:^(BOOL finished){
-                     }];
-}
-
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     NSLog(@"scrollViewDidEndDragging: %.2f", scrollView.contentOffset.y);
     if (scrollView.contentOffset.y < -145.0f)
-        [self viewImage:nil];
+        [self viewFullImage:self.listing.imageData];
 }
 
 

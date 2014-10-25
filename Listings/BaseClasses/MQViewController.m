@@ -10,6 +10,8 @@
 
 @implementation MQViewController
 @synthesize profile;
+@synthesize fullImageView;
+@synthesize fullImage;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -122,6 +124,40 @@
                      }
                      completion:NULL];
     
+}
+
+- (void)viewFullImage:(UIImage *)image
+{
+    NSLog(@"viewImage:");
+    
+    self.fullImage.image = image;
+    [UIView animateWithDuration:0.25f
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.fullImage.alpha = 1.0f;
+                         self.fullImageView.alpha = 1.0f;
+                         
+                         
+                     }
+                     completion:^(BOOL finished){
+                     }];
+    
+}
+
+- (void)exitFullImage:(UIButton *)btn
+{
+    [UIView animateWithDuration:0.25f
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.fullImage.alpha = 0.0f;
+                         self.fullImageView.alpha = 0.0f;
+                         
+                         
+                     }
+                     completion:^(BOOL finished){
+                     }];
 }
 
 

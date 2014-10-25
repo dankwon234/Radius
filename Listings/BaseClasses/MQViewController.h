@@ -18,6 +18,8 @@
 
 @property (strong, nonatomic) MQLoadingIndicator *loadingIndicator;
 @property (strong, nonatomic) MQProfile *profile;
+@property (strong, nonatomic) UIView *fullImageView;
+@property (strong, nonatomic) UIImageView *fullImage;
 - (UIView *)baseView:(BOOL)navCtr;
 - (void)showAlertWithtTitle:(NSString *)title message:(NSString *)msg;
 - (void)showAlertWithOptions:(NSString *)title message:(NSString *)msg;
@@ -25,4 +27,6 @@
 - (void)shiftUp:(CGFloat)distance;
 - (void)shiftBack:(CGFloat)origin;
 - (void)addCustomBackButton;
+- (void)exitFullImage:(UIButton *)btn;
+- (void)viewFullImage:(UIImage *)image;
 @end

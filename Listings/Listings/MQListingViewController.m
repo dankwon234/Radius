@@ -198,8 +198,11 @@
     
     y += btnApply.frame.size.height;
     
+    CGFloat contentHeight = y+padding+20.0f;
+    if (contentHeight < 400.0f)
+        contentHeight = 400.0f;
     
-    self.theScrollview.contentSize = CGSizeMake(0.0f, y+padding+20.0f);
+    self.theScrollview.contentSize = CGSizeMake(0.0f, contentHeight);
     [view addSubview:self.theScrollview];
     
     

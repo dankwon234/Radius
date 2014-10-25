@@ -9,7 +9,7 @@
 #import "MQViewController.h"
 #import "MQListing.h"
 
-@interface MQListingViewController : MQViewController <UIActionSheetDelegate>
+@interface MQListingViewController : MQViewController <UIActionSheetDelegate, UIScrollViewDelegate>
 
 @property (strong, nonatomic) MQListing *listing;
 @end

@@ -91,7 +91,17 @@ static NSString *cellId = @"cellId";
     [view addSubview:self.lblLogin];
     
     CGFloat x = self.btnProfile.frame.origin.x+self.btnProfile.frame.size.width;
-    self.lblLocation = [[UILabel alloc] initWithFrame:CGRectMake(x, 0.0f, frame.size.width-x-44.0f, 22.0f)];
+    CGFloat width = frame.size.width-x-48.0f;
+    
+    UILabel *lblCurrent = [[UILabel alloc] initWithFrame:CGRectMake(x, 0, width, 16.0f)];
+    lblCurrent.center = CGPointMake(lblCurrent.center.x, self.btnProfile.center.y-16.0f);
+    lblCurrent.text = @"currently searching";
+    lblCurrent.textAlignment = NSTextAlignmentRight;
+    lblCurrent.textColor = [UIColor whiteColor];
+    lblCurrent.font = [UIFont fontWithName:@"Heiti SC" size:11.0f];
+    [view addSubview:lblCurrent];
+    
+    self.lblLocation = [[UILabel alloc] initWithFrame:CGRectMake(x, 0.0f, width, 22.0f)];
     self.lblLocation.center = CGPointMake(self.lblLocation.center.x, self.btnProfile.center.y);
     self.lblLocation.textAlignment = NSTextAlignmentRight;
     self.lblLocation.font = [UIFont fontWithName:@"Heiti SC" size:14.0f];
@@ -101,9 +111,9 @@ static NSString *cellId = @"cellId";
     [view addSubview:self.lblLocation];
     
     UIImage *imgLocationPin = [UIImage imageNamed:@"iconLocation.png"];
-    x += self.lblLocation.frame.size.width;
+    x += self.lblLocation.frame.size.width+2.0f;
     self.btnLocation = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.btnLocation.frame = CGRectMake(x, self.lblLocation.frame.origin.y-6.0f, imgLocationPin.size.width, imgLocationPin.size.height);
+    self.btnLocation.frame = CGRectMake(x, self.lblLocation.frame.origin.y-12.0f, imgLocationPin.size.width, imgLocationPin.size.height);
     [self.btnLocation setBackgroundImage:imgLocationPin forState:UIControlStateNormal];
     [self.btnLocation addTarget:self action:@selector(showSearchOptions:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:self.btnLocation];

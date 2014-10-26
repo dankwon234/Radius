@@ -13,6 +13,7 @@
 
 @interface MQContainerViewController ()
 @property (strong, nonatomic) NSMutableArray *listings;
+@property (strong, nonatomic) UINavigationController *navCtr;
 @end
 
 @implementation MQContainerViewController
@@ -33,11 +34,11 @@
     view.backgroundColor = [UIColor whiteColor];
     
     MQListingsViewController *listingsVc = [[MQListingsViewController alloc] init];
-    UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:listingsVc];
+    self.navCtr = [[UINavigationController alloc] initWithRootViewController:listingsVc];
     
-    [self addChildViewController:navCtr];
-    [navCtr willMoveToParentViewController:self];
-    [view addSubview:navCtr.view];
+    [self addChildViewController:self.navCtr];
+    [self.navCtr willMoveToParentViewController:self];
+    [view addSubview:self.navCtr.view];
     
     
     self.view = view;

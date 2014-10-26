@@ -41,6 +41,7 @@
 
 
 // - - - - - - - - - - - - - - - - - - PROFILE - - - - - - - - - - - - - - - - - -
+#pragma mark - Profile
 
 - (void)registerProfile:(MQProfile *)profile completion:(MQWebServiceRequestCompletionBlock)completionBlock
 {
@@ -219,6 +220,7 @@
 
 
 // - - - - - - - - - - - - - - - - - - LISTINGS - - - - - - - - - - - - - - - - - -
+#pragma mark - Listings
 
 - (void)fetchListings:(MQWebServiceRequestCompletionBlock)completionBlock
 {
@@ -344,6 +346,7 @@
 
 
 // - - - - - - - - - - - - - - - - - - APPLICATIONS - - - - - - - - - - - - - - - - - -
+#pragma mark - Applications
 
 - (void)fetchApplications:(MQProfile *)profile completion:(MQWebServiceRequestCompletionBlock)completionBlock
 {
@@ -408,6 +411,7 @@
 
 
 // - - - - - - - - - - - - - - - - - - IMAGES - - - - - - - - - - - - - - - - - -
+#pragma mark - Images
 
 - (void)fetchImage:(NSString *)imageId completionBlock:(MQWebServiceRequestCompletionBlock)completionBlock
 {
@@ -495,7 +499,6 @@
 
 - (void)uploadImage:(NSDictionary *)image toUrl:(NSString *)uploadUrl completion:(MQWebServiceRequestCompletionBlock)completionBlock
 {
-    
     NSData *imageData = image[@"data"];
     NSString *imageName = image[@"name"];
     
@@ -531,6 +534,12 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 }
 
 
+#pragma mark - Video
+
+- (void)uploadVideo:(NSDictionary *)videoInfo toUrl:(NSString *)uploadUrl completion:(MQWebServiceRequestCompletionBlock)completionBlock
+{
+    
+}
 
 
 

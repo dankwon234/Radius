@@ -9,6 +9,7 @@
 #import "MQProfileViewController.h"
 #import "MQSelectTwitterAccountViewController.h"
 #import "MQResumeViewController.h"
+#import "MQVideoViewController.h"
 #import "MQWebServices.h"
 
 
@@ -985,7 +986,8 @@ NSString *bioPlaceholder = @"Bio (250 character max)";
     
     if (tag==1006){ // video text field
         [self dismissKeyboard];
-
+        MQVideoViewController *videoVc = [[MQVideoViewController alloc] init];
+        [self.navigationController pushViewController:videoVc animated:YES];
         return NO;
     }
     

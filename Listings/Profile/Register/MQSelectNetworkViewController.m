@@ -158,7 +158,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSDictionary *titleAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Heiti SC" size:18.0f], NSForegroundColorAttributeName : [UIColor darkGrayColor]};
+    NSDictionary *titleAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Heiti SC" size:18.0f], NSForegroundColorAttributeName : [UIColor whiteColor]};
     [self.navigationController.navigationBar setTitleTextAttributes:titleAttributes];
     
     self.navigationItem.hidesBackButton = YES;

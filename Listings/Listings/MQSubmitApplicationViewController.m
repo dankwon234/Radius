@@ -98,11 +98,6 @@ NSString *placeholder = @"Coverletter (optional)";
 
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
 - (void)dismissKeyboard
 {
     [self.coverletterTextView resignFirstResponder];
@@ -129,7 +124,6 @@ NSString *placeholder = @"Coverletter (optional)";
             return;
         }
         
-//        [self.application populate:results[@"application"]];
         [self.application.listing populate:results[@"listing"]];
         [self.profile populate:results[@"radius account"]];
         
@@ -181,6 +175,10 @@ NSString *placeholder = @"Coverletter (optional)";
 }
 
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
 
 
 @end

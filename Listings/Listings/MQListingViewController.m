@@ -102,7 +102,7 @@
     CGFloat dimen = 70.0f;
     double centers[] = {0.20f, 0.50f, 0.80f};
     NSArray *detailTitles = @[[self.listing.city capitalizedString], self.listing.formattedDate, @"Save"];
-    NSArray *icons = @[@"iconLocationBlue.png", @"iconCalendarGreen.png", @"iconSaveRed.png"];
+    NSArray *icons = @[@"iconLocationBlue.png", @"iconCalendarBlue.png", @"iconSaveBlue.png"];
     
     for (int i=0; i<3; i++) {
         UIView *detailView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, y, dimen, dimen)];

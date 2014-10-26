@@ -307,6 +307,10 @@
         NSDictionary *results = (NSDictionary *)result;
         NSLog(@"%@", [results description]);
         
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showAlertWithtTitle:@"Saved" message:@"This listing has been saved."];
+        });
+        
     }];
 }
 

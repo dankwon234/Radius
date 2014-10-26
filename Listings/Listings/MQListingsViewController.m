@@ -149,6 +149,12 @@ static NSString *cellId = @"cellId";
         [self.btnProfile setBackgroundImage:self.profile.imageData forState:UIControlStateNormal];
         self.lblLogin.alpha = 0.0f;
     }
+    else{
+        if ([self.profile.image isEqualToString:@"none"]==NO){
+            [self.profile addObserver:self forKeyPath:@"imageData" options:0 context:nil];
+            [self.profile fetchImage];
+        }
+    }
     
     
     if (self.listingsTable)
@@ -172,22 +178,30 @@ static NSString *cellId = @"cellId";
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:@"iconData"]==NO)
-        return;
-    
-    MQListing *listing = (MQListing *)object;
-    [listing removeObserver:self forKeyPath:@"iconData"];
-    
-    // this is smoother than a conventional reload. it doesn't stutter the UI:
-    dispatch_async(dispatch_get_main_queue(), ^{
-        int index = (int)[self.listings indexOfObject:listing];
-        MQListingCell *cell = (MQListingCell *)[self.listingsTable cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    if ([keyPath isEqualToString:@"iconData"]){
+        MQListing *listing = (MQListing *)object;
+        [listing removeObserver:self forKeyPath:@"iconData"];
         
-        if (!cell)
-            return;
-        
-        cell.icon.image = listing.iconData;
-    });
+        // this is smoother than a conventional reload. it doesn't stutter the UI:
+        dispatch_async(dispatch_get_main_queue(), ^{
+            int index = (int)[self.listings indexOfObject:listing];
+            MQListingCell *cell = (MQListingCell *)[self.listingsTable cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+            
+            if (!cell)
+                return;
+            
+            cell.icon.image = listing.iconData;
+        });
+    }
+    
+    if ([keyPath isEqualToString:@"imageData"]){
+        if (self.profile.imageData){
+            [self.btnProfile setBackgroundImage:self.profile.imageData forState:UIControlStateNormal];
+            self.lblLogin.alpha = 0.0f;
+            [self.profile removeObserver:self forKeyPath:@"imageData"];
+        }
+    }
+    
     
 
 }

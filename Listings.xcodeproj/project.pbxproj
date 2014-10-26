@@ -20,6 +20,9 @@
 		0CFD564219FC76BB000AFC9E /* bgSidewalkGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CFD564119FC76BB000AFC9E /* bgSidewalkGreen@2x.png */; };
 		0CFD564419FC7761000AFC9E /* bgBlurry1Red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CFD564319FC7761000AFC9E /* bgBlurry1Red@2x.png */; };
 		0CFD564619FC8EC3000AFC9E /* iconHamburger@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CFD564519FC8EC3000AFC9E /* iconHamburger@2x.png */; };
+		0CFD564919FCA510000AFC9E /* MQVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFD564819FCA510000AFC9E /* MQVideoViewController.m */; };
+		0CFD564B19FCA890000AFC9E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CFD564A19FCA890000AFC9E /* MobileCoreServices.framework */; };
+		0CFD564D19FCA89F000AFC9E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CFD564C19FCA89F000AFC9E /* MediaPlayer.framework */; };
 		5C0A674719ECE520007BF8BA /* bgBlurry1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C0A674619ECE520007BF8BA /* bgBlurry1@2x.png */; };
 		5C0C93CA19BEB4B60011086B /* shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C0C93C919BEB4B60011086B /* shadow@2x.png */; };
 		5C101A0D19E8975D0046F7F1 /* icon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C101A0A19E8975D0046F7F1 /* icon120.png */; };
@@ -126,6 +129,10 @@
 		0CFD564119FC76BB000AFC9E /* bgSidewalkGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgSidewalkGreen@2x.png"; sourceTree = "<group>"; };
 		0CFD564319FC7761000AFC9E /* bgBlurry1Red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgBlurry1Red@2x.png"; sourceTree = "<group>"; };
 		0CFD564519FC8EC3000AFC9E /* iconHamburger@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconHamburger@2x.png"; sourceTree = "<group>"; };
+		0CFD564719FCA510000AFC9E /* MQVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQVideoViewController.h; sourceTree = "<group>"; };
+		0CFD564819FCA510000AFC9E /* MQVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQVideoViewController.m; sourceTree = "<group>"; };
+		0CFD564A19FCA890000AFC9E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		0CFD564C19FCA89F000AFC9E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		5C0A674619ECE520007BF8BA /* bgBlurry1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgBlurry1@2x.png"; sourceTree = "<group>"; };
 		5C0C93C919BEB4B60011086B /* shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shadow@2x.png"; sourceTree = "<group>"; };
 		5C101A0A19E8975D0046F7F1 /* icon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon120.png; sourceTree = "<group>"; };
@@ -254,6 +261,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CFD564D19FCA89F000AFC9E /* MediaPlayer.framework in Frameworks */,
+				0CFD564B19FCA890000AFC9E /* MobileCoreServices.framework in Frameworks */,
 				5CE459FF19D8BF3300635A67 /* Social.framework in Frameworks */,
 				5CE459FD19D8BF2C00635A67 /* Accounts.framework in Frameworks */,
 				5C573FC219BAB62400677DDF /* MapKit.framework in Frameworks */,
@@ -336,6 +345,8 @@
 		5C573F7119BAA86400677DDF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0CFD564C19FCA89F000AFC9E /* MediaPlayer.framework */,
+				0CFD564A19FCA890000AFC9E /* MobileCoreServices.framework */,
 				5CE459FE19D8BF3300635A67 /* Social.framework */,
 				5CE459FC19D8BF2C00635A67 /* Accounts.framework */,
 				5C573FC119BAB62400677DDF /* MapKit.framework */,
@@ -569,6 +580,8 @@
 				0CFD420619F980BE0020DC4B /* MQProfileListingsViewController.m */,
 				0C22AEC519FA21180067F8D7 /* MQResumeViewController.h */,
 				0C22AEC619FA21180067F8D7 /* MQResumeViewController.m */,
+				0CFD564719FCA510000AFC9E /* MQVideoViewController.h */,
+				0CFD564819FCA510000AFC9E /* MQVideoViewController.m */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -721,6 +734,7 @@
 				0CFB269719FA04E800285121 /* MQSearchHistoryViewController.m in Sources */,
 				5C1636E519EB29AF00BACC3E /* LIALinkedInHttpClient.m in Sources */,
 				5C573FCC19BAB83300677DDF /* MQListing.m in Sources */,
+				0CFD564919FCA510000AFC9E /* MQVideoViewController.m in Sources */,
 				5C5ADB2C19C5623B00B5E29D /* AFHTTPSessionManager.m in Sources */,
 				5CE459FB19D8BF0600635A67 /* MQSocialAccountsMgr.m in Sources */,
 				5C5ADB2A19C5623B00B5E29D /* AFHTTPRequestOperation.m in Sources */,

@@ -39,7 +39,7 @@
 {
     UIView *view = [self baseView:YES];
     CGRect frame = view.frame;
-    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGrandCentral.png"]];
+    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgBlurry1Red.png"]];
     
     CGFloat height = view.frame.size.height/3.0f;
     CGFloat width = frame.size.width;

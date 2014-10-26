@@ -126,6 +126,17 @@ static NSString *cellId = @"cellId";
 {
     [super viewDidLoad];
     self.navigationController.navigationBar.barTintColor = kLightBlue;
+    
+    
+    self.navigationItem.hidesBackButton = YES;
+    
+    UIImage *imgHamburger = [UIImage imageNamed:@"iconHamburger.png"];
+    UIButton *btnMenu = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnMenu.frame = CGRectMake(0.0f, 0.0f, 0.5f*imgHamburger.size.width, 0.5f*imgHamburger.size.height);
+    [btnMenu setBackgroundImage:imgHamburger forState:UIControlStateNormal];
+    [btnMenu addTarget:self action:@selector(viewMenu:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnMenu];
+
 
     if (self.profile.populated==NO)
         return;
@@ -201,9 +212,12 @@ static NSString *cellId = @"cellId";
             [self.profile removeObserver:self forKeyPath:@"imageData"];
         }
     }
-    
-    
+}
 
+- (void)viewMenu:(id)sender
+{
+    NSLog(@"view menu");
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"ViewMenuNotification" object:nil]];
 }
 
 

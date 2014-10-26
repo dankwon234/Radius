@@ -9,6 +9,7 @@
 #import "MQVideoViewController.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import "MQWebServices.h"
 
 
 @interface MQVideoViewController ()
@@ -55,6 +56,16 @@ NSString *movieFileName = @"movie.MOV";
     self.videoThumbnail.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     [view addSubview:self.videoThumbnail];
     
+    CGFloat y = self.videoThumbnail.frame.origin.y+self.videoThumbnail.frame.size.height+20.0f;
+    UIButton *btnRecord = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnRecord.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    btnRecord.frame = CGRectMake(0, y, 44, 44);
+    btnRecord.center = CGPointMake(0.5f*frame.size.width, btnRecord.center.y);
+    btnRecord.backgroundColor = [UIColor redColor];
+    [btnRecord addTarget:self action:@selector(recordVideo:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:btnRecord];
+
+    
     CGFloat padding = 12.0f;
     UIView *next = [[UIView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height-64.0f, frame.size.width, 64.0f)];
     next.backgroundColor = [UIColor grayColor];
@@ -69,9 +80,10 @@ NSString *movieFileName = @"movie.MOV";
     btnNext.layer.cornerRadius = 4.0f;
     btnNext.layer.masksToBounds = YES;
     btnNext.titleLabel.font = [UIFont fontWithName:@"Heiti SC" size:16.0f];
-    [btnNext setTitle:@"RECORD VIDEO" forState:UIControlStateNormal];
+    [btnNext setTitle:@"UPLOAD VIDEO" forState:UIControlStateNormal];
     [btnNext setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [btnNext addTarget:self action:@selector(recordVideo:) forControlEvents:UIControlEventTouchUpInside];
+    [btnNext addTarget:self action:@selector(startUpload) forControlEvents:UIControlEventTouchUpInside];
+//    [btnNext addTarget:self action:@selector(recordVideo:) forControlEvents:UIControlEventTouchUpInside];
     [next addSubview:btnNext];
     
     [view addSubview:next];
@@ -82,6 +94,52 @@ NSString *movieFileName = @"movie.MOV";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
+
+- (void)startUpload
+{
+    if (!self.movieData)
+        return;
+    
+    [self.loadingIndicator startLoading];
+    [[MQWebServices sharedInstance] fetchVideoUploadString:^(id result, NSError *error){
+        if (error){
+            [self showAlertWithtTitle:@"Error" message:[error localizedDescription]];
+            return;
+        }
+        
+        NSDictionary *results = (NSDictionary *)result;
+        NSLog(@"%@", [results description]);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString *uploadString = results[@"upload"];
+            [self uploadVideo:uploadString];
+        });
+    }];
+}
+
+- (void)uploadVideo:(NSString *)uploadString
+{
+    NSLog(@"uploadVideo:");
+    NSDictionary *videoInfo = @{@"data":self.movieData, @"name":@"movie.mp4"};
+    [[MQWebServices sharedInstance] uploadVideo:videoInfo toUrl:uploadString completion:^(id result, NSError *error){
+        [self.loadingIndicator stopLoading];
+        if (error){
+            [self showAlertWithtTitle:@"Error" message:[error localizedDescription]];
+            return;
+        }
+        
+        NSDictionary *results = (NSDictionary *)result;
+        NSLog(@"%@", [results description]);
+        
+        NSDictionary *videoInfo = results[@"video"];
+        self.profile.video = videoInfo[@"id"];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showAlertWithtTitle:@"Upload Successful" message:@"Your video was successfully uploaded.\n\nTo save, tap 'Save Changes' at the bottom of this screen."];
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+        
+    }];
 }
 
 - (void)playMovie:(UIButton *)btn

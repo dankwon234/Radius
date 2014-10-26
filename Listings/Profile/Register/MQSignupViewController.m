@@ -20,10 +20,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
         self.title = @"Create Your Profile";
         self.textFields = [NSMutableArray array];
-        
     }
     return self;
 }
@@ -32,7 +30,7 @@
 {
     UIView *view = [self baseView:YES];
     CGRect frame = view.frame;
-    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGrandCentral.png"]];
+    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgBlurry1Red.png"]];
     
     
     NSArray *fields = @[@"First Name", @"Last Name", @"Email", @"Password"];
@@ -91,17 +89,20 @@
 {
     [super viewDidLoad];
     
-    NSDictionary *titleAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Heiti SC" size:18.0f], NSForegroundColorAttributeName : [UIColor darkGrayColor]};
+    self.navigationItem.hidesBackButton = YES;
+    self.navigationController.navigationBar.barTintColor = kGreen;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    NSDictionary *titleAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Heiti SC" size:18.0f], NSForegroundColorAttributeName : self.navigationController.navigationBar.tintColor};
     [self.navigationController.navigationBar setTitleTextAttributes:titleAttributes];
     
+    UIImage *imgExit = [UIImage imageNamed:@"exit.png"];
+    UIButton *btnExit = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnExit.frame = CGRectMake(0.0f, 0.0f, 0.7f*imgExit.size.width, 0.7f*imgExit.size.height);
+    [btnExit setBackgroundImage:imgExit forState:UIControlStateNormal];
+    [btnExit addTarget:self action:@selector(exit) forControlEvents:UIControlEventTouchUpInside];
     
-    UIImage *imgBack = [UIImage imageNamed:@"backArrow.png"];
-    UIButton *btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnBack setBackgroundImage:imgBack forState:UIControlStateNormal];
-    btnBack.frame = CGRectMake(0.0f, 0.0f, imgBack.size.width, imgBack.size.height);
-    [btnBack addTarget:self action:@selector(exit) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnBack];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnExit];
 }
 
 - (void)exit
@@ -139,11 +140,6 @@
         return;
     }
     
-    // Temporary: remove after setting up UI for MQProfileViewController
-//    MQSelectNetworkViewController *selectNetworkVc = [[MQSelectNetworkViewController alloc] init];
-//    [self.navigationController pushViewController:selectNetworkVc animated:YES];
-
-
     [self.loadingIndicator startLoading];
     [[MQWebServices sharedInstance] registerProfile:self.profile completion:^(id result, NSError *error){
         [self.loadingIndicator stopLoading];
@@ -224,7 +220,7 @@
     }
     
     [textField resignFirstResponder];
-    [self shiftBack:64.0f];
+    [self shiftBack:0.0f];
     
     return YES;
 }

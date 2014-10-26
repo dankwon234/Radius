@@ -65,8 +65,27 @@
     
     CGFloat padding = 12.0f;
     
+//    UIButton *btnNext = [UIButton buttonWithType:UIButtonTypeCustom];
+//    btnNext.frame = CGRectMake(padding, frame.size.height-h-padding, frame.size.width-2*padding, h);
+//    btnNext.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+//    btnNext.backgroundColor = [UIColor clearColor];
+//    btnNext.layer.borderColor = [[UIColor whiteColor] CGColor];
+//    btnNext.layer.borderWidth = 1.5f;
+//    btnNext.layer.cornerRadius = 4.0f;
+//    btnNext.layer.masksToBounds = YES;
+//    btnNext.titleLabel.font = [UIFont fontWithName:@"Heiti SC" size:16.0f];
+//    [btnNext setTitle:@"NEXT" forState:UIControlStateNormal];
+//    [btnNext setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [btnNext addTarget:self action:@selector(btnNextAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [view addSubview:btnNext];
+
+    
+    UIView *next = [[UIView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height-64.0f, frame.size.width, 64.0f)];
+    next.backgroundColor = [UIColor grayColor];
+    next.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    
     UIButton *btnNext = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnNext.frame = CGRectMake(padding, frame.size.height-h-padding, frame.size.width-2*padding, h);
+    btnNext.frame = CGRectMake(padding, padding, frame.size.width-2*padding, h);
     btnNext.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     btnNext.backgroundColor = [UIColor clearColor];
     btnNext.layer.borderColor = [[UIColor whiteColor] CGColor];
@@ -77,7 +96,9 @@
     [btnNext setTitle:@"NEXT" forState:UIControlStateNormal];
     [btnNext setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btnNext addTarget:self action:@selector(btnNextAction:) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:btnNext];
+    [next addSubview:btnNext];
+    
+    [view addSubview:next];
 
     
     

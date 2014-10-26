@@ -78,7 +78,6 @@
 		5CE03D7819C6385F00BE577D /* iconLocation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE03D7719C6385F00BE577D /* iconLocation@2x.png */; };
 		5CE03D7A19C63B7C00BE577D /* iconCheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE03D7919C63B7C00BE577D /* iconCheck@2x.png */; };
 		5CE03D7C19C63E0B00BE577D /* iconCalendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE03D7B19C63E0B00BE577D /* iconCalendar@2x.png */; };
-		5CE4237C19CF67F900A7BC7E /* MQDetailIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE4237B19CF67F900A7BC7E /* MQDetailIcon.m */; };
 		5CE459FB19D8BF0600635A67 /* MQSocialAccountsMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE459FA19D8BF0600635A67 /* MQSocialAccountsMgr.m */; };
 		5CE459FD19D8BF2C00635A67 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CE459FC19D8BF2C00635A67 /* Accounts.framework */; };
 		5CE459FF19D8BF3300635A67 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CE459FE19D8BF3300635A67 /* Social.framework */; };
@@ -220,8 +219,6 @@
 		5CE03D7719C6385F00BE577D /* iconLocation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconLocation@2x.png"; sourceTree = "<group>"; };
 		5CE03D7919C63B7C00BE577D /* iconCheck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconCheck@2x.png"; sourceTree = "<group>"; };
 		5CE03D7B19C63E0B00BE577D /* iconCalendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconCalendar@2x.png"; sourceTree = "<group>"; };
-		5CE4237A19CF67F900A7BC7E /* MQDetailIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQDetailIcon.h; sourceTree = "<group>"; };
-		5CE4237B19CF67F900A7BC7E /* MQDetailIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQDetailIcon.m; sourceTree = "<group>"; };
 		5CE459F919D8BF0600635A67 /* MQSocialAccountsMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQSocialAccountsMgr.h; sourceTree = "<group>"; };
 		5CE459FA19D8BF0600635A67 /* MQSocialAccountsMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQSocialAccountsMgr.m; sourceTree = "<group>"; };
 		5CE459FC19D8BF2C00635A67 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -483,8 +480,6 @@
 				5CFCB93E19F2496C00681270 /* MQSubmitApplicationViewController.m */,
 				5CFCB94019F2563C00681270 /* MQApplication.h */,
 				5CFCB94119F2563C00681270 /* MQApplication.m */,
-				5CE4237A19CF67F900A7BC7E /* MQDetailIcon.h */,
-				5CE4237B19CF67F900A7BC7E /* MQDetailIcon.m */,
 				5C573FCD19BAC1B400677DDF /* MQListingCell.h */,
 				5C573FCE19BAC1B400677DDF /* MQListingCell.m */,
 				5CEA0D9819C688F0004234C7 /* MQListingHeaderCell.h */,
@@ -734,7 +729,6 @@
 				5C5ADB2D19C5623B00B5E29D /* AFNetworkReachabilityManager.m in Sources */,
 				5C5ADB3219C5623B00B5E29D /* AFURLSessionManager.m in Sources */,
 				5C573FD219BAC85000677DDF /* MQCollectionViewFlowLayout.m in Sources */,
-				5CE4237C19CF67F900A7BC7E /* MQDetailIcon.m in Sources */,
 				5C5ADB3319C5623B00B5E29D /* Reachability.m in Sources */,
 				5C573FC619BAB72700677DDF /* MQListingsViewController.m in Sources */,
 				5C573FB619BAB0CD00677DDF /* MQWebServices.m in Sources */,

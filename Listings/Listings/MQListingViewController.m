@@ -10,7 +10,6 @@
 #import "MQListingHeaderCell.h"
 #import "MQListingSummaryCell.h"
 #import "UIColor+MQColorAdditions.h"
-#import "MQDetailIcon.h"
 #import "MQSignupViewController.h"
 #import "MQLoginViewController.h"
 #import "MQSubmitApplicationViewController.h"
@@ -216,18 +215,6 @@
     
     [self setupFullImage:view];
 
-//    CGFloat iconDimen = 55.0f;
-//    CGFloat offsets[] = {0.30f, 0.70f, 0.12f, 0.88f};
-//    NSArray *details = @[@"9/20", @"$10", @"NEW YORK\nNY", @"SAVE"];
-//    for (int i=0; i<4; i++) {
-//        MQDetailIcon *icon = [[MQDetailIcon alloc] initWithFrame:CGRectMake(0.0f, 94.0f, iconDimen, 60.0f)];
-//        icon.center = CGPointMake(offsets[i]*frame.size.width, icon.center.y);
-//        icon.lblDetail.text = details[i];
-//        [view addSubview:icon];
-//        [self.detailIcons addObject:icon];
-//    }
-    
-    
     
     self.view = view;
 }

@@ -536,8 +536,69 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 
 #pragma mark - Video
 
+- (void)fetchVideoUploadString:(MQWebServiceRequestCompletionBlock)completionBlock
+{
+    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:kBaseUrl]];
+    
+    [manager GET:kPathUpload
+      parameters:@{@"media":@"videos"}
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSDictionary *responseDictionary = (NSDictionary *)responseObject;
+             NSDictionary *results = [responseDictionary objectForKey:@"results"];
+             NSString *confirmation = [results objectForKey:@"confirmation"];
+             
+             if ([confirmation isEqualToString:@"success"]){ // profile successfully registered
+                 if (completionBlock)
+                     completionBlock(results, nil);
+             }
+             else{ // registration failed.
+                 if (completionBlock)
+                     completionBlock(results, [NSError errorWithDomain:kErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey:results[@"message"]}]);
+                 
+             }
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"FAILURE BLOCK: %@", [error localizedDescription]);
+             if (completionBlock)
+                 completionBlock(nil, error);
+         }];
+}
+
+
 - (void)uploadVideo:(NSDictionary *)videoInfo toUrl:(NSString *)uploadUrl completion:(MQWebServiceRequestCompletionBlock)completionBlock
 {
+    NSData *videoData = videoInfo[@"data"];
+    NSString *videoName = videoInfo[@"name"];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:uploadUrl
+       parameters:nil
+constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [formData appendPartWithFileData:videoData name:@"file" fileName:videoName mimeType:@"video/mp4"];
+}
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              NSDictionary *responseDictionary = (NSDictionary *)responseObject;
+              NSDictionary *results = [responseDictionary objectForKey:@"results"];
+              NSString *confirmation = [results objectForKey:@"confirmation"];
+              
+              if ([confirmation isEqualToString:@"success"]){ // profile successfully registered
+                  if (completionBlock)
+                      completionBlock(results, nil);
+              }
+              else{ // registration failed.
+                  if (completionBlock)
+                      completionBlock(results, [NSError errorWithDomain:kErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey:results[@"message"]}]);
+                  
+              }
+              
+              
+              //        NSLog(@"Success: %@", responseObject);
+          }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              //        NSLog(@"Error: %@", error);
+              completionBlock(nil, error);
+              
+          }];
     
 }
 

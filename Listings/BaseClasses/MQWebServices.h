@@ -43,4 +43,9 @@ typedef void (^MQWebServiceRequestCompletionBlock)(id result, NSError *error);
 - (void)cacheImage:(UIImage *)image toPath:(NSString *)filePath;
 - (NSString *)createFilePath:(NSString *)fileName;
 
+// Video
+- (void)uploadVideo:(NSDictionary *)videoInfo toUrl:(NSString *)uploadUrl completion:(MQWebServiceRequestCompletionBlock)completionBlock;
+- (void)fetchVideoUploadString:(MQWebServiceRequestCompletionBlock)completionBlock;
+
+
 @end

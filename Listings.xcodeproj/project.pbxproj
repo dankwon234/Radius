@@ -17,6 +17,8 @@
 		0CFB269419FA047B00285121 /* MQMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFB269319FA047B00285121 /* MQMapViewController.m */; };
 		0CFB269719FA04E800285121 /* MQSearchHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFB269619FA04E800285121 /* MQSearchHistoryViewController.m */; };
 		0CFD420719F980BE0020DC4B /* MQProfileListingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFD420619F980BE0020DC4B /* MQProfileListingsViewController.m */; };
+		0CFD564219FC76BB000AFC9E /* bgSidewalkGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CFD564119FC76BB000AFC9E /* bgSidewalkGreen@2x.png */; };
+		0CFD564419FC7761000AFC9E /* bgBlurry1Red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CFD564319FC7761000AFC9E /* bgBlurry1Red@2x.png */; };
 		5C0A674719ECE520007BF8BA /* bgBlurry1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C0A674619ECE520007BF8BA /* bgBlurry1@2x.png */; };
 		5C0C93CA19BEB4B60011086B /* shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C0C93C919BEB4B60011086B /* shadow@2x.png */; };
 		5C101A0D19E8975D0046F7F1 /* icon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C101A0A19E8975D0046F7F1 /* icon120.png */; };
@@ -121,6 +123,8 @@
 		0CFB269619FA04E800285121 /* MQSearchHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQSearchHistoryViewController.m; sourceTree = "<group>"; };
 		0CFD420519F980BE0020DC4B /* MQProfileListingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQProfileListingsViewController.h; sourceTree = "<group>"; };
 		0CFD420619F980BE0020DC4B /* MQProfileListingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQProfileListingsViewController.m; sourceTree = "<group>"; };
+		0CFD564119FC76BB000AFC9E /* bgSidewalkGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgSidewalkGreen@2x.png"; sourceTree = "<group>"; };
+		0CFD564319FC7761000AFC9E /* bgBlurry1Red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgBlurry1Red@2x.png"; sourceTree = "<group>"; };
 		5C0A674619ECE520007BF8BA /* bgBlurry1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgBlurry1@2x.png"; sourceTree = "<group>"; };
 		5C0C93C919BEB4B60011086B /* shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shadow@2x.png"; sourceTree = "<group>"; };
 		5C101A0A19E8975D0046F7F1 /* icon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon120.png; sourceTree = "<group>"; };
@@ -436,9 +440,11 @@
 				0C56504019FA4C9D00BD6C36 /* exit@2x.png */,
 				0C56503C19FA475F00BD6C36 /* header@2x.png */,
 				5C0A674619ECE520007BF8BA /* bgBlurry1@2x.png */,
+				0CFD564319FC7761000AFC9E /* bgBlurry1Red@2x.png */,
 				5CF8482819F1C13500DCCD7F /* bgLegs@2x.png */,
 				5CF8482A19F2283F00DCCD7F /* bgLegsBlue@2x.png */,
 				5C101A1619E8AF270046F7F1 /* bgSidewalk@2x.png */,
+				0CFD564119FC76BB000AFC9E /* bgSidewalkGreen@2x.png */,
 				5C101A1019E8998B0046F7F1 /* logo@2x.png */,
 				5C101A1419E8A0B50046F7F1 /* locationPin@2x.png */,
 				5CECD4DC19D8887B009A912A /* bgGrandCentral@2x.png */,
@@ -646,6 +652,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CECD4DF19D89596009A912A /* Default-568h@2x.png in Resources */,
+				0CFD564219FC76BB000AFC9E /* bgSidewalkGreen@2x.png in Resources */,
 				5C1636D619EB22DC00BACC3E /* iconCheckGreen@2x.png in Resources */,
 				5C101A1519E8A0B50046F7F1 /* locationPin@2x.png in Resources */,
 				5CF8483319F2356100DCCD7F /* iconCheckMark@2x.png in Resources */,
@@ -661,6 +668,7 @@
 				5C101A0F19E8975D0046F7F1 /* icon80.png in Resources */,
 				5C101A0E19E8975D0046F7F1 /* icon58.png in Resources */,
 				5C0A674719ECE520007BF8BA /* bgBlurry1@2x.png in Resources */,
+				0CFD564419FC7761000AFC9E /* bgBlurry1Red@2x.png in Resources */,
 				5C1636E719EB29AF00BACC3E /* 01-refresh.png in Resources */,
 				0C2EDED619F8BF8F00C259D2 /* iconCalendarGreen@2x.png in Resources */,
 				5CF8482919F1C13500DCCD7F /* bgLegs@2x.png in Resources */,

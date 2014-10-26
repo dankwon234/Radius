@@ -48,9 +48,13 @@ NSString *placeholder = @"Coverletter (optional)";
     self.coverletterTextView.textColor = [UIColor lightGrayColor];
     self.coverletterTextView.font = [UIFont fontWithName:@"Heiti SC" size:14.0f];
     
+    UIBarButtonItem *btnDone = [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(dismissKeyboard)];
+    [btnDone setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+
+    
     UIToolbar* doneToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, 44.0f)];
     doneToolbar.barStyle = UIBarStyleBlackTranslucent;
-    doneToolbar.items = @[[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyboard)]];
+    doneToolbar.items = @[[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], btnDone];
     
     [doneToolbar sizeToFit];
     self.coverletterTextView.inputAccessoryView = doneToolbar;
@@ -90,6 +94,8 @@ NSString *placeholder = @"Coverletter (optional)";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self addCustomBackButton];
+
 }
 
 - (void)didReceiveMemoryWarning

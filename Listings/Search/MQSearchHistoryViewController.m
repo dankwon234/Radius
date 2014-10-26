@@ -31,13 +31,15 @@
 - (void)loadView
 {
     UIView *view = [self baseView:YES];
-    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgSidewalk.png"]];
+    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgLegsBlue.png"]];
     CGRect frame = view.frame;
 
     self.searchHistoryTable = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height-64.0f) style:UITableViewStylePlain];
     self.searchHistoryTable.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight);
     self.searchHistoryTable.dataSource = self;
     self.searchHistoryTable.delegate = self;
+    self.searchHistoryTable.separatorStyle = UITableViewCellSelectionStyleNone;
+    self.searchHistoryTable.alpha = 0.85f;
     [view addSubview:self.searchHistoryTable];
     
     
@@ -107,6 +109,11 @@
     if (cell==nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.font = [UIFont fontWithName:@"Heiti SC" size:16.0f];
+        
+        UIView *separator = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, tableView.frame.size.width, 0.5f)];
+        separator.backgroundColor = [UIColor grayColor];
+        [cell.contentView addSubview:separator];
     }
     
     
@@ -117,7 +124,7 @@
     else
         cell.textLabel.text = location;
     
-    cell.textLabel.textColor = ([self.locations containsObject:location]) ? [UIColor greenColor] : [UIColor darkGrayColor];
+    cell.textLabel.textColor = ([self.locations containsObject:location]) ? kGreen : [UIColor darkGrayColor];
     return cell;
 }
 

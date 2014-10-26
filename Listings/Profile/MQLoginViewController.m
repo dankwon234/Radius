@@ -21,7 +21,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
+//        self.edgesForExtendedLayout = UIRectEdgeNone;
         self.title = @"Log In";
         self.textFields = [NSMutableArray array];
 
@@ -34,7 +34,7 @@
 {
     UIView *view = [self baseView:YES];
     CGRect frame = view.frame;
-    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGrandCentral.png"]];
+    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgBlurry1Red.png"]];
     
     
     NSArray *fields = @[@"Email", @"Password"];
@@ -65,23 +65,27 @@
     }
     
     CGFloat padding = 12.0f;
+    UIView *loginView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height-64.0f, frame.size.width, 64.0f)];
+    loginView.backgroundColor = [UIColor grayColor];
+    loginView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     
-    UIButton *btnNext = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnNext.frame = CGRectMake(padding, frame.size.height-h-padding, frame.size.width-2*padding, h);
-    btnNext.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-    btnNext.backgroundColor = [UIColor clearColor];
-    btnNext.layer.borderColor = [[UIColor whiteColor] CGColor];
-    btnNext.layer.borderWidth = 1.5f;
-    btnNext.layer.cornerRadius = 4.0f;
-    btnNext.layer.masksToBounds = YES;
-    btnNext.titleLabel.font = [UIFont fontWithName:@"Heiti SC" size:16.0f];
-    [btnNext setTitle:@"LOG IN" forState:UIControlStateNormal];
-    [btnNext setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [btnNext addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:btnNext];
+    UIButton *btnLogin = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnLogin.frame = CGRectMake(padding, padding, frame.size.width-2*padding, h);
+    btnLogin.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    btnLogin.backgroundColor = [UIColor clearColor];
+    btnLogin.layer.borderColor = [[UIColor whiteColor] CGColor];
+    btnLogin.layer.borderWidth = 1.5f;
+    btnLogin.layer.cornerRadius = 4.0f;
+    btnLogin.layer.masksToBounds = YES;
+    btnLogin.titleLabel.font = [UIFont fontWithName:@"Heiti SC" size:16.0f];
+    [btnLogin setTitle:@"LOG IN" forState:UIControlStateNormal];
+    [btnLogin setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btnLogin addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
+    [loginView addSubview:btnLogin];
     
+    [view addSubview:loginView];
 
-
+    
     self.view = view;
     
 }
@@ -89,9 +93,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSDictionary *titleAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Heiti SC" size:18.0f], NSForegroundColorAttributeName : [UIColor darkGrayColor]};
+//    NSDictionary *titleAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Heiti SC" size:18.0f], NSForegroundColorAttributeName : [UIColor darkGrayColor]};
+//    [self.navigationController.navigationBar setTitleTextAttributes:titleAttributes];
+    
+    self.navigationItem.hidesBackButton = YES;
+    self.navigationController.navigationBar.barTintColor = kGreen;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    NSDictionary *titleAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Heiti SC" size:18.0f], NSForegroundColorAttributeName : self.navigationController.navigationBar.tintColor};
     [self.navigationController.navigationBar setTitleTextAttributes:titleAttributes];
+    
+    UIImage *imgExit = [UIImage imageNamed:@"exit.png"];
+    UIButton *btnExit = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnExit.frame = CGRectMake(0.0f, 0.0f, 0.7f*imgExit.size.width, 0.7f*imgExit.size.height);
+    [btnExit setBackgroundImage:imgExit forState:UIControlStateNormal];
+    [btnExit addTarget:self action:@selector(exit) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnExit];
+}
 
+- (void)exit
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:NULL];
+    
 }
 
 - (void)login:(UIButton *)btn

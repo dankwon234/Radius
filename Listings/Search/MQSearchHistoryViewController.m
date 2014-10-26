@@ -71,13 +71,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSDictionary *navBarAttributes = @{NSForegroundColorAttributeName:[UIColor darkGrayColor], NSFontAttributeName:[UIFont fontWithName:@"Heiti SC" size:18.0f]};
-    [self.navigationController.navigationBar setTitleTextAttributes:navBarAttributes];
+    self.navigationItem.hidesBackButton = YES;
+    self.navigationController.navigationBar.barTintColor = kOrange;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"cancel"
-                                                                             style:UIBarButtonItemStylePlain
-                                                                            target:self
-                                                                            action:@selector(exit:)];
+    NSDictionary *titleAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Heiti SC" size:18.0f], NSForegroundColorAttributeName : self.navigationController.navigationBar.tintColor};
+    [self.navigationController.navigationBar setTitleTextAttributes:titleAttributes];
+    
+    UIImage *imgExit = [UIImage imageNamed:@"exit.png"];
+    UIButton *btnExit = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnExit.frame = CGRectMake(0.0f, 0.0f, 0.7f*imgExit.size.width, 0.7f*imgExit.size.height);
+    [btnExit setBackgroundImage:imgExit forState:UIControlStateNormal];
+    [btnExit addTarget:self action:@selector(exit:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnExit];
     
 }
 

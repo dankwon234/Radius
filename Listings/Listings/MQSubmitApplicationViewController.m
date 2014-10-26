@@ -126,8 +126,12 @@ NSString *placeholder = @"Coverletter (optional)";
         
         [self.application.listing populate:results[@"listing"]];
         [self.profile populate:results[@"radius account"]];
+        if (self.profile.applications)
+            [self.profile.applications insertObject:self.application atIndex:0];
+        
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            [self showAlertWithtTitle:@"Application Submitted" message:@"You have applied to this job. Good luck!"];
             [self.navigationController popToRootViewControllerAnimated:YES];
         });
     }];

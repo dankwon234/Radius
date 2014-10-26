@@ -307,6 +307,10 @@
         NSDictionary *results = (NSDictionary *)result;
         NSLog(@"%@", [results description]);
         
+        [self.listing populate:results[@"listing"]];
+        if (self.profile.saved)
+            [self.profile.saved insertObject:self.listing atIndex:0];
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [self showAlertWithtTitle:@"Saved" message:@"This listing has been saved."];
         });

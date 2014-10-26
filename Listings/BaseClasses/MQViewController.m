@@ -96,7 +96,7 @@
 
 - (void)back:(UIBarButtonItem *)btn
 {
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)shiftUp:(CGFloat)distance

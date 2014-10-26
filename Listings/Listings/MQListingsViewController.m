@@ -217,7 +217,7 @@ static NSString *cellId = @"cellId";
 - (void)viewMenu:(id)sender
 {
     NSLog(@"view menu");
-    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"ViewMenuNotification" object:nil]];
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kViewMenuNotification object:nil]];
 }
 
 

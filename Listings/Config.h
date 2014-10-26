@@ -20,6 +20,9 @@
 
 #define kHideCellNotification @"hideCellNotification"
 #define kNewSearchNotification @"NewSearchNotification"
+#define kViewMenuNotification @"ViewMenuNotification"
+
+
 
 
 #define kRGBMax     255.0f

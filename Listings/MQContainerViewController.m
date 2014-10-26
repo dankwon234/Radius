@@ -26,7 +26,7 @@
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(toggleMenu)
-                                                     name:@"ViewMenuNotification"
+                                                     name:kViewMenuNotification
                                                    object:nil];
 
         

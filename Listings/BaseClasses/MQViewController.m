@@ -145,6 +145,9 @@
 
 - (void)viewFullImage:(UIImage *)image
 {
+    if (!image)
+        return;
+    
     NSLog(@"viewImage:");
     
     self.fullImage.image = image;

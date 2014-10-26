@@ -339,7 +339,7 @@
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     NSLog(@"scrollViewDidEndDragging: %.2f", scrollView.contentOffset.y);
-    if (scrollView.contentOffset.y < -145.0f)
+    if (scrollView.contentOffset.y < -135.0f)
         [self viewFullImage:self.listing.imageData];
 }
 

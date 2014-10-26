@@ -26,7 +26,6 @@
     if (self) {
         self.currentSocialAccountUsername = nil;
         self.socialMgr = [MQSocialAccountsMgr sharedAccountManager];
-        self.edgesForExtendedLayout = UIRectEdgeNone;
         self.title = @"Select Network";
         
         self.states = [NSMutableDictionary dictionary];
@@ -40,7 +39,6 @@
             self.states[stateName] = abbreviation;
         }
         
-//        NSLog(@"%@", [self.states description]);
     }
     return self;
 }
@@ -49,9 +47,9 @@
 {
     UIView *view = [self baseView:YES];
     CGRect frame = view.frame;
-    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgGrandCentral.png"]];
+    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgBlurry1Red.png"]];
     
-    CGFloat y = 24.0f;
+    CGFloat y = 88.0f;
     UILabel *lblHeader = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, y, frame.size.width, 24.0f)];
     lblHeader.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     lblHeader.textColor = [UIColor whiteColor];
@@ -73,7 +71,6 @@
     y += lblDescription.frame.size.height+20.0f;
 
     
-//    NSArray *networks = @[@"Facebook", @"LinkedIn", @"Twitter", @"Instagram"];
     NSArray *networks = @[@"Facebook", @"LinkedIn", @"Twitter"];
     CGFloat h = 44.0f;
     UIFont *font = [UIFont fontWithName:@"Heiti SC" size:16.0f];
@@ -115,8 +112,15 @@
     
 
     
+    
+    
+    CGFloat padding = 12.0f;
+    UIView *registerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height-64.0f, frame.size.width, 64.0f)];
+    registerView.backgroundColor = [UIColor grayColor];
+    registerView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    
     UIButton *btnRegister = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnRegister.frame = CGRectMake(12.0f, frame.size.height-56.0f, frame.size.width-24.0f, 44.0f);
+    btnRegister.frame = CGRectMake(padding, padding, frame.size.width-2*padding, 44.0f);
     btnRegister.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     btnRegister.backgroundColor = [UIColor clearColor];
     btnRegister.layer.borderColor = [[UIColor whiteColor] CGColor];
@@ -127,7 +131,10 @@
     [btnRegister setTitle:@"REGISTER" forState:UIControlStateNormal];
     [btnRegister setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btnRegister addTarget:self action:@selector(registerProfile:) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:btnRegister];
+    [registerView addSubview:btnRegister];
+    
+    [view addSubview:registerView];
+
 
     self.view = view;
     

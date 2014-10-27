@@ -17,6 +17,7 @@
 @property (strong, nonatomic) UINavigationController *navCtr;
 @property (strong, nonatomic) MQListingsViewController *listingsVc;
 @property (strong, nonatomic) MQProfilesViewController *profilesVc;
+@property (strong, nonatomic) MQViewController *currentVc;
 @property (strong, nonatomic) UITableView *sectionsTable;
 @end
 
@@ -60,6 +61,7 @@
     
     
     self.listingsVc = [[MQListingsViewController alloc] init];
+    self.currentVc = self.listingsVc;
     self.navCtr = [[UINavigationController alloc] initWithRootViewController:self.listingsVc];
     
     [self addChildViewController:self.navCtr];
@@ -126,6 +128,28 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row==0){
+        if ([self.currentVc isEqual:self.listingsVc]){
+            [self toggleMenu];
+            return;
+        }
+        
+        self.currentVc = self.listingsVc;
+    }
+    if (indexPath.row==1){
+        if (self.profilesVc){
+            if ([self.currentVc isEqual:self.profilesVc]){
+                [self toggleMenu];
+                return;
+            }
+        }
+        else{
+            self.profilesVc = [[MQProfilesViewController alloc] init];
+        }
+        
+        self.currentVc = self.profilesVc;
+    }
+
     CGRect frame = self.view.frame;
     
     [UIView animateWithDuration:0.2f
@@ -137,8 +161,14 @@
                          self.navCtr.view.frame = navFrame;
                      }
                      completion:^(BOOL finished){
-                         [self toggleMenu:0.85f];
+                         if (indexPath.row==0){
+                             [self.navCtr popToRootViewControllerAnimated:NO];
+                         }
+                         else {
+                             [self.navCtr pushViewController:self.currentVc animated:NO];
+                         }
                          
+                         [self toggleMenu:0.85f];
                      }];
 
 }

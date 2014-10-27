@@ -169,7 +169,7 @@ NSString *bioPlaceholder = @"Bio (250 character max)";
         if (i==2) {
             textField.keyboardType = UIKeyboardTypePhonePad;
             if ([self.profile.phone isEqualToString:@"none"]==NO)
-                textField.text = self.profile.phone;
+                textField.text = [self.profile formattedPhone];
             
         }
         UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 30.0f, h)];
@@ -706,26 +706,8 @@ NSString *bioPlaceholder = @"Bio (250 character max)";
         self.profile.city = textField.text;
     
     if (tag==1002) { // phone
-        NSString *phoneNumber = textField.text;
-        self.profile.phone = phoneNumber;
-        
-        NSMutableString *formattedPhone = [NSMutableString string];
-        for (int i=0; i<phoneNumber.length; i++) {
-            NSString *letter = [phoneNumber substringWithRange:NSMakeRange(i, 1)];
-            [formattedPhone appendString:letter];
-            if (i==2){
-                if ([phoneNumber rangeOfString:@"-"].location == NSNotFound)
-                    [formattedPhone appendString:@"-"];
-            }
-            if (i==6){
-                NSArray *p = [phoneNumber componentsSeparatedByString:@"-"];
-                if (p.count < 3)
-                    [formattedPhone appendString:@"-"];
-            }
-            
-        }
-        
-        textField.text = formattedPhone;
+        self.profile.phone = textField.text;
+        textField.text = [self.profile formattedPhone];
     }
     
     if (tag==1003) { // skills

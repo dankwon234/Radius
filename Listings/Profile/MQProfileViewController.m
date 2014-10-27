@@ -143,7 +143,6 @@ NSString *bioPlaceholder = @"Bio (250 character max)";
         CGFloat w = (i==1) ? width-90.0f : width;
         UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0.0f, y, w, h)];
         textField.placeholder = basicInfoFields[i];
-        textField.clearsOnBeginEditing = YES;
         textField.tag = tag;
         textField.backgroundColor = white;
         textField.alpha = alpha;

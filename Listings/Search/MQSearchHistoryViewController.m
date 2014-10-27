@@ -7,6 +7,8 @@
 //
 
 #import "MQSearchHistoryViewController.h"
+#import "MQSearchLocationCell.h"
+
 
 @interface MQSearchHistoryViewController ()
 @property (strong, nonatomic) UITableView *searchHistoryTable;
@@ -99,6 +101,23 @@
     [self.navigationController dismissViewControllerAnimated:YES completion:NULL];
 }
 
+- (void)removeLocation:(UIButton *)btn
+{
+    NSLog(@"removeLocation: %d", (int)btn.tag);
+    int tag = (int)btn.tag-1000;
+    if (tag < 0)
+        return;
+    
+    NSString *location = self.profile.searches[tag];
+    if ([self.locations containsObject:location]) // location is currently selected, cannot remove
+        return;
+    
+    NSLog(@"Remove Location: %@", location);
+    [self.profile.searches removeObject:location];
+    [self.searchHistoryTable reloadData];
+    
+    [self.profile updateProfile];
+}
 
 
 
@@ -112,24 +131,22 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellId = @"cellId";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    MQSearchLocationCell *cell = (MQSearchLocationCell *)[tableView dequeueReusableCellWithIdentifier:cellId];
     if (cell==nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.font = [UIFont fontWithName:@"Heiti SC" size:16.0f];
-        
-        UIView *separator = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, tableView.frame.size.width, 0.5f)];
-        separator.backgroundColor = [UIColor grayColor];
-        [cell.contentView addSubview:separator];
+        cell = [[MQSearchLocationCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
+        [cell.btnRemove addTarget:self action:@selector(removeLocation:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     
     NSString *location = self.profile.searches[indexPath.row];
     NSArray *parts = [location componentsSeparatedByString:@", "];
-    if (parts.count > 1)
-        cell.textLabel.text = [NSString stringWithFormat:@"%@, %@", [parts[0] capitalizedString], [parts[parts.count-1] uppercaseString]];
-    else
-        cell.textLabel.text = location;
+    cell.textLabel.text = (parts.count > 1) ? [NSString stringWithFormat:@"%@, %@", [parts[0] capitalizedString], [parts[parts.count-1] uppercaseString]] : location;
+    
+    cell.btnRemove.tag = 1000+indexPath.row;
+    NSString *btnImage = ([self.locations containsObject:location]) ? @"iconSelected.png" : @"iconDeleteRed.png";
+    [cell.btnRemove setBackgroundImage:[UIImage imageNamed:btnImage] forState:UIControlStateNormal];
+    
+
     
     cell.textLabel.textColor = ([self.locations containsObject:location]) ? kGreen : [UIColor darkGrayColor];
     return cell;

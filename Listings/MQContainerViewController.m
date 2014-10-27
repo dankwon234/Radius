@@ -14,6 +14,7 @@
 @interface MQContainerViewController ()
 @property (strong, nonatomic) NSMutableArray *listings;
 @property (strong, nonatomic) UINavigationController *navCtr;
+@property (strong, nonatomic) UITableView *sectionsTable;
 @end
 
 @implementation MQContainerViewController
@@ -38,6 +39,19 @@
 {
     UIView *view = [self baseView:NO];
     view.backgroundColor = [UIColor whiteColor];
+    CGRect frame = view.frame;
+    
+    self.sectionsTable = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height) style:UITableViewStylePlain];
+    self.sectionsTable.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight);
+    self.sectionsTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.sectionsTable.dataSource = self;
+    self.sectionsTable.delegate = self;
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 60.0f)];
+    headerView.backgroundColor = [UIColor redColor];
+    self.sectionsTable.tableHeaderView = headerView;
+    
+    [view addSubview:self.sectionsTable];
     
     MQListingsViewController *listingsVc = [[MQListingsViewController alloc] init];
     self.navCtr = [[UINavigationController alloc] initWithRootViewController:listingsVc];
@@ -84,6 +98,30 @@
                      }];
     
 }
+
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 4;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellId = @"cellId";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (cell==nil){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
+    }
+    
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%d", (int)indexPath.row];
+    return cell;
+}
+
+
+
 
 - (void)didReceiveMemoryWarning
 {

@@ -8,6 +8,7 @@
 
 #import "MQContainerViewController.h"
 #import "MQListingsViewController.h"
+#import "MQProfilesViewController.h"
 
 
 
@@ -15,6 +16,7 @@
 @property (strong, nonatomic) NSMutableArray *listings;
 @property (strong, nonatomic) UINavigationController *navCtr;
 @property (strong, nonatomic) MQListingsViewController *listingsVc;
+@property (strong, nonatomic) MQProfilesViewController *profilesVc;
 @property (strong, nonatomic) UITableView *sectionsTable;
 @end
 
@@ -98,23 +100,6 @@
 - (void)toggleMenu
 {
     [self toggleMenu:0.70f];
-//    CGRect frame = self.view.frame;
-//    CGFloat halfWidth = 0.50f*frame.size.width;
-//
-//    [UIView animateWithDuration:0.70f
-//                          delay:0
-//         usingSpringWithDamping:0.5f
-//          initialSpringVelocity:0.0f
-//                        options:UIViewAnimationOptionCurveEaseInOut
-//                     animations:^{
-//                         CGPoint center = self.navCtr.view.center;
-//                         center.x = (center.x==halfWidth) ? frame.size.width : halfWidth;
-//                         self.navCtr.view.center = center;
-//                     }
-//                     completion:^(BOOL finished){
-//                         CGPoint center = self.navCtr.view.center;
-//                         self.listingsVc.view.userInteractionEnabled = (center.x==halfWidth);
-//                     }];
 }
 
 

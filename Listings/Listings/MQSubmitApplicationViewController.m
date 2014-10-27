@@ -14,7 +14,7 @@
 @property (strong, nonatomic) UITextView *coverletterTextView;
 @end
 
-NSString *placeholder = @"Coverletter (optional)";
+NSString *placeholder = @"Coverletter (recommended)";
 
 @implementation MQSubmitApplicationViewController
 @synthesize application;

@@ -41,4 +41,5 @@
 - (NSString *)jsonRepresentation;
 - (void)fetchImage;
 - (void)updateProfile;
+- (NSString *)formattedPhone;
 @end

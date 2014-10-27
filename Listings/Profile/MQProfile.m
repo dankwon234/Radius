@@ -25,7 +25,6 @@
 @synthesize linkedinId;
 @synthesize schools;
 @synthesize bio;
-@synthesize phone;
 @synthesize skills;
 @synthesize populated;
 @synthesize applications;
@@ -33,6 +32,8 @@
 @synthesize video;
 @synthesize saved;
 @synthesize searches;
+@synthesize phone = _phone; // using a custom setter for this
+
 
 - (id)init
 {
@@ -83,6 +84,31 @@
     return shared;
 }
 
+- (void)setPhone:(NSString *)phone
+{
+    _phone = [phone stringByReplacingOccurrencesOfString:@"-" withString:@""];
+}
+
+- (NSString *)formattedPhone
+{
+    if (self.phone.length <= 3)
+        return self.phone;
+
+    NSString *formattedPhone = [self.phone substringToIndex:3];
+    formattedPhone = [formattedPhone stringByAppendingString:@"-"];
+    if (self.phone.length <= 6){
+        NSString *substring = [self.phone substringWithRange:NSMakeRange(3, self.phone.length-3)];
+        formattedPhone = [formattedPhone stringByAppendingString:substring];
+        return formattedPhone;
+    }
+    
+    formattedPhone = [formattedPhone stringByAppendingString:[self.phone substringWithRange:NSMakeRange(3, 3)]];
+    formattedPhone = [formattedPhone stringByAppendingString:@"-"];
+    formattedPhone = [formattedPhone stringByAppendingString:[self.phone substringFromIndex:6]];
+    return formattedPhone;
+}
+
+
 - (void)populate:(NSDictionary *)profileInfo
 {
     self.uniqueId = [profileInfo objectForKey:@"id"];
@@ -102,7 +128,6 @@
     self.skills = [NSMutableArray arrayWithArray:[profileInfo objectForKey:@"skills"]];
     self.schools = [NSMutableArray arrayWithArray:[profileInfo objectForKey:@"schools"]];
     self.searches = [NSMutableArray arrayWithArray:[profileInfo objectForKey:@"searches"]];
-//    self.applications = [NSMutableArray arrayWithArray:[profileInfo objectForKey:@"applications"]];
     self.populated = YES;
     
     [self cacheProfile];

@@ -14,6 +14,7 @@
 @interface MQContainerViewController ()
 @property (strong, nonatomic) NSMutableArray *listings;
 @property (strong, nonatomic) UINavigationController *navCtr;
+@property (strong, nonatomic) MQListingsViewController *listingsVc;
 @property (strong, nonatomic) UITableView *sectionsTable;
 @end
 
@@ -47,14 +48,17 @@
     self.sectionsTable.dataSource = self;
     self.sectionsTable.delegate = self;
     
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 60.0f)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 64.0f)];
     headerView.backgroundColor = [UIColor redColor];
     self.sectionsTable.tableHeaderView = headerView;
     
     [view addSubview:self.sectionsTable];
     
-    MQListingsViewController *listingsVc = [[MQListingsViewController alloc] init];
-    self.navCtr = [[UINavigationController alloc] initWithRootViewController:listingsVc];
+    
+    
+    
+    self.listingsVc = [[MQListingsViewController alloc] init];
+    self.navCtr = [[UINavigationController alloc] initWithRootViewController:self.listingsVc];
     
     [self addChildViewController:self.navCtr];
     [self.navCtr willMoveToParentViewController:self];
@@ -72,29 +76,22 @@
 
 - (void)toggleMenu
 {
-//    NSLog(@"toggle menu: %.2f", );
+    CGRect frame = self.view.frame;
+    CGFloat halfWidth = 0.50f*frame.size.width;
+
     [UIView animateWithDuration:0.70f
                           delay:0
          usingSpringWithDamping:0.5f
           initialSpringVelocity:0.0f
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         CGRect frame = self.view.frame;
-                         CGFloat halfWidth = 0.50f*frame.size.width;
                          CGPoint center = self.navCtr.view.center;
-                         
-                         if (center.x==halfWidth){
-                             center.x = 0.95f*frame.size.width;
-                         }
-                         else{
-                             center.x = halfWidth;
-                         }
-                         
-                         
+                         center.x = (center.x==halfWidth) ? 0.95f*frame.size.width : halfWidth;
                          self.navCtr.view.center = center;
                      }
                      completion:^(BOOL finished){
-                         
+                         CGPoint center = self.navCtr.view.center;
+                         self.listingsVc.view.userInteractionEnabled = (center.x==halfWidth);
                      }];
     
 }

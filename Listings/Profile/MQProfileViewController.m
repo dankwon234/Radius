@@ -29,7 +29,7 @@
 @property (nonatomic) BOOL imageUpdated;
 @end
 
-NSString *bioPlaceholder = @"Bio (250 character max)";
+NSString *bioPlaceholder = @"Bio (tell us a little about yourself)";
 
 @implementation MQProfileViewController
 @synthesize socialMgr;

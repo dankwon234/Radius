@@ -96,7 +96,7 @@
               }
               else{ // registration failed.
                   if (completionBlock){
-                      NSLog(@"UPDATE FAILED");
+                      NSLog(@"updateProfile: UPDATE FAILED");
                       completionBlock(results, [NSError errorWithDomain:kErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey:results[@"message"]}]);
                   }
                   
@@ -170,7 +170,7 @@
              }
              else{ // registration failed.
                  if (completionBlock){
-                     NSLog(@"UPDATE FAILED");
+                     NSLog(@"fetchProfileInfo: UPDATE FAILED");
                      completionBlock(results, [NSError errorWithDomain:kErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey:results[@"message"]}]);
                  }
                  

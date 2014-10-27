@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0C22AEC719FA21180067F8D7 /* MQResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C22AEC619FA21180067F8D7 /* MQResumeViewController.m */; };
+		0C29162C19FDEEB0009BBD48 /* MQSearchLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C29162B19FDEEB0009BBD48 /* MQSearchLocationCell.m */; };
+		0C29162E19FDF09D009BBD48 /* iconDeleteRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C29162D19FDF09D009BBD48 /* iconDeleteRed@2x.png */; };
+		0C29163019FDF1C0009BBD48 /* iconSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C29162F19FDF1C0009BBD48 /* iconSelected@2x.png */; };
 		0C56503D19FA475F00BD6C36 /* header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C56503C19FA475F00BD6C36 /* header@2x.png */; };
 		0C56503F19FA49FB00BD6C36 /* backArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C56503E19FA49FB00BD6C36 /* backArrow@2x.png */; };
 		0C56504119FA4C9D00BD6C36 /* exit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C56504019FA4C9D00BD6C36 /* exit@2x.png */; };
@@ -113,6 +116,10 @@
 /* Begin PBXFileReference section */
 		0C22AEC519FA21180067F8D7 /* MQResumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQResumeViewController.h; sourceTree = "<group>"; };
 		0C22AEC619FA21180067F8D7 /* MQResumeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQResumeViewController.m; sourceTree = "<group>"; };
+		0C29162A19FDEEB0009BBD48 /* MQSearchLocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQSearchLocationCell.h; sourceTree = "<group>"; };
+		0C29162B19FDEEB0009BBD48 /* MQSearchLocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQSearchLocationCell.m; sourceTree = "<group>"; };
+		0C29162D19FDF09D009BBD48 /* iconDeleteRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconDeleteRed@2x.png"; sourceTree = "<group>"; };
+		0C29162F19FDF1C0009BBD48 /* iconSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconSelected@2x.png"; sourceTree = "<group>"; };
 		0C56503C19FA475F00BD6C36 /* header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header@2x.png"; sourceTree = "<group>"; };
 		0C56503E19FA49FB00BD6C36 /* backArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backArrow@2x.png"; sourceTree = "<group>"; };
 		0C56504019FA4C9D00BD6C36 /* exit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exit@2x.png"; sourceTree = "<group>"; };
@@ -291,6 +298,8 @@
 				0CFB269319FA047B00285121 /* MQMapViewController.m */,
 				0CFB269519FA04E800285121 /* MQSearchHistoryViewController.h */,
 				0CFB269619FA04E800285121 /* MQSearchHistoryViewController.m */,
+				0C29162A19FDEEB0009BBD48 /* MQSearchLocationCell.h */,
+				0C29162B19FDEEB0009BBD48 /* MQSearchLocationCell.m */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -456,6 +465,7 @@
 				5C101A1019E8998B0046F7F1 /* logo@2x.png */,
 				5C101A1419E8A0B50046F7F1 /* locationPin@2x.png */,
 				0C56503E19FA49FB00BD6C36 /* backArrow@2x.png */,
+				0C29162D19FDF09D009BBD48 /* iconDeleteRed@2x.png */,
 				0CFD564519FC8EC3000AFC9E /* iconHamburger@2x.png */,
 				5C736A2C19F5EA5900F7D2CB /* iconSave@2x.png */,
 				5CF8483019F2307900DCCD7F /* iconProfile@2x.png */,
@@ -465,6 +475,7 @@
 				5CE03D7719C6385F00BE577D /* iconLocation@2x.png */,
 				5C1636D519EB22DC00BACC3E /* iconCheckGreen@2x.png */,
 				5CF8483219F2356100DCCD7F /* iconCheckMark@2x.png */,
+				0C29162F19FDF1C0009BBD48 /* iconSelected@2x.png */,
 				5CE03D7919C63B7C00BE577D /* iconCheck@2x.png */,
 				5CE03D7B19C63E0B00BE577D /* iconCalendar@2x.png */,
 			);
@@ -667,6 +678,7 @@
 				5C101A1119E8998B0046F7F1 /* logo@2x.png in Resources */,
 				5C573F7D19BAA86500677DDF /* InfoPlist.strings in Resources */,
 				5CF8483119F2307900DCCD7F /* iconProfile@2x.png in Resources */,
+				0C29162E19FDF09D009BBD48 /* iconDeleteRed@2x.png in Resources */,
 				5C736A2D19F5EA5900F7D2CB /* iconSave@2x.png in Resources */,
 				5C1636E819EB29AF00BACC3E /* 01-refresh@2x.png in Resources */,
 				5CF8482B19F2283F00DCCD7F /* bgLegsBlue@2x.png in Resources */,
@@ -679,6 +691,7 @@
 				0CFD564419FC7761000AFC9E /* bgBlurry1Red@2x.png in Resources */,
 				5C1636E719EB29AF00BACC3E /* 01-refresh.png in Resources */,
 				5CF8482919F1C13500DCCD7F /* bgLegs@2x.png in Resources */,
+				0C29163019FDF1C0009BBD48 /* iconSelected@2x.png in Resources */,
 				5CE03D7A19C63B7C00BE577D /* iconCheck@2x.png in Resources */,
 				5C0C93CA19BEB4B60011086B /* shadow@2x.png in Resources */,
 				0CFD564619FC8EC3000AFC9E /* iconHamburger@2x.png in Resources */,
@@ -711,6 +724,7 @@
 				5C573FAA19BAA99D00677DDF /* MQLoadingIndicator.m in Sources */,
 				5CEA0D9319C65A8F004234C7 /* MQListingViewController.m in Sources */,
 				5CDD2A8319C3B1DE003B3169 /* MQProfile.m in Sources */,
+				0C29162C19FDEEB0009BBD48 /* MQSearchLocationCell.m in Sources */,
 				5C5ADB2B19C5623B00B5E29D /* AFHTTPRequestOperationManager.m in Sources */,
 				5CF2966319C60BF8007CF784 /* UIView+MQViewAdditions.m in Sources */,
 				5CFCB93F19F2496C00681270 /* MQSubmitApplicationViewController.m in Sources */,

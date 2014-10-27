@@ -61,11 +61,9 @@
         self.saved = nil;
         self.populated = NO;
 
-        [self populateFromCache];
-        
-        if ([self.uniqueId isEqualToString:@"none"]==NO)
+        if ([self populateFromCache])
             [self refreshProfileInfo];
-
+        
     }
     return self;
 }
@@ -142,25 +140,30 @@
     [defaults synchronize];
 }
 
-- (void)populateFromCache
+- (BOOL)populateFromCache
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *json = [defaults objectForKey:@"user"];
     if (!json)
-        return;
+        return NO;
     
     NSError *error = nil;
     NSDictionary *profileInfo = (NSDictionary *)[NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&error];
     NSLog(@"STORED PROFILE: %@", [profileInfo description]);
     
     if (error)
-        return;
+        return NO;
     
     [self populate:profileInfo];
+    return YES;
 }
 
 - (void)updateProfile
 {
+    NSLog(@"updateProfile: %@", self.uniqueId);
+    if ([self.uniqueId isEqualToString:@"none"])
+        return;
+
     [[MQWebServices sharedInstance] updateProfile:self completion:^(id result, NSError *error){
         if (error)
             return;
@@ -189,6 +192,10 @@
 
 - (void)refreshProfileInfo
 {
+    NSLog(@"REFRESH PROFILE INFO: %@", self.uniqueId);
+    if ([self.uniqueId isEqualToString:@"none"])
+        return;
+    
     [[MQWebServices sharedInstance] fetchProfileInfo:self completionBlock:^(id result, NSError *error){
         if (error)
             return;

@@ -531,7 +531,7 @@ static NSString *cellId = @"cellId";
 {
 //    NSLog(@"manager didUpdateLocations:");
     
-    static double minAccuracy = 75.0f;
+    static double minAccuracy = 3000.0f;
     CLLocation *bestLocation = nil;
     for (CLLocation *location in locations) {
         if (([location.timestamp timeIntervalSince1970]-self.now) >= 0){

@@ -216,7 +216,48 @@
     
 }
 
+- (void)fetchProfiles:(NSArray *)locations completionBlock:(MQWebServiceRequestCompletionBlock)completionBlock
+{
+    //http://698.text-alert.appspot.com/api/radiusaccounts?locations=new+canaan,ct;montvale,nj
 
+
+    NSString *locationsString = @"";
+    for (int i=0; i<locations.count; i++) {
+        NSString *location = locations[i];
+        location = [location stringByReplacingOccurrencesOfString:@", " withString:@","];
+        location = [location stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+        locationsString = [locationsString stringByAppendingString:location];
+        if (i != locations.count-1)
+            locationsString = [locationsString stringByAppendingString:@";"];
+    }
+    
+    NSLog(@"Location String: %@", locationsString);
+    
+    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:kBaseUrl]];
+    [manager GET:kPathProfile
+      parameters:@{@"locations":locationsString}
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSDictionary *responseDictionary = (NSDictionary *)responseObject;
+             NSDictionary *results = [responseDictionary objectForKey:@"results"];
+             NSString *confirmation = [results objectForKey:@"confirmation"];
+             
+             if ([confirmation isEqualToString:@"success"]==NO){
+                 if (completionBlock)
+                     completionBlock(results, [NSError errorWithDomain:kErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey:results[@"message"]}]);
+
+                 return;
+             }
+             
+             if (completionBlock)
+                 completionBlock(results, nil);
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"FAILURE BLOCK: %@", [error localizedDescription]);
+             if (completionBlock)
+                 completionBlock(nil, error);
+         }];
+
+}
 
 
 // - - - - - - - - - - - - - - - - - - LISTINGS - - - - - - - - - - - - - - - - - -

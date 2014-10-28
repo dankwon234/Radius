@@ -23,6 +23,8 @@ typedef void (^MQWebServiceRequestCompletionBlock)(id result, NSError *error);
 - (void)login:(NSDictionary *)credentials completion:(MQWebServiceRequestCompletionBlock)completionBlock;
 - (void)fetchProfileInfo:(MQProfile *)profile completionBlock:(MQWebServiceRequestCompletionBlock)completionBlock;
 - (void)resumeRequest:(MQProfile *)profile completionBlock:(MQWebServiceRequestCompletionBlock)completionBlock;
+- (void)fetchProfiles:(NSArray *)locations completionBlock:(MQWebServiceRequestCompletionBlock)completionBlock;
+
 
 // Listings
 - (void)fetchListings:(MQWebServiceRequestCompletionBlock)completionBlock;

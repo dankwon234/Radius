@@ -18,6 +18,10 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        UIImage *imgHeader = [UIImage imageNamed:@"header.png"];
+        UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, imgHeader.size.width, imgHeader.size.height)];
+        header.backgroundColor = [UIColor colorWithPatternImage:imgHeader];
+        self.navigationItem.titleView = header;
 
     }
     return self;

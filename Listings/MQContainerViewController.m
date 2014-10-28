@@ -132,6 +132,7 @@
                      completion:^(BOOL finished){
                          CGPoint center = self.navCtr.view.center;
                          self.listingsVc.view.userInteractionEnabled = (center.x==halfWidth);
+                         [self.sectionsTable deselectRowAtIndexPath:[self.sectionsTable indexPathForSelectedRow] animated:YES];
                      }];
 }
 

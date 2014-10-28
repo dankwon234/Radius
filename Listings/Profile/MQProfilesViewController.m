@@ -7,6 +7,7 @@
 
 
 #import "MQProfilesViewController.h"
+#import "MQWebServices.h"
 
 @interface MQProfilesViewController ()
 
@@ -54,6 +55,42 @@
     [btnMenu addTarget:self action:@selector(viewMenu:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnMenu];
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    
+    
+    [self searchProfiles];
+}
+
+
+- (void)searchProfiles
+{
+//    if (self.locations.count==0)
+//        return;
+//    
+//    self.lblLocation.text = [self.locations[0] uppercaseString];
+    
+    [self.loadingIndicator startLoading];
+    [[MQWebServices sharedInstance] fetchProfiles:@[@"montvale, nj", @"new canaan, ct"] completionBlock:^(id result, NSError *error){
+        [self.loadingIndicator stopLoading];
+        
+        if (error){
+            return;
+        }
+        
+        NSDictionary *results = (NSDictionary *)result;
+        NSLog(@"%@", [results description]);
+        NSArray *accounts = results[@"accounts"];
+        
+    }];
+     
+     
+    
+}
+
 
 - (void)viewMenu:(id)sender
 {

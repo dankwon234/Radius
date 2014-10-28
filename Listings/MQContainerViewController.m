@@ -15,11 +15,11 @@
 
 
 @interface MQContainerViewController ()
-@property (strong, nonatomic) NSMutableArray *listings;
 @property (strong, nonatomic) UINavigationController *navCtr;
 @property (strong, nonatomic) MQListingsViewController *listingsVc;
 @property (strong, nonatomic) MQProfilesViewController *profilesVc;
 @property (strong, nonatomic) MQViewController *currentVc;
+@property (strong, nonatomic) NSArray *sections;
 @property (strong, nonatomic) UITableView *sectionsTable;
 @property (strong, nonatomic) UIButton *btnAccount;
 @end
@@ -30,7 +30,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.listings = [NSMutableArray array];
+        self.sections = @[@"Search Jobs", @"Search Candidates"];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(toggleMenu)
@@ -145,7 +145,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return self.sections.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -157,7 +157,7 @@
     }
     
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%d", (int)indexPath.row];
+    cell.textLabel.text = self.sections[indexPath.row];
     return cell;
 }
 

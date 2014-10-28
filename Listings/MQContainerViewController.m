@@ -9,7 +9,9 @@
 #import "MQContainerViewController.h"
 #import "MQListingsViewController.h"
 #import "MQProfilesViewController.h"
-
+#import "MQAccountViewController.h"
+#import "MQSignupViewController.h"
+#import "MQLoginViewController.h"
 
 
 @interface MQContainerViewController ()
@@ -19,6 +21,7 @@
 @property (strong, nonatomic) MQProfilesViewController *profilesVc;
 @property (strong, nonatomic) MQViewController *currentVc;
 @property (strong, nonatomic) UITableView *sectionsTable;
+@property (strong, nonatomic) UIButton *btnAccount;
 @end
 
 @implementation MQContainerViewController
@@ -53,6 +56,12 @@
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 64.0f)];
     headerView.backgroundColor = [UIColor redColor];
+    self.btnAccount = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.btnAccount.frame = CGRectMake(8.0f, 36.0f, frame.size.width, 22.0f);
+    self.btnAccount.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    self.btnAccount.titleLabel.font = [UIFont fontWithName:@"Heiti SC" size:14.0f];
+    [self.btnAccount addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
+    [headerView addSubview:self.btnAccount];
     self.sectionsTable.tableHeaderView = headerView;
     
     [view addSubview:self.sectionsTable];
@@ -78,6 +87,33 @@
     [super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSString *account = (self.profile.populated) ? self.profile.email : @"Log In";
+    [self.btnAccount setTitle:account forState:UIControlStateNormal];
+}
+
+- (void)login:(UIButton *)btn
+{
+    NSLog(@"login:");
+    if (self.profile.populated){
+        MQAccountViewController *accountVc = [[MQAccountViewController alloc] init];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:accountVc];
+        [self presentViewController:navController animated:YES completion:^{
+            
+        }];
+        
+        return;
+    }
+    
+    UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"Radius" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Sign Up", @"Log In", nil];
+    actionsheet.frame = CGRectMake(0.0f, 150.0f, self.view.frame.size.width, 100.0f);
+    actionsheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+    [actionsheet showInView:[UIApplication sharedApplication].keyWindow];
+    
+}
+
 - (void)toggleMenu:(NSTimeInterval)duration
 {
     CGRect frame = self.view.frame;
@@ -90,7 +126,7 @@
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          CGPoint center = self.navCtr.view.center;
-                         center.x = (center.x==halfWidth) ? frame.size.width : halfWidth;
+                         center.x = (center.x==halfWidth) ? 1.15f*frame.size.width : halfWidth;
                          self.navCtr.view.center = center;
                      }
                      completion:^(BOOL finished){
@@ -171,6 +207,30 @@
                          [self toggleMenu:0.85f];
                      }];
 
+}
+
+
+#pragma mark - UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"actionSheet clickedButtonAtIndex: %d", (int)buttonIndex);
+    if (buttonIndex==0) { // sign up
+        MQSignupViewController *signupVc = [[MQSignupViewController alloc] init];
+        UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:signupVc];
+        [self presentViewController:navCtr animated:YES completion:^{
+            
+        }];
+    }
+    
+    if (buttonIndex==1) { // log in
+        MQLoginViewController *loginVc = [[MQLoginViewController alloc] init];
+        UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:loginVc];
+        [self presentViewController:navCtr animated:YES completion:^{
+            
+        }];
+    }
+
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -64,16 +64,14 @@ static NSString *profileCellId = @"profileCellId";
     [btnMenu setBackgroundImage:imgHamburger forState:UIControlStateNormal];
     [btnMenu addTarget:self action:@selector(viewMenu:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnMenu];
+    
+    [self searchProfiles];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.profilesTable.collectionViewLayout invalidateLayout];
-    
-    
-    
-    [self searchProfiles];
 }
 
 

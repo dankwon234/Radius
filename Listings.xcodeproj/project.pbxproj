@@ -13,6 +13,8 @@
 		0C29162E19FDF09D009BBD48 /* iconDeleteRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C29162D19FDF09D009BBD48 /* iconDeleteRed@2x.png */; };
 		0C29163019FDF1C0009BBD48 /* iconSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C29162F19FDF1C0009BBD48 /* iconSelected@2x.png */; };
 		0C375FDD19FE39940050780B /* MQProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C375FDC19FE39940050780B /* MQProfilesViewController.m */; };
+		0C524DA91A00D26900EB2710 /* MQProfileCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C524DA81A00D26900EB2710 /* MQProfileCollectionCell.m */; };
+		0C524DAC1A00D4D700EB2710 /* MQProfilesCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C524DAB1A00D4D700EB2710 /* MQProfilesCollectionViewFlowLayout.m */; };
 		0C56503D19FA475F00BD6C36 /* header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C56503C19FA475F00BD6C36 /* header@2x.png */; };
 		0C56503F19FA49FB00BD6C36 /* backArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C56503E19FA49FB00BD6C36 /* backArrow@2x.png */; };
 		0C56504119FA4C9D00BD6C36 /* exit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C56504019FA4C9D00BD6C36 /* exit@2x.png */; };
@@ -127,6 +129,10 @@
 		0C29162F19FDF1C0009BBD48 /* iconSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconSelected@2x.png"; sourceTree = "<group>"; };
 		0C375FDB19FE39930050780B /* MQProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQProfilesViewController.h; sourceTree = "<group>"; };
 		0C375FDC19FE39940050780B /* MQProfilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQProfilesViewController.m; sourceTree = "<group>"; };
+		0C524DA71A00D26900EB2710 /* MQProfileCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQProfileCollectionCell.h; sourceTree = "<group>"; };
+		0C524DA81A00D26900EB2710 /* MQProfileCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQProfileCollectionCell.m; sourceTree = "<group>"; };
+		0C524DAA1A00D4D700EB2710 /* MQProfilesCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQProfilesCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		0C524DAB1A00D4D700EB2710 /* MQProfilesCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQProfilesCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		0C56503C19FA475F00BD6C36 /* header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header@2x.png"; sourceTree = "<group>"; };
 		0C56503E19FA49FB00BD6C36 /* backArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backArrow@2x.png"; sourceTree = "<group>"; };
 		0C56504019FA4C9D00BD6C36 /* exit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exit@2x.png"; sourceTree = "<group>"; };
@@ -440,6 +446,8 @@
 				5CE459FA19D8BF0600635A67 /* MQSocialAccountsMgr.m */,
 				5C573FD019BAC85000677DDF /* MQCollectionViewFlowLayout.h */,
 				5C573FD119BAC85000677DDF /* MQCollectionViewFlowLayout.m */,
+				0C524DAA1A00D4D700EB2710 /* MQProfilesCollectionViewFlowLayout.h */,
+				0C524DAB1A00D4D700EB2710 /* MQProfilesCollectionViewFlowLayout.m */,
 				5C573FAB19BAAA0800677DDF /* UIImage+MQImageEffects.h */,
 				5C573FAC19BAAA0800677DDF /* UIImage+MQImageEffects.m */,
 				5CF2966119C60BF8007CF784 /* UIView+MQViewAdditions.h */,
@@ -593,6 +601,8 @@
 				0C0AB7F11A00706200995072 /* MQPublicProfile.m */,
 				0C375FDB19FE39930050780B /* MQProfilesViewController.h */,
 				0C375FDC19FE39940050780B /* MQProfilesViewController.m */,
+				0C524DA71A00D26900EB2710 /* MQProfileCollectionCell.h */,
+				0C524DA81A00D26900EB2710 /* MQProfileCollectionCell.m */,
 				5CC6E10219EF4DB600373C9A /* MQLoginViewController.h */,
 				5CC6E10319EF4DB600373C9A /* MQLoginViewController.m */,
 				5CF8482519F1BEDA00DCCD7F /* MQAccountViewController.h */,
@@ -782,9 +792,11 @@
 				0CFD420719F980BE0020DC4B /* MQProfileListingsViewController.m in Sources */,
 				5C5ADB3419C5623B00B5E29D /* SignalCheck.m in Sources */,
 				5C573FCF19BAC1B400677DDF /* MQListingCell.m in Sources */,
+				0C524DAC1A00D4D700EB2710 /* MQProfilesCollectionViewFlowLayout.m in Sources */,
 				5CEA0D9A19C688F0004234C7 /* MQListingHeaderCell.m in Sources */,
 				5C911C5219EBAED8002AD978 /* MQSignupViewController.m in Sources */,
 				5C5ADB3119C5623B00B5E29D /* AFURLResponseSerialization.m in Sources */,
+				0C524DA91A00D26900EB2710 /* MQProfileCollectionCell.m in Sources */,
 				0C22AEC719FA21180067F8D7 /* MQResumeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

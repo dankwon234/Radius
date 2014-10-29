@@ -510,7 +510,6 @@ static NSString *cellId = @"cellId";
         if (buttonIndex==0) { // previous searchs
             NSLog(@"Show previous searches: %@", [self.profile.searches description]);
             MQSearchHistoryViewController *searchHistoryVc = [[MQSearchHistoryViewController alloc] init];
-            searchHistoryVc.locations = self.locationMgr.cities;
             UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:searchHistoryVc];
             [self presentViewController:navCtr animated:YES completion:^{
                 

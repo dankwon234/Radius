@@ -12,16 +12,16 @@
 
 @interface MQSearchHistoryViewController ()
 @property (strong, nonatomic) UITableView *searchHistoryTable;
+@property (strong, nonatomic) MQLocationManager *locationMgr;
 @end
 
 @implementation MQSearchHistoryViewController
-@synthesize locations;
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.locationMgr = [MQLocationManager sharedLocationManager];
         self.title = @"Search History";
 
     }
@@ -109,7 +109,7 @@
         return;
     
     NSString *location = self.profile.searches[tag];
-    if ([self.locations containsObject:location]) // location is currently selected, cannot remove
+    if ([self.locationMgr.cities containsObject:location]) // location is currently selected, cannot remove
         return;
     
     NSLog(@"Remove Location: %@", location);
@@ -143,37 +143,37 @@
     cell.textLabel.text = (parts.count > 1) ? [NSString stringWithFormat:@"%@, %@", [parts[0] capitalizedString], [parts[parts.count-1] uppercaseString]] : location;
     
     cell.btnRemove.tag = 1000+indexPath.row;
-    NSString *btnImage = ([self.locations containsObject:location]) ? @"iconSelected.png" : @"iconDeleteRed.png";
+    NSString *btnImage = ([self.locationMgr.cities containsObject:location]) ? @"iconSelected.png" : @"iconDeleteRed.png";
     [cell.btnRemove setBackgroundImage:[UIImage imageNamed:btnImage] forState:UIControlStateNormal];
     
 
     
-    cell.textLabel.textColor = ([self.locations containsObject:location]) ? kGreen : [UIColor darkGrayColor];
+    cell.textLabel.textColor = ([self.locationMgr.cities containsObject:location]) ? kGreen : [UIColor darkGrayColor];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *location = self.profile.searches[indexPath.row];
-    if ([self.locations containsObject:location]){
-        [self.locations removeObject:location];
+    if ([self.locationMgr.cities containsObject:location]){
+        [self.locationMgr.cities removeObject:location];
         [self.searchHistoryTable reloadData];
         return;
 
     }
     
-    if (self.locations.count >= 5){
+    if (self.locationMgr.cities.count >= 5){
         [self showAlertWithtTitle:@"Limit Reached" message:@"Please de-select a location before choosing another one."];
         return;
     }
     
-    [self.locations addObject:location];
+    [self.locationMgr.cities addObject:location];
     [self.searchHistoryTable reloadData];
 }
 
 - (void)searchSelectedLocations
 {
-    if (self.locations.count==0){
+    if (self.locationMgr.cities.count==0){
         [self showAlertWithtTitle:@"No Locations Selected" message:@"Please select at least one location to search."];
         return;
     }

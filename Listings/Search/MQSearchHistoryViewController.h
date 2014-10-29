@@ -10,5 +10,4 @@
 
 @interface MQSearchHistoryViewController : MQViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) NSMutableArray *locations;
 @end

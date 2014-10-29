@@ -9,13 +9,13 @@
 #import "MQMapViewController.h"
 
 @interface MQMapViewController ()
+@property (strong, nonatomic) MQLocationManager *locationMgr;
 @property (strong, nonatomic) MKMapView *mapView;
 @property (strong, nonatomic) UIButton *btnSearch;
 @property (nonatomic) int index;
 @end
 
 @implementation MQMapViewController
-@synthesize locations;
 @synthesize locationMgr;
 
 
@@ -106,11 +106,11 @@
 
     if (self.index >= 8){
         self.index = 0;
-        NSLog(@"LOCATIONS: %@", [self.locations description]);
+        NSLog(@"LOCATIONS: %@", [self.locationMgr.cities description]);
         [self.loadingIndicator stopLoading];
         
         BOOL updateProfile = NO;
-        for (NSString *cityState in self.locations) {
+        for (NSString *cityState in self.locationMgr.cities) {
             if ([self.profile.searches containsObject:cityState]==NO){
                 [self.profile.searches insertObject:cityState atIndex:0];
                 updateProfile = YES;
@@ -127,8 +127,8 @@
     }
     
     for (NSString *cityState in self.locationMgr.cities) {
-        if ([self.locations containsObject:cityState]==NO)
-            [self.locations addObject:cityState];
+        if ([self.locationMgr.cities containsObject:cityState]==NO)
+            [self.locationMgr.cities addObject:cityState];
     }
 
     CGFloat delta = 0.025f;
@@ -148,7 +148,7 @@
 {
     [self.loadingIndicator startLoading];
     
-    [self.locations removeAllObjects];
+    [self.locationMgr.cities removeAllObjects];
     CLLocationCoordinate2D center = self.mapView.centerCoordinate;
     [self.locationMgr.cities removeAllObjects];
     [self.locationMgr reverseGeocode:CLLocationCoordinate2DMake(center.latitude, center.longitude) completion:^{

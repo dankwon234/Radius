@@ -372,7 +372,6 @@ static NSString *cellId = @"cellId";
 - (void)showMap:(UIButton *)btn
 {
     MQMapViewController *mapVc = [[MQMapViewController alloc] init];
-    mapVc.locations = self.locationMgr.cities;
     UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:mapVc];
     [self presentViewController:navCtr animated:YES completion:^{
         

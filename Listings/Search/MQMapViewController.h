@@ -12,6 +12,4 @@
 
 @interface MQMapViewController : MQViewController <MKMapViewDelegate>
 
-@property (strong, nonatomic) MQLocationManager *locationMgr;
-@property (strong, nonatomic) NSMutableArray *locations; // surrounding towns
 @end

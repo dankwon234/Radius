@@ -13,8 +13,9 @@
 @synthesize cities;
 @synthesize now;
 @synthesize geoCoder;
-@synthesize currentLocation;
+@synthesize currentCity;
 @synthesize completion;
+@synthesize currentLocation;
 
 - (id)init
 {
@@ -84,6 +85,7 @@
     if (bestLocation==nil) // couldn't find location to desired accuracy
         return;
     
+    self.currentLocation = bestLocation.coordinate;
     [self reverseGeocode:self.locationManager.location.coordinate completion:^{
         if (self.completion == NULL)
             return;
@@ -130,12 +132,6 @@
                     continue;
                 
                 [self.cities addObject:cityState];
-//                if ([self.profile.searches containsObject:cityState]==NO){
-//                    [self.profile.searches addObject:cityState];
-//                    [self.profile updateProfile]; // update profile on backend with new search entries
-//                }
-                
-                
             }
         }
         

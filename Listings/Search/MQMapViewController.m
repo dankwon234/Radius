@@ -18,11 +18,14 @@
 
 @implementation MQMapViewController
 @synthesize locations;
+@synthesize locationMgr;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.locationMgr = [MQLocationManager sharedLocationManager];
         self.title = @"Select Location";
         self.index = 0;
         
@@ -41,8 +44,8 @@
     self.mapView.delegate = self;
     [self.mapView setUserTrackingMode:MKUserTrackingModeNone];
     
-    MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:MKCoordinateRegionMakeWithDistance(self.profile.currentLocation, 800, 800)];
-    
+    MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:MKCoordinateRegionMakeWithDistance(self.locationMgr.currentLocation, 800, 800)];
+
     adjustedRegion.span.longitudeDelta  = 0.05f;
     adjustedRegion.span.latitudeDelta  = 0.05f;
     [self.mapView setRegion:adjustedRegion animated:YES];

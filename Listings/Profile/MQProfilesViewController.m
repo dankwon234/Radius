@@ -8,9 +8,10 @@
 
 #import "MQProfilesViewController.h"
 #import "MQWebServices.h"
-#import "MQCollectionViewFlowLayout.h"
-#import "MQListingCell.h"
+#import "MQProfilesCollectionViewFlowLayout.h"
 #import "MQPublicProfile.h"
+#import "MQProfileCollectionCell.h"
+
 
 @interface MQProfilesViewController ()
 @property (strong, nonatomic) UICollectionView *profilesTable;
@@ -113,21 +114,17 @@ static NSString *profileCellId = @"profileCellId";
 {
     CGRect frame = self.view.frame;
     
-    self.profilesTable = [[UICollectionView alloc] initWithFrame:CGRectMake(0.0f, 64.0f, frame.size.width, frame.size.height-64.0f) collectionViewLayout:[[MQCollectionViewFlowLayout alloc] init]];
+    self.profilesTable = [[UICollectionView alloc] initWithFrame:CGRectMake(0.0f, 64.0f, frame.size.width, frame.size.height-64.0f) collectionViewLayout:[[MQProfilesCollectionViewFlowLayout alloc] init]];
     self.profilesTable.backgroundColor = [UIColor clearColor];
     
     UIView *background = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height)];
     background.backgroundColor = [UIColor whiteColor];
     background.alpha = 0.65f;
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(80.0f, 0.0f, 2.0f, frame.size.height)];
-    line.backgroundColor = [UIColor darkGrayColor];
-    [background addSubview:line];
-    
     self.profilesTable.backgroundView = background;
     
     
-    [self.profilesTable registerClass:[MQListingCell class] forCellWithReuseIdentifier:profileCellId];
+    [self.profilesTable registerClass:[MQProfileCollectionCell class] forCellWithReuseIdentifier:profileCellId];
     self.profilesTable.contentInset = UIEdgeInsetsMake(0.0f, 0, 12.0f, 0);
     self.profilesTable.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight);
     self.profilesTable.dataSource = self;
@@ -179,11 +176,12 @@ static NSString *profileCellId = @"profileCellId";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    MQListingCell *cell = (MQListingCell *)[collectionView dequeueReusableCellWithReuseIdentifier:profileCellId forIndexPath:indexPath];
+    MQProfileCollectionCell *cell = (MQProfileCollectionCell *)[collectionView dequeueReusableCellWithReuseIdentifier:profileCellId forIndexPath:indexPath];
     
     MQPublicProfile *profile = (MQPublicProfile *)self.profiles[indexPath.row];
     NSLog(@"PROFILE: %@ %@", profile.firstName, profile.lastName);
-    cell.lblTitle.text = [NSString stringWithFormat:@"%@ %@", profile.firstName, profile.lastName];
+    cell.lblName.text = [NSString stringWithFormat:@"%@ %@", profile.firstName, profile.lastName];
+    
 //    cell.lblVenue.text = listing.venue;
 //    cell.lblDate.text = listing.formattedDate;
 //    cell.lblLocation.text = [NSString stringWithFormat:@"%@, %@", [listing.city capitalizedString], [listing.state uppercaseString]];
@@ -197,7 +195,7 @@ static NSString *profileCellId = @"profileCellId";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(kListingCellWidth, kListingCellHeight);
+    return CGSizeMake(kProfileCellWidth, kListingCellHeight);
 }
 
 

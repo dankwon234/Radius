@@ -11,6 +11,7 @@
 #import "UIView+MQViewAdditions.h"
 #import "MQLoadingIndicator.h"
 #import "MQProfile.h"
+#import "MQLocationManager.h"
 #import "Config.h"
 
 

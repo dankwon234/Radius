@@ -27,20 +27,18 @@
 @property (strong, nonatomic) UIButton *btnLocation;
 @property (strong, nonatomic) UIButton *btnAbout;
 @property (strong, nonatomic) UILabel *lblLogin;
-@property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) NSMutableArray *locations;
-@property (nonatomic) NSTimeInterval now;
-@property (strong, nonatomic) CLGeocoder *geoCoder;
 @end
 
-@implementation MQListingsViewController
 static NSString *cellId = @"cellId";
+
+@implementation MQListingsViewController
+@synthesize locationMgr;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.locations = [NSMutableArray array];
+        self.locationMgr = [MQLocationManager sharedLocationManager];
         self.listings = nil;
         
         UIImage *imgHeader = [UIImage imageNamed:@"header.png"];
@@ -174,11 +172,11 @@ static NSString *cellId = @"cellId";
     
     [self.listingsTable.collectionViewLayout invalidateLayout];
     
-    NSLog(@"LOCATIONS: %@", [self.locations description]);
+    NSLog(@"LOCATIONS: %@", [self.locationMgr.cities description]);
     if (self.listings)
         return;
     
-    if (self.locations.count==0){
+    if (self.locationMgr.cities.count==0){
         [self findLocation];
         return;
     }
@@ -223,17 +221,30 @@ static NSString *cellId = @"cellId";
 
 - (void)searchListings
 {
-    if (self.locations.count==0)
+    if (self.locationMgr.cities==0) // no locations listed, ignore
         return;
     
-    self.lblLocation.text = [self.locations[0] uppercaseString];
+    BOOL updateProfile = NO;
+    for (NSString *cityState in self.locationMgr.cities) {
+        if ([self.profile.searches containsObject:cityState]==NO){
+            [self.profile.searches addObject:cityState];
+            updateProfile = YES;
+        }
+    }
+    
+    if (updateProfile)
+        [self.profile updateProfile]; // update profile on backend with new search entries
+
+    
+    self.lblLocation.text = [self.locationMgr.cities[0] uppercaseString];
 
     [self.loadingIndicator startLoading];
-    [[MQWebServices sharedInstance] fetchListings:self.locations completion:^(id result, NSError *error){
+    [[MQWebServices sharedInstance] fetchListings:self.locationMgr.cities completion:^(id result, NSError *error){
         [self.loadingIndicator stopLoading];
         if (error){
             return;
         }
+        
         
         NSDictionary *results = (NSDictionary *)result;
         NSLog(@"%@", [results description]);
@@ -256,7 +267,6 @@ static NSString *cellId = @"cellId";
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            
             if (self.listingsTable){
                 [UIView animateWithDuration:0.40f
                                       delay:0
@@ -278,7 +288,6 @@ static NSString *cellId = @"cellId";
             }
             
             [self layoutListsCollectionView];
-            
         });
         
         
@@ -363,7 +372,7 @@ static NSString *cellId = @"cellId";
 - (void)showMap:(UIButton *)btn
 {
     MQMapViewController *mapVc = [[MQMapViewController alloc] init];
-    mapVc.locations = self.locations;
+    mapVc.locations = self.locationMgr.cities;
     UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:mapVc];
     [self presentViewController:navCtr animated:YES completion:^{
         
@@ -373,74 +382,21 @@ static NSString *cellId = @"cellId";
 - (void)findLocation
 {
     [self.loadingIndicator startLoading];
-    if (self.locationManager==nil){
-        self.locationManager = [[CLLocationManager alloc] init];
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        self.locationManager.delegate = self;
-    }
-    
-    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) // required in iOS 8 and up
-        [self.locationManager requestWhenInUseAuthorization];
-
-    
-    [self.loadingIndicator startLoading];
-    self.now = [[NSDate date] timeIntervalSinceNow];
-    [self.locationManager startUpdatingLocation];
-}
-
-
-- (void)reverseGeocode:(CLLocationCoordinate2D)location completion:(void (^)(void))completion
-{
-    NSLog(@"reverseGeocode:");
-    if (self.geoCoder==nil)
-        self.geoCoder = [[CLGeocoder alloc] init];
-    
-    CLLocation *loc = [[CLLocation alloc] initWithCoordinate:location
-                                                    altitude:0
-                                          horizontalAccuracy:0
-                                            verticalAccuracy:0
-                                                      course:0
-                                                       speed:0
-                                                   timestamp:[NSDate date]];
-    
-    [self.geoCoder reverseGeocodeLocation:loc completionHandler:^(NSArray *placemarks, NSError *error) { // Getting Human readable Address from Lat long...
-        
-        if (placemarks.count > 0){
-            for (CLPlacemark *placeMark in placemarks) {
-                NSDictionary *locationInfo = placeMark.addressDictionary;
-                NSString *cityState = @"";
-                BOOL validLocation = NO;
-                
-                NSString *city = locationInfo[@"City"];
-                NSString *state = locationInfo[@"State"];
-                
-                if (city!=nil && state!=nil){
-                    cityState = [cityState stringByAppendingString:[city lowercaseString]];
-                    cityState = [cityState stringByAppendingString:[NSString stringWithFormat:@", %@", [state lowercaseString]]];
-                    validLocation = YES;
-                    self.lblLocation.text = [cityState uppercaseString];
-                }
-                
-                if (!validLocation)
-                    continue;
-                
-                [self.locations addObject:cityState];
-                if ([self.profile.searches containsObject:cityState]==NO){
-                    [self.profile.searches addObject:cityState];
-                    [self.profile updateProfile]; // update profile on backend with new search entries
-                }
-                
-                
-            }
+    [self.locationMgr findLocation:^(NSError *error){
+        if (error){
+            [self.loadingIndicator stopLoading];
+            [self showAlertWithtTitle:@"Error" message:@"Failed to Get Your Location. Please check your settings to make sure location services is ativated (under 'Privacy' section)."];
+            
+            return;
         }
         
-        if (completion != nil)
-            completion();
-        
+        NSLog(@"CALL BACK: %@", [self.locationMgr.cities description]);
+        [self searchListings];
     }];
+
+
     
 }
-
 
 - (void)btnProfileAction:(UIButton *)btn
 {
@@ -525,51 +481,6 @@ static NSString *cellId = @"cellId";
 
 
 
-#pragma mark - CLLocationManagerDelegate
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-{
-//    NSLog(@"manager didUpdateLocations:");
-    
-    static double minAccuracy = 3000.0f;
-    CLLocation *bestLocation = nil;
-    for (CLLocation *location in locations) {
-        if (([location.timestamp timeIntervalSince1970]-self.now) >= 0){
-            
-            NSLog(@"LOCATION: %@, %.4f, %4f, ACCURACY: %.2f,%.2f", [location.timestamp description], location.coordinate.latitude, location.coordinate.longitude, location.horizontalAccuracy, location.verticalAccuracy);
-            
-            if (location.horizontalAccuracy <= minAccuracy && location.horizontalAccuracy <= minAccuracy){
-                [self.locationManager stopUpdatingLocation];
-                self.locationManager.delegate = nil;
-                bestLocation = location;
-                break;
-            }
-        }
-    }
-    
-    if (bestLocation==nil) // couldn't find location to desired accuracy
-        return;
-    
-    self.profile.currentLocation = self.locationManager.location.coordinate;
-    NSLog(@"CURRENT LOCATION: %.4f, %.4f", self.profile.currentLocation.latitude, self.profile.currentLocation.longitude);
-    
-    [self reverseGeocode:self.profile.currentLocation completion:^{
-        NSLog(@"%@", [self.locations description]);
-        [self searchListings];
-        
-    }];
-    
-}
-
-
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
-{
-    NSLog(@"didFailWithError: %@", [error localizedDescription]);
-    [self.loadingIndicator stopLoading];
-    [self showAlertWithtTitle:@"Error" message:@"Failed to Get Your Location. Please check your settings to make sure location services is ativated (under 'Privacy' section)."];
-}
-
-
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -599,7 +510,7 @@ static NSString *cellId = @"cellId";
         if (buttonIndex==0) { // previous searchs
             NSLog(@"Show previous searches: %@", [self.profile.searches description]);
             MQSearchHistoryViewController *searchHistoryVc = [[MQSearchHistoryViewController alloc] init];
-            searchHistoryVc.locations = self.locations;
+            searchHistoryVc.locations = self.locationMgr.cities;
             UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:searchHistoryVc];
             [self presentViewController:navCtr animated:YES completion:^{
                 

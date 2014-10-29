@@ -150,6 +150,7 @@
     
     [self.locations removeAllObjects];
     CLLocationCoordinate2D center = self.mapView.centerCoordinate;
+    [self.locationMgr.cities removeAllObjects];
     [self.locationMgr reverseGeocode:CLLocationCoordinate2DMake(center.latitude, center.longitude) completion:^{
         [self checkCoordinates];
     }];

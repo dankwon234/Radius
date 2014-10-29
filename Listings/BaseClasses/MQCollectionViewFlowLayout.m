@@ -37,19 +37,6 @@
     return kCellPadding;
 }
 
-//- (CGSize)collectionViewContentSize
-//{
-//    id<UICollectionViewDataSource> dataSource = self.collectionView.dataSource;
-//    int numberOfItems = [dataSource collectionView:self.collectionView numberOfItemsInSection:0];
-//
-//    CGSize size = CGSizeMake(self.collectionView.frame.size.width, numberOfItems*kPostCellDimension);
-//    NSLog(@"collectionViewContentSize: %d ITEMS, %.2f, %.2f", numberOfItems, size.width, size.height);
-//
-//    return size;
-//
-//}
-
-
 - (void)prepareLayout
 {
     [super prepareLayout];

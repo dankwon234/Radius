@@ -23,4 +23,5 @@ typedef void (^MQLocationManagerCompletionBlock)(NSError *error);
 @property (nonatomic) NSTimeInterval now;
 + (MQLocationManager *)sharedLocationManager;
 - (void)findLocation:(MQLocationManagerCompletionBlock)callback;
+- (void)reverseGeocode:(CLLocationCoordinate2D)location completion:(void (^)(void))callback;
 @end

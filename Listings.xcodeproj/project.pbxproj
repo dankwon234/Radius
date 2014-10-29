@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C0AB7F21A00706200995072 /* MQPublicProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0AB7F11A00706200995072 /* MQPublicProfile.m */; };
 		0C22AEC719FA21180067F8D7 /* MQResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C22AEC619FA21180067F8D7 /* MQResumeViewController.m */; };
 		0C29162C19FDEEB0009BBD48 /* MQSearchLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C29162B19FDEEB0009BBD48 /* MQSearchLocationCell.m */; };
 		0C29162E19FDF09D009BBD48 /* iconDeleteRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C29162D19FDF09D009BBD48 /* iconDeleteRed@2x.png */; };
@@ -15,6 +16,7 @@
 		0C56503D19FA475F00BD6C36 /* header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C56503C19FA475F00BD6C36 /* header@2x.png */; };
 		0C56503F19FA49FB00BD6C36 /* backArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C56503E19FA49FB00BD6C36 /* backArrow@2x.png */; };
 		0C56504119FA4C9D00BD6C36 /* exit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C56504019FA4C9D00BD6C36 /* exit@2x.png */; };
+		0CC452A71A008D1000689AC6 /* MQLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC452A61A008D1000689AC6 /* MQLocationManager.m */; };
 		0CF70E5E19FD77ED00184706 /* iconLocationBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF70E5D19FD77ED00184706 /* iconLocationBlue@2x.png */; };
 		0CF70E6019FD797F00184706 /* iconCalendarBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF70E5F19FD797F00184706 /* iconCalendarBlue@2x.png */; };
 		0CF70E6219FD7DC900184706 /* iconSaveBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF70E6119FD7DC900184706 /* iconSaveBlue@2x.png */; };
@@ -115,6 +117,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C0AB7F01A00706200995072 /* MQPublicProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQPublicProfile.h; sourceTree = "<group>"; };
+		0C0AB7F11A00706200995072 /* MQPublicProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQPublicProfile.m; sourceTree = "<group>"; };
 		0C22AEC519FA21180067F8D7 /* MQResumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQResumeViewController.h; sourceTree = "<group>"; };
 		0C22AEC619FA21180067F8D7 /* MQResumeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQResumeViewController.m; sourceTree = "<group>"; };
 		0C29162A19FDEEB0009BBD48 /* MQSearchLocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQSearchLocationCell.h; sourceTree = "<group>"; };
@@ -126,6 +130,8 @@
 		0C56503C19FA475F00BD6C36 /* header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header@2x.png"; sourceTree = "<group>"; };
 		0C56503E19FA49FB00BD6C36 /* backArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backArrow@2x.png"; sourceTree = "<group>"; };
 		0C56504019FA4C9D00BD6C36 /* exit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exit@2x.png"; sourceTree = "<group>"; };
+		0CC452A51A008D1000689AC6 /* MQLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQLocationManager.h; sourceTree = "<group>"; };
+		0CC452A61A008D1000689AC6 /* MQLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQLocationManager.m; sourceTree = "<group>"; };
 		0CF70E5D19FD77ED00184706 /* iconLocationBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconLocationBlue@2x.png"; sourceTree = "<group>"; };
 		0CF70E5F19FD797F00184706 /* iconCalendarBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconCalendarBlue@2x.png"; sourceTree = "<group>"; };
 		0CF70E6119FD7DC900184706 /* iconSaveBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconSaveBlue@2x.png"; sourceTree = "<group>"; };
@@ -426,6 +432,8 @@
 				5C573FA619BAA94900677DDF /* MQViewController.m */,
 				5C573FB419BAB0CC00677DDF /* MQWebServices.h */,
 				5C573FB519BAB0CD00677DDF /* MQWebServices.m */,
+				0CC452A51A008D1000689AC6 /* MQLocationManager.h */,
+				0CC452A61A008D1000689AC6 /* MQLocationManager.m */,
 				5C573FA819BAA99D00677DDF /* MQLoadingIndicator.h */,
 				5C573FA919BAA99D00677DDF /* MQLoadingIndicator.m */,
 				5CE459F919D8BF0600635A67 /* MQSocialAccountsMgr.h */,
@@ -581,6 +589,8 @@
 				5C94BA3519EBAE4000FF3FF5 /* Register */,
 				5CDD2A8219C3B1DE003B3169 /* MQProfile.h */,
 				5CDD2A8119C3B1DE003B3169 /* MQProfile.m */,
+				0C0AB7F01A00706200995072 /* MQPublicProfile.h */,
+				0C0AB7F11A00706200995072 /* MQPublicProfile.m */,
 				0C375FDB19FE39930050780B /* MQProfilesViewController.h */,
 				0C375FDC19FE39940050780B /* MQProfilesViewController.m */,
 				5CC6E10219EF4DB600373C9A /* MQLoginViewController.h */,
@@ -732,6 +742,7 @@
 				0C29162C19FDEEB0009BBD48 /* MQSearchLocationCell.m in Sources */,
 				5C5ADB2B19C5623B00B5E29D /* AFHTTPRequestOperationManager.m in Sources */,
 				5CF2966319C60BF8007CF784 /* UIView+MQViewAdditions.m in Sources */,
+				0C0AB7F21A00706200995072 /* MQPublicProfile.m in Sources */,
 				5CFCB93F19F2496C00681270 /* MQSubmitApplicationViewController.m in Sources */,
 				5CFCB94219F2563C00681270 /* MQApplication.m in Sources */,
 				5C911C5019EBAED8002AD978 /* MQSelectNetworkViewController.m in Sources */,
@@ -763,6 +774,7 @@
 				5C5ADB3219C5623B00B5E29D /* AFURLSessionManager.m in Sources */,
 				5C573FD219BAC85000677DDF /* MQCollectionViewFlowLayout.m in Sources */,
 				5C5ADB3319C5623B00B5E29D /* Reachability.m in Sources */,
+				0CC452A71A008D1000689AC6 /* MQLocationManager.m in Sources */,
 				5C573FC619BAB72700677DDF /* MQListingsViewController.m in Sources */,
 				0C375FDD19FE39940050780B /* MQProfilesViewController.m in Sources */,
 				5C573FB619BAB0CD00677DDF /* MQWebServices.m in Sources */,

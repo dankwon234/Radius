@@ -1,0 +1,94 @@
+//
+//  MQPublicProfile.m
+//  Listings
+//
+//  Created by Dan Kwon on 10/28/14.
+//  Copyright (c) 2014 Mercury. All rights reserved.
+//
+
+#import "MQPublicProfile.h"
+#import "MQWebServices.h"
+
+@implementation MQPublicProfile
+@synthesize uniqueId;
+@synthesize firstName;
+@synthesize lastName;
+@synthesize city;
+@synthesize state;
+@synthesize image;
+@synthesize imageData;
+@synthesize facebookId;
+@synthesize twitterId;
+@synthesize linkedinId;
+@synthesize schools;
+@synthesize bio;
+@synthesize skills;
+@synthesize resume;
+@synthesize video;
+
+
+- (id)init
+{
+    self = [super init];
+    if (self){
+        self.uniqueId = @"none";
+        self.firstName = @"none";
+        self.lastName = @"none";
+        self.city = @"none";
+        self.state = @"none";
+        self.image = @"none";
+        self.facebookId = @"none";
+        self.twitterId = @"none";
+        self.linkedinId = @"none";
+        self.bio = @"none";
+        self.resume = @"none";
+        self.video = @"none";
+        self.schools = [NSMutableArray array];
+        self.skills = [NSMutableArray array];
+    }
+    
+    return self;
+    
+}
+
+
+- (void)populate:(NSDictionary *)profileInfo
+{
+    self.uniqueId = [profileInfo objectForKey:@"id"];
+    self.firstName = [profileInfo objectForKey:@"firstName"];
+    self.lastName = [profileInfo objectForKey:@"lastName"];
+    self.city = [profileInfo objectForKey:@"city"];
+    self.state = [profileInfo objectForKey:@"state"];
+    self.image = [profileInfo objectForKey:@"image"];
+    self.facebookId = [profileInfo objectForKey:@"facebookId"];
+    self.twitterId = [profileInfo objectForKey:@"twitterId"];
+    self.linkedinId = [profileInfo objectForKey:@"linkedinId"];
+    self.bio = [profileInfo objectForKey:@"bio"];
+    self.resume = [profileInfo objectForKey:@"resume"];
+    self.video = [profileInfo objectForKey:@"video"];
+    self.skills = [NSMutableArray arrayWithArray:[profileInfo objectForKey:@"skills"]];
+    self.schools = [NSMutableArray arrayWithArray:[profileInfo objectForKey:@"schools"]];
+}
+
+- (void)fetchImage
+{
+    if ([self.image isEqualToString:@"none"])
+        return;
+    
+    [[MQWebServices sharedInstance] fetchImage:self.image completionBlock:^(id result, NSError *error){
+        if (error)
+            return;
+        
+        self.imageData = (UIImage *)result;
+    }];
+}
+
+
+
+
+
+
+
+
+
+@end

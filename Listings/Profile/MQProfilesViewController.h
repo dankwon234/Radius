@@ -8,6 +8,7 @@
 
 #import "MQViewController.h"
 
-@interface MQProfilesViewController : MQViewController
+@interface MQProfilesViewController : MQViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
+@property (strong, nonatomic) MQLocationManager *locationMgr;
 @end

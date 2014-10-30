@@ -53,9 +53,7 @@ static NSString *profileCellId = @"profileCellId";
 {
     UIView *view = [self baseView:YES];
 //    CGRect frame = view.frame;
-    
-    UIImage *bgImage = [UIImage imageNamed:@"bgLegsBlue.png"];
-    view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
+    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgLegsBlue.png"]];
 
     
     self.view = view;
@@ -243,7 +241,6 @@ static NSString *profileCellId = @"profileCellId";
 
 - (void)viewMenu:(id)sender
 {
-    NSLog(@"view menu");
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kViewMenuNotification object:nil]];
 }
 

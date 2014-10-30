@@ -15,4 +15,5 @@
 @property (strong, nonatomic) UIImageView *backgroundImage;
 @property (strong, nonatomic) UILabel *lblName;
 @property (strong, nonatomic) UILabel *lblLocation;
+@property (strong, nonatomic) UILabel *lblSkills;
 @end

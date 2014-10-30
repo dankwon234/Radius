@@ -19,6 +19,7 @@
 @synthesize icon;
 @synthesize lblName;
 @synthesize lblLocation;
+@synthesize lblSkills;
 
 
 - (id)initWithFrame:(CGRect)frame
@@ -38,6 +39,11 @@
         CGRect baseFrame = self.base.frame;
         UIView *bottom = [[UIView alloc] initWithFrame:CGRectMake(0.0f, y, baseFrame.size.width, baseFrame.size.height-y)];
         bottom.backgroundColor = kBaseGray;
+        
+        UIImageView *shadow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"shadow.png"]];
+        shadow.frame = CGRectMake(0.0f, 0.0f, baseFrame.size.width, 0.75f*shadow.frame.size.height);
+        [bottom addSubview:shadow];
+        
         [self.base addSubview:bottom];
         
         CGFloat dimen = 54.0f;
@@ -60,6 +66,21 @@
         self.lblName.lineBreakMode = NSLineBreakByWordWrapping;
         self.lblName.font = [UIFont fontWithName:@"Heiti SC" size:14.0f];
         [self.base addSubview:self.lblName];
+        y += self.lblName.frame.size.height+4.0f;
+        
+        self.lblSkills = [[UILabel alloc] initWithFrame:CGRectMake(10, y, baseFrame.size.width-20.0f, 14)];
+        self.lblSkills.textAlignment = NSTextAlignmentCenter;
+        self.lblSkills.textColor = [UIColor grayColor];
+        self.lblSkills.font = [UIFont systemFontOfSize:9];
+        self.lblSkills.backgroundColor = [UIColor whiteColor];
+        self.lblSkills.numberOfLines = 0;
+        self.lblSkills.lineBreakMode = NSLineBreakByWordWrapping;
+        self.lblSkills.layer.borderWidth = 0.5f;
+        self.lblSkills.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+        self.lblSkills.layer.cornerRadius = 2.0f;
+        self.lblSkills.layer.masksToBounds = YES;
+        [self.lblSkills addObserver:self forKeyPath:@"text" options:0 context:nil];
+        [self.base addSubview:self.lblSkills];
 
         
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0.0f, baseFrame.size.height-24.0f, baseFrame.size.width, 0.5f)];
@@ -79,6 +100,29 @@
     }
     
     return self;
+}
+
+- (void)dealloc
+{
+    [self.lblSkills removeObserver:self forKeyPath:@"text"];
+}
+
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"text"]==NO)
+        return;
+    
+    CGRect frame = self.lblSkills.frame;
+    CGRect boudingRect = [self.lblSkills.text boundingRectWithSize:CGSizeMake(frame.size.width, 250.0f)
+                                                           options:NSStringDrawingUsesLineFragmentOrigin
+                                                        attributes:@{NSFontAttributeName:self.lblSkills.font}
+                                                           context:NULL];
+    
+    frame.size.height = boudingRect.size.height+4.0f;
+    self.lblSkills.frame = frame;
+    
+    
     
 }
 

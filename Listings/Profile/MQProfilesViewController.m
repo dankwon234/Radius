@@ -11,6 +11,7 @@
 #import "MQProfilesCollectionViewFlowLayout.h"
 #import "MQPublicProfile.h"
 #import "MQProfileCollectionCell.h"
+#import "MQMapViewController.h"
 
 
 @interface MQProfilesViewController ()
@@ -78,7 +79,7 @@ static NSString *profileCellId = @"profileCellId";
     UIButton *btnLocation = [UIButton buttonWithType:UIButtonTypeCustom];
     btnLocation.frame = CGRectMake(0.0f, 0.0f, 0.75f*imgLocation.size.width, 0.75f*imgLocation.size.height);
     [btnLocation setBackgroundImage:imgLocation forState:UIControlStateNormal];
-    [btnLocation addTarget:self action:@selector(showSearchOptions:) forControlEvents:UIControlEventTouchUpInside];
+    [btnLocation addTarget:self action:@selector(showMap:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnLocation];
 }
 
@@ -89,6 +90,15 @@ static NSString *profileCellId = @"profileCellId";
     
     if (self.needsRefresh)
         [self searchProfiles];
+}
+
+- (void)showMap:(UIButton *)btn
+{
+    MQMapViewController *mapVc = [[MQMapViewController alloc] init];
+    UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:mapVc];
+    [self presentViewController:navCtr animated:YES completion:^{
+        
+    }];
 }
 
 - (void)updateNeedsRefresh

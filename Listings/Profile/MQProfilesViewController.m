@@ -17,6 +17,7 @@
 @interface MQProfilesViewController ()
 @property (strong, nonatomic) UICollectionView *profilesTable;
 @property (strong, nonatomic) NSMutableArray *profiles;
+@property (strong, nonatomic) NSMutableDictionary *blurryImagesCache;
 @property (nonatomic) BOOL needsRefresh;
 @end
 
@@ -32,6 +33,7 @@ static NSString *profileCellId = @"profileCellId";
         self.needsRefresh = YES;
         self.locationMgr = [MQLocationManager sharedLocationManager];
         self.profiles = [NSMutableArray array];
+        self.blurryImagesCache = [NSMutableDictionary dictionary];
         
         UIImage *imgHeader = [UIImage imageNamed:@"header.png"];
         UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, imgHeader.size.width, imgHeader.size.height)];
@@ -107,7 +109,8 @@ static NSString *profileCellId = @"profileCellId";
             return;
         
         cell.icon.image = profile.imageData;
-        cell.backgroundImage.image = [profile.imageData applyBlurOnImage:0.95f];
+        self.blurryImagesCache[profile.image] = [profile.imageData applyBlurOnImage:0.95f];
+        cell.backgroundImage.image = self.blurryImagesCache[profile.image];
     });
     
 }
@@ -267,14 +270,20 @@ static NSString *profileCellId = @"profileCellId";
     NSLog(@"PROFILE: %@ %@", profile.firstName, profile.lastName);
     cell.lblName.text = [NSString stringWithFormat:@"%@ %@", [profile.firstName capitalizedString], [profile.lastName capitalizedString]];
     cell.lblLocation.text = [NSString stringWithFormat:@"%@, %@", [profile.city capitalizedString], [profile.state uppercaseString]];
+    if (profile.skills.count > 0){
+        cell.lblSkills.alpha = 1.0f;
+        cell.lblSkills.text = [profile.skills componentsJoinedByString:@", "];
+    }
+    else{
+        cell.lblSkills.alpha = 0.0f;
+    }
+        
     
-//    cell.lblVenue.text = listing.venue;
-//    cell.lblDate.text = listing.formattedDate;
-//    cell.lblLocation.text = [NSString stringWithFormat:@"%@, %@", [listing.city capitalizedString], [listing.state uppercaseString]];
-//    cell.tag = indexPath.row+1000;
-
-    if (profile.imageData)
+    if (profile.imageData){
         cell.icon.image = profile.imageData;
+        cell.backgroundImage.image = self.blurryImagesCache[profile.image];
+        return cell;
+    }
     
     if ([profile.image isEqualToString:@"none"])
         return cell;

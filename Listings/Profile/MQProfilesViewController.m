@@ -234,7 +234,7 @@ static NSString *profileCellId = @"profileCellId";
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     //    NSLog(@"collectionView numberOfItemsInSection: %d", self.posts.count);
-    return self.profiles.count;
+    return self.profiles.count*4;
 }
 
 
@@ -242,7 +242,9 @@ static NSString *profileCellId = @"profileCellId";
 {
     MQProfileCollectionCell *cell = (MQProfileCollectionCell *)[collectionView dequeueReusableCellWithReuseIdentifier:profileCellId forIndexPath:indexPath];
     
-    MQPublicProfile *profile = (MQPublicProfile *)self.profiles[indexPath.row];
+//    MQPublicProfile *profile = (MQPublicProfile *)self.profiles[indexPath.row];
+    MQPublicProfile *profile = (MQPublicProfile *)self.profiles[indexPath.row%self.profiles.count];
+    
     NSLog(@"PROFILE: %@ %@", profile.firstName, profile.lastName);
     cell.lblName.text = [NSString stringWithFormat:@"%@ %@", profile.firstName, profile.lastName];
     
@@ -259,7 +261,7 @@ static NSString *profileCellId = @"profileCellId";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(kProfileCellWidth, kListingCellHeight);
+    return CGSizeMake(kProfileCellWidth, kProfileCellHeight);
 }
 
 

@@ -54,7 +54,7 @@ static NSString *profileCellId = @"profileCellId";
     UIView *view = [self baseView:YES];
 //    CGRect frame = view.frame;
     
-    UIImage *bgImage = [UIImage imageNamed:@"bgBlurry1.png"];
+    UIImage *bgImage = [UIImage imageNamed:@"bgLegsBlue.png"];
     view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
 
     
@@ -91,6 +91,29 @@ static NSString *profileCellId = @"profileCellId";
     if (self.needsRefresh)
         [self searchProfiles];
 }
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"imageData"]==NO)
+        return;
+    
+    MQPublicProfile *profile = (MQPublicProfile *)object;
+    [profile removeObserver:self forKeyPath:@"imageData"];
+    
+    // this is smoother than a conventional reload. it doesn't stutter the UI:
+    dispatch_async(dispatch_get_main_queue(), ^{
+        int index = (int)[self.profiles indexOfObject:profile];
+        MQProfileCollectionCell *cell = (MQProfileCollectionCell *)[self.profilesTable cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+        
+        if (!cell)
+            return;
+        
+        cell.icon.image = profile.imageData;
+        cell.backgroundImage.image = [profile.imageData applyBlurOnImage:0.95f];
+    });
+    
+}
+
 
 - (void)showMap:(UIButton *)btn
 {
@@ -234,7 +257,7 @@ static NSString *profileCellId = @"profileCellId";
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     //    NSLog(@"collectionView numberOfItemsInSection: %d", self.posts.count);
-    return self.profiles.count*4;
+    return self.profiles.count;
 }
 
 
@@ -242,21 +265,30 @@ static NSString *profileCellId = @"profileCellId";
 {
     MQProfileCollectionCell *cell = (MQProfileCollectionCell *)[collectionView dequeueReusableCellWithReuseIdentifier:profileCellId forIndexPath:indexPath];
     
-//    MQPublicProfile *profile = (MQPublicProfile *)self.profiles[indexPath.row];
-    MQPublicProfile *profile = (MQPublicProfile *)self.profiles[indexPath.row%self.profiles.count];
+    MQPublicProfile *profile = (MQPublicProfile *)self.profiles[indexPath.row];
     
     NSLog(@"PROFILE: %@ %@", profile.firstName, profile.lastName);
-    cell.lblName.text = [NSString stringWithFormat:@"%@ %@", profile.firstName, profile.lastName];
+    cell.lblName.text = [NSString stringWithFormat:@"%@ %@", [profile.firstName capitalizedString], [profile.lastName capitalizedString]];
+    cell.lblLocation.text = [NSString stringWithFormat:@"%@, %@", [profile.city capitalizedString], [profile.state uppercaseString]];
     
 //    cell.lblVenue.text = listing.venue;
 //    cell.lblDate.text = listing.formattedDate;
 //    cell.lblLocation.text = [NSString stringWithFormat:@"%@, %@", [listing.city capitalizedString], [listing.state uppercaseString]];
 //    cell.tag = indexPath.row+1000;
+
+    if (profile.imageData)
+        cell.icon.image = profile.imageData;
     
+    if ([profile.image isEqualToString:@"none"])
+        return cell;
+    
+    [profile addObserver:self forKeyPath:@"imageData" options:0 context:nil];
+    [profile fetchImage];
     
     
     return cell;
 }
+
 
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

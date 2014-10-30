@@ -26,4 +26,5 @@
 @property (strong, nonatomic) NSMutableArray *skills;
 @property (strong, nonatomic) UIImage *imageData;
 - (void)populate:(NSDictionary *)profileInfo;
+- (void)fetchImage;
 @end

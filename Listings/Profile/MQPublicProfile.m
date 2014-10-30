@@ -9,6 +9,10 @@
 #import "MQPublicProfile.h"
 #import "MQWebServices.h"
 
+@interface MQPublicProfile ()
+@property (nonatomic) BOOL fetchingImage;
+@end
+
 @implementation MQPublicProfile
 @synthesize uniqueId;
 @synthesize firstName;
@@ -31,6 +35,7 @@
 {
     self = [super init];
     if (self){
+        self.fetchingImage = NO;
         self.uniqueId = @"none";
         self.firstName = @"none";
         self.lastName = @"none";
@@ -74,8 +79,14 @@
 {
     if ([self.image isEqualToString:@"none"])
         return;
+
+    if (self.fetchingImage)
+        return;
     
+    self.fetchingImage = YES;
     [[MQWebServices sharedInstance] fetchImage:self.image completionBlock:^(id result, NSError *error){
+        self.fetchingImage = NO;
+        
         if (error)
             return;
         

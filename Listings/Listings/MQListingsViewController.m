@@ -277,26 +277,6 @@ static NSString *cellId = @"cellId";
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (self.listingsTable){
-                [UIView animateWithDuration:0.40f
-                                      delay:0
-                                    options:UIViewAnimationOptionCurveEaseInOut
-                                 animations:^{
-                                     CGRect frame = self.listingsTable.frame;
-                                     self.listingsTable.frame = CGRectMake(frame.origin.x, self.view.frame.size.height, frame.size.width, frame.size.height);
-                                     
-                                 }
-                                 completion:^(BOOL finished){
-                                     self.listingsTable.delegate = nil;
-                                     self.listingsTable.dataSource = nil;
-                                     [self.listingsTable removeFromSuperview];
-                                     self.listingsTable = nil;
-                                     [self layoutListsCollectionView];
-                                 }];
-                
-                return;
-            }
-            
             [self layoutListsCollectionView];
         });
         
@@ -306,6 +286,26 @@ static NSString *cellId = @"cellId";
 
 - (void)layoutListsCollectionView
 {
+    if (self.listingsTable){
+        [UIView animateWithDuration:0.40f
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             CGRect frame = self.listingsTable.frame;
+                             self.listingsTable.frame = CGRectMake(frame.origin.x, self.view.frame.size.height, frame.size.width, frame.size.height);
+                             
+                         }
+                         completion:^(BOOL finished){
+                             self.listingsTable.delegate = nil;
+                             self.listingsTable.dataSource = nil;
+                             [self.listingsTable removeFromSuperview];
+                             self.listingsTable = nil;
+                             [self layoutListsCollectionView];
+                         }];
+        
+        return;
+    }
+
     CGRect frame = self.view.frame;
     
     self.listingsTable = [[UICollectionView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height, frame.size.width, frame.size.height-20.0f-180.0f) collectionViewLayout:[[MQCollectionViewFlowLayout alloc] init]];

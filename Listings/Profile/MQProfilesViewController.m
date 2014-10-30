@@ -133,26 +133,6 @@ static NSString *profileCellId = @"profileCellId";
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (self.profilesTable){
-                [UIView animateWithDuration:0.40f
-                                      delay:0
-                                    options:UIViewAnimationOptionCurveEaseInOut
-                                 animations:^{
-                                     CGRect frame = self.profilesTable.frame;
-                                     self.profilesTable.frame = CGRectMake(frame.origin.x, self.view.frame.size.height, frame.size.width, frame.size.height);
-                                     
-                                 }
-                                 completion:^(BOOL finished){
-                                     self.profilesTable.delegate = nil;
-                                     self.profilesTable.dataSource = nil;
-                                     [self.profilesTable removeFromSuperview];
-                                     self.profilesTable = nil;
-                                     [self layoutProfilesCollectionView];
-                                 }];
-                
-                return;
-            }
-            
             [self layoutProfilesCollectionView];
         });
 
@@ -165,6 +145,26 @@ static NSString *profileCellId = @"profileCellId";
 
 - (void)layoutProfilesCollectionView
 {
+    if (self.profilesTable){
+        [UIView animateWithDuration:0.40f
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             CGRect frame = self.profilesTable.frame;
+                             self.profilesTable.frame = CGRectMake(frame.origin.x, self.view.frame.size.height, frame.size.width, frame.size.height);
+                             
+                         }
+                         completion:^(BOOL finished){
+                             self.profilesTable.delegate = nil;
+                             self.profilesTable.dataSource = nil;
+                             [self.profilesTable removeFromSuperview];
+                             self.profilesTable = nil;
+                             [self layoutProfilesCollectionView];
+                         }];
+        
+        return;
+    }
+
     CGRect frame = self.view.frame;
     
     self.profilesTable = [[UICollectionView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height, frame.size.width, frame.size.height-64.0f) collectionViewLayout:[[MQProfilesCollectionViewFlowLayout alloc] init]];

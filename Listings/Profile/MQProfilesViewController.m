@@ -114,8 +114,6 @@ static NSString *profileCellId = @"profileCellId";
     if (self.locationMgr.cities.count==0)
         return;
     
-//    self.lblLocation.text = [self.locations[0] uppercaseString];
-    
     [self.loadingIndicator startLoading];
     [[MQWebServices sharedInstance] fetchProfiles:self.locationMgr.cities completionBlock:^(id result, NSError *error){
         [self.loadingIndicator stopLoading];
@@ -134,7 +132,29 @@ static NSString *profileCellId = @"profileCellId";
             [self.profiles addObject:profile];
         }
         
-        [self layoutProfilesCollectionView];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (self.profilesTable){
+                [UIView animateWithDuration:0.40f
+                                      delay:0
+                                    options:UIViewAnimationOptionCurveEaseInOut
+                                 animations:^{
+                                     CGRect frame = self.profilesTable.frame;
+                                     self.profilesTable.frame = CGRectMake(frame.origin.x, self.view.frame.size.height, frame.size.width, frame.size.height);
+                                     
+                                 }
+                                 completion:^(BOOL finished){
+                                     self.profilesTable.delegate = nil;
+                                     self.profilesTable.dataSource = nil;
+                                     [self.profilesTable removeFromSuperview];
+                                     self.profilesTable = nil;
+                                     [self layoutProfilesCollectionView];
+                                 }];
+                
+                return;
+            }
+            
+            [self layoutProfilesCollectionView];
+        });
 
     }];
     
@@ -147,15 +167,13 @@ static NSString *profileCellId = @"profileCellId";
 {
     CGRect frame = self.view.frame;
     
-    self.profilesTable = [[UICollectionView alloc] initWithFrame:CGRectMake(0.0f, 64.0f, frame.size.width, frame.size.height-64.0f) collectionViewLayout:[[MQProfilesCollectionViewFlowLayout alloc] init]];
+    self.profilesTable = [[UICollectionView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height, frame.size.width, frame.size.height-64.0f) collectionViewLayout:[[MQProfilesCollectionViewFlowLayout alloc] init]];
     self.profilesTable.backgroundColor = [UIColor clearColor];
     
     UIView *background = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height)];
     background.backgroundColor = [UIColor whiteColor];
     background.alpha = 0.65f;
-    
     self.profilesTable.backgroundView = background;
-    
     
     [self.profilesTable registerClass:[MQProfileCollectionCell class] forCellWithReuseIdentifier:profileCellId];
     self.profilesTable.contentInset = UIEdgeInsetsMake(0.0f, 0, 12.0f, 0);
@@ -166,6 +184,19 @@ static NSString *profileCellId = @"profileCellId";
     [self.view addSubview:self.profilesTable];
     
     [self refreshProfilesCollectionView];
+    
+    [UIView animateWithDuration:1.20f
+                          delay:0
+         usingSpringWithDamping:0.6f
+          initialSpringVelocity:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         CGRect frame = self.profilesTable.frame;
+                         self.profilesTable.frame = CGRectMake(frame.origin.x, 64.0f, frame.size.width, frame.size.height-20.0f);
+                     }
+                     completion:^(BOOL finished){
+                         
+                     }];
 }
 
 

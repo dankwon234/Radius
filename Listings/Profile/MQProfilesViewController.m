@@ -16,6 +16,7 @@
 @interface MQProfilesViewController ()
 @property (strong, nonatomic) UICollectionView *profilesTable;
 @property (strong, nonatomic) NSMutableArray *profiles;
+@property (nonatomic) BOOL needsRefresh;
 @end
 
 static NSString *profileCellId = @"profileCellId";
@@ -27,6 +28,7 @@ static NSString *profileCellId = @"profileCellId";
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.needsRefresh = YES;
         self.locationMgr = [MQLocationManager sharedLocationManager];
         self.profiles = [NSMutableArray array];
         
@@ -34,6 +36,12 @@ static NSString *profileCellId = @"profileCellId";
         UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, imgHeader.size.width, imgHeader.size.height)];
         header.backgroundColor = [UIColor colorWithPatternImage:imgHeader];
         self.navigationItem.titleView = header;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(updateNeedsRefresh)
+                                                     name:kNewSearchNotification
+                                                   object:nil];
+
 
     }
     return self;
@@ -66,18 +74,27 @@ static NSString *profileCellId = @"profileCellId";
     [btnMenu addTarget:self action:@selector(viewMenu:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnMenu];
     
-    [self searchProfiles];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.profilesTable.collectionViewLayout invalidateLayout];
+    
+    if (self.needsRefresh)
+        [self searchProfiles];
+}
+
+- (void)updateNeedsRefresh
+{
+    self.needsRefresh = YES;
 }
 
 
 - (void)searchProfiles
 {
+    self.needsRefresh = NO;
+
     if (self.locationMgr.cities.count==0)
         return;
     

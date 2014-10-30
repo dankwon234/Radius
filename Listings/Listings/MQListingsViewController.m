@@ -26,6 +26,7 @@
 @property (strong, nonatomic) UIButton *btnProfile;
 @property (strong, nonatomic) UIButton *btnAbout;
 @property (strong, nonatomic) UILabel *lblLogin;
+@property (nonatomic) BOOL needsRefresh;
 @end
 
 static NSString *cellId = @"cellId";
@@ -37,6 +38,7 @@ static NSString *cellId = @"cellId";
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.needsRefresh = NO;
         self.locationMgr = [MQLocationManager sharedLocationManager];
         self.listings = nil;
         
@@ -46,7 +48,7 @@ static NSString *cellId = @"cellId";
         self.navigationItem.titleView = header;
         
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(searchListings)
+                                                 selector:@selector(updateNeedsRefresh)
                                                      name:kNewSearchNotification
                                                    object:nil];
 
@@ -134,6 +136,19 @@ static NSString *cellId = @"cellId";
     [btnLocation addTarget:self action:@selector(showSearchOptions:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnLocation];
 
+    [self.loadingIndicator startLoading];
+    [self.locationMgr findLocation:^(NSError *error){
+        if (error){
+            [self.loadingIndicator stopLoading];
+            [self showAlertWithtTitle:@"Error" message:@"Failed to Get Your Location. Please check your settings to make sure location services is ativated (under 'Privacy' section)."];
+            
+            return;
+        }
+        
+        NSLog(@"CALL BACK: %@", [self.locationMgr.cities description]);
+        [self searchListings];
+    }];
+
 
     if (self.profile.populated==NO)
         return;
@@ -147,40 +162,30 @@ static NSString *cellId = @"cellId";
     
     [self.profile addObserver:self forKeyPath:@"imageData" options:0 context:nil];
     [self.profile fetchImage];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
+    [self.listingsTable.collectionViewLayout invalidateLayout];
+    
+    if (self.needsRefresh)
+        [self searchListings];
+
+    
     if (self.profile.imageData){
         [self.btnProfile setBackgroundImage:self.profile.imageData forState:UIControlStateNormal];
         self.lblLogin.alpha = 0.0f;
-    }
-    else{
-        if ([self.profile.image isEqualToString:@"none"]==NO){
-            [self.profile addObserver:self forKeyPath:@"imageData" options:0 context:nil];
-            [self.profile fetchImage];
-        }
-    }
-    
-    
-    if (self.listingsTable)
-        return;
-    
-    
-    [self.listingsTable.collectionViewLayout invalidateLayout];
-    
-    NSLog(@"LOCATIONS: %@", [self.locationMgr.cities description]);
-    if (self.listings)
-        return;
-    
-    if (self.locationMgr.cities.count==0){
-        [self findLocation];
         return;
     }
     
-    [self searchListings];
+    if ([self.profile.image isEqualToString:@"none"])
+        return;
+    
+    [self.profile addObserver:self forKeyPath:@"imageData" options:0 context:nil];
+    [self.profile fetchImage];
 }
 
 
@@ -217,9 +222,15 @@ static NSString *cellId = @"cellId";
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kViewMenuNotification object:nil]];
 }
 
+- (void)updateNeedsRefresh
+{
+    self.needsRefresh = YES;
+}
+
 
 - (void)searchListings
 {
+    self.needsRefresh = NO;
     if (self.locationMgr.cities==0) // no locations listed, ignore
         return;
     
@@ -289,9 +300,7 @@ static NSString *cellId = @"cellId";
             [self layoutListsCollectionView];
         });
         
-        
     }];
-    
 }
 
 
@@ -377,24 +386,6 @@ static NSString *cellId = @"cellId";
     }];
 }
 
-- (void)findLocation
-{
-    [self.loadingIndicator startLoading];
-    [self.locationMgr findLocation:^(NSError *error){
-        if (error){
-            [self.loadingIndicator stopLoading];
-            [self showAlertWithtTitle:@"Error" message:@"Failed to Get Your Location. Please check your settings to make sure location services is ativated (under 'Privacy' section)."];
-            
-            return;
-        }
-        
-        NSLog(@"CALL BACK: %@", [self.locationMgr.cities description]);
-        [self searchListings];
-    }];
-
-
-    
-}
 
 - (void)btnProfileAction:(UIButton *)btn
 {

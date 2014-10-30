@@ -10,6 +10,9 @@
 
 @interface MQProfileCollectionCell : UICollectionViewCell
 
+@property (strong, nonatomic) UIView *base;
 @property (strong, nonatomic) UIImageView *icon;
+@property (strong, nonatomic) UIImageView *backgroundImage;
 @property (strong, nonatomic) UILabel *lblName;
+@property (strong, nonatomic) UILabel *lblLocation;
 @end

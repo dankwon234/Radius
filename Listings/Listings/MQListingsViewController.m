@@ -24,7 +24,6 @@
 @property (strong, nonatomic) NSMutableArray *listings;
 @property (strong, nonatomic) UILabel *lblLocation;
 @property (strong, nonatomic) UIButton *btnProfile;
-@property (strong, nonatomic) UIButton *btnLocation;
 @property (strong, nonatomic) UIButton *btnAbout;
 @property (strong, nonatomic) UILabel *lblLogin;
 @end
@@ -108,13 +107,6 @@ static NSString *cellId = @"cellId";
     [self.lblLocation addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showSearchOptions:)]];
     [view addSubview:self.lblLocation];
     
-    UIImage *imgLocationPin = [UIImage imageNamed:@"iconLocation.png"];
-    x += self.lblLocation.frame.size.width+2.0f;
-    self.btnLocation = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.btnLocation.frame = CGRectMake(x, self.lblLocation.frame.origin.y-12.0f, imgLocationPin.size.width, imgLocationPin.size.height);
-    [self.btnLocation setBackgroundImage:imgLocationPin forState:UIControlStateNormal];
-    [self.btnLocation addTarget:self action:@selector(showSearchOptions:) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:self.btnLocation];
 
     self.view = view;
 }
@@ -123,9 +115,8 @@ static NSString *cellId = @"cellId";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.navigationController.navigationBar.barTintColor = kLightBlue;
-    
-    
     self.navigationItem.hidesBackButton = YES;
     
     UIImage *imgHamburger = [UIImage imageNamed:@"iconHamburger.png"];
@@ -134,6 +125,14 @@ static NSString *cellId = @"cellId";
     [btnMenu setBackgroundImage:imgHamburger forState:UIControlStateNormal];
     [btnMenu addTarget:self action:@selector(viewMenu:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnMenu];
+
+    
+    UIImage *imgLocation = [UIImage imageNamed:@"iconLocation.png"];
+    UIButton *btnLocation = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnLocation.frame = CGRectMake(0.0f, 0.0f, 0.75f*imgLocation.size.width, 0.75f*imgLocation.size.height);
+    [btnLocation setBackgroundImage:imgLocation forState:UIControlStateNormal];
+    [btnLocation addTarget:self action:@selector(showSearchOptions:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnLocation];
 
 
     if (self.profile.populated==NO)

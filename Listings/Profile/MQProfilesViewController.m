@@ -74,6 +74,12 @@ static NSString *profileCellId = @"profileCellId";
     [btnMenu addTarget:self action:@selector(viewMenu:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnMenu];
     
+    UIImage *imgLocation = [UIImage imageNamed:@"iconLocation.png"];
+    UIButton *btnLocation = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnLocation.frame = CGRectMake(0.0f, 0.0f, 0.75f*imgLocation.size.width, 0.75f*imgLocation.size.height);
+    [btnLocation setBackgroundImage:imgLocation forState:UIControlStateNormal];
+    [btnLocation addTarget:self action:@selector(showSearchOptions:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnLocation];
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C04500C1A03594C00CBFBF9 /* iconList@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C04500B1A03594C00CBFBF9 /* iconList@2x.png */; };
 		0C0AB7F21A00706200995072 /* MQPublicProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0AB7F11A00706200995072 /* MQPublicProfile.m */; };
 		0C22AEC719FA21180067F8D7 /* MQResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C22AEC619FA21180067F8D7 /* MQResumeViewController.m */; };
 		0C29162C19FDEEB0009BBD48 /* MQSearchLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C29162B19FDEEB0009BBD48 /* MQSearchLocationCell.m */; };
@@ -119,6 +120,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C04500B1A03594C00CBFBF9 /* iconList@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconList@2x.png"; sourceTree = "<group>"; };
 		0C0AB7F01A00706200995072 /* MQPublicProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQPublicProfile.h; sourceTree = "<group>"; };
 		0C0AB7F11A00706200995072 /* MQPublicProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQPublicProfile.m; sourceTree = "<group>"; };
 		0C22AEC519FA21180067F8D7 /* MQResumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQResumeViewController.h; sourceTree = "<group>"; };
@@ -485,6 +487,7 @@
 				5C101A1419E8A0B50046F7F1 /* locationPin@2x.png */,
 				0C56503E19FA49FB00BD6C36 /* backArrow@2x.png */,
 				0C29162D19FDF09D009BBD48 /* iconDeleteRed@2x.png */,
+				0C04500B1A03594C00CBFBF9 /* iconList@2x.png */,
 				0CFD564519FC8EC3000AFC9E /* iconHamburger@2x.png */,
 				5C736A2C19F5EA5900F7D2CB /* iconSave@2x.png */,
 				5CF8483019F2307900DCCD7F /* iconProfile@2x.png */,
@@ -708,6 +711,7 @@
 				5C1636E819EB29AF00BACC3E /* 01-refresh@2x.png in Resources */,
 				5CF8482B19F2283F00DCCD7F /* bgLegsBlue@2x.png in Resources */,
 				0C56503D19FA475F00BD6C36 /* header@2x.png in Resources */,
+				0C04500C1A03594C00CBFBF9 /* iconList@2x.png in Resources */,
 				0C56504119FA4C9D00BD6C36 /* exit@2x.png in Resources */,
 				0CF70E6019FD797F00184706 /* iconCalendarBlue@2x.png in Resources */,
 				5C101A0F19E8975D0046F7F1 /* icon80.png in Resources */,

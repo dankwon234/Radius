@@ -85,6 +85,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideMenu)];
+    swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.navCtr.view addGestureRecognizer:swipeLeft];
+
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showMenu)];
+    swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.navCtr.view addGestureRecognizer:swipeRight];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -114,6 +123,24 @@
     
 }
 
+- (void)showMenu
+{
+    CGPoint center = self.navCtr.view.center;
+    if (center.x > 0.50f*self.view.frame.size.width)
+        return;
+    
+    [self toggleMenu];
+}
+
+- (void)hideMenu
+{
+    CGPoint center = self.navCtr.view.center;
+    if (center.x==0.50f*self.view.frame.size.width)
+        return;
+    
+    [self toggleMenu];
+}
+
 - (void)toggleMenu:(NSTimeInterval)duration
 {
     CGRect frame = self.view.frame;
@@ -131,7 +158,7 @@
                      }
                      completion:^(BOOL finished){
                          CGPoint center = self.navCtr.view.center;
-                         self.listingsVc.view.userInteractionEnabled = (center.x==halfWidth);
+                         self.navCtr.topViewController.view.userInteractionEnabled = (center.x==halfWidth);
                          [self.sectionsTable deselectRowAtIndexPath:[self.sectionsTable indexPathForSelectedRow] animated:YES];
                      }];
 }

@@ -101,7 +101,7 @@
     
     CGFloat dimen = 70.0f;
     double centers[] = {0.20f, 0.50f, 0.80f};
-    NSArray *detailTitles = @[[self.listing.city capitalizedString], self.listing.formattedDate, @"Save"];
+    NSArray *detailTitles = @[[NSString stringWithFormat:@"%@\n%@", [self.listing.city capitalizedString], [self.listing.state uppercaseString]], [NSString stringWithFormat:@"Published\n%@", self.listing.formattedDate], @"Save"];
     NSArray *icons = @[@"iconLocationBlue.png", @"iconCalendarBlue.png", @"iconSaveBlue.png"];
     
     for (int i=0; i<3; i++) {
@@ -121,10 +121,11 @@
         icon.center = circle.center;
         [detailView addSubview:icon];
         
-        UILabel *lblDetail = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, dimen, 12.0f)];
-        lblDetail.center = CGPointMake(0.5f*dimen, dimen+1.0f);
-        lblDetail.font = [UIFont fontWithName:@"Heiti SC" size:10.0f];
+        UILabel *lblDetail = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, dimen, 22.0f)];
+        lblDetail.center = CGPointMake(0.5f*dimen, dimen+6.0f);
+        lblDetail.font = [UIFont fontWithName:@"Heiti SC" size:9.0f];
         lblDetail.textAlignment = NSTextAlignmentCenter;
+        lblDetail.numberOfLines = 2;
         lblDetail.textColor = [UIColor darkGrayColor];
         lblDetail.text = detailTitles[i];
         [detailView addSubview:lblDetail];

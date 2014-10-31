@@ -49,15 +49,16 @@
     CGRect frame = view.frame;
     
     self.sectionsTable = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height) style:UITableViewStylePlain];
+    self.sectionsTable.backgroundColor = [UIColor darkGrayColor];
     self.sectionsTable.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight);
     self.sectionsTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.sectionsTable.dataSource = self;
     self.sectionsTable.delegate = self;
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 64.0f)];
-    headerView.backgroundColor = [UIColor redColor];
+    headerView.backgroundColor = kOrange;
     self.btnAccount = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.btnAccount.frame = CGRectMake(8.0f, 0.0f, frame.size.width, headerView.frame.size.height-2.0f);
+    self.btnAccount.frame = CGRectMake(13.0f, 0.0f, frame.size.width, headerView.frame.size.height-4.0f);
     self.btnAccount.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     self.btnAccount.contentVerticalAlignment = UIControlContentVerticalAlignmentBottom;
     self.btnAccount.titleLabel.font = [UIFont fontWithName:@"Heiti SC" size:14.0f];
@@ -183,6 +184,13 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (cell==nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
+        cell.textLabel.font = [UIFont fontWithName:@"Heiti SC" size:12.0f];
+        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.contentView.backgroundColor = [UIColor darkGrayColor];
+        
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 43.0f, tableView.frame.size.width, 0.5f)];
+        line.backgroundColor = [UIColor grayColor];
+        [cell.contentView addSubview:line];
     }
     
     

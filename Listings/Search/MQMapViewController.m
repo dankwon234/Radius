@@ -64,6 +64,7 @@
     
     self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 44.0f)];
     self.searchBar.delegate = self;
+    self.searchBar.placeholder = @"New York, NY";
     self.searchHistoryTable.tableHeaderView = self.searchBar;
     [view addSubview:self.searchHistoryTable];
 
@@ -233,6 +234,17 @@
                      }];
 }
 
+#pragma mark - UISearchBarDelegate
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    if (self.searchBar.text.length == 0){
+        NSLog(@"MISSING SEARCH VALUE");
+        return;
+    }
+    
+    NSLog(@"SEARCH: %@", self.searchBar.text);
+    [self.searchBar resignFirstResponder];
+}
 
 #pragma mark - UITableViewDataSource
 

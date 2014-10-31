@@ -10,6 +10,6 @@
 #import <MapKit/MapKit.h>
 
 
-@interface MQMapViewController : MQViewController <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
+@interface MQMapViewController : MQViewController <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UISearchBarDelegate>
 
 @end

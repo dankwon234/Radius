@@ -24,7 +24,6 @@
 		0CF70E6019FD797F00184706 /* iconCalendarBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF70E5F19FD797F00184706 /* iconCalendarBlue@2x.png */; };
 		0CF70E6219FD7DC900184706 /* iconSaveBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF70E6119FD7DC900184706 /* iconSaveBlue@2x.png */; };
 		0CFB269419FA047B00285121 /* MQMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFB269319FA047B00285121 /* MQMapViewController.m */; };
-		0CFB269719FA04E800285121 /* MQSearchHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFB269619FA04E800285121 /* MQSearchHistoryViewController.m */; };
 		0CFD420719F980BE0020DC4B /* MQProfileListingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFD420619F980BE0020DC4B /* MQProfileListingsViewController.m */; };
 		0CFD564219FC76BB000AFC9E /* bgSidewalkGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CFD564119FC76BB000AFC9E /* bgSidewalkGreen@2x.png */; };
 		0CFD564419FC7761000AFC9E /* bgBlurry1Red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CFD564319FC7761000AFC9E /* bgBlurry1Red@2x.png */; };
@@ -145,8 +144,6 @@
 		0CF70E6119FD7DC900184706 /* iconSaveBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconSaveBlue@2x.png"; sourceTree = "<group>"; };
 		0CFB269219FA047B00285121 /* MQMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQMapViewController.h; sourceTree = "<group>"; };
 		0CFB269319FA047B00285121 /* MQMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQMapViewController.m; sourceTree = "<group>"; };
-		0CFB269519FA04E800285121 /* MQSearchHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQSearchHistoryViewController.h; sourceTree = "<group>"; };
-		0CFB269619FA04E800285121 /* MQSearchHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQSearchHistoryViewController.m; sourceTree = "<group>"; };
 		0CFD420519F980BE0020DC4B /* MQProfileListingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQProfileListingsViewController.h; sourceTree = "<group>"; };
 		0CFD420619F980BE0020DC4B /* MQProfileListingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQProfileListingsViewController.m; sourceTree = "<group>"; };
 		0CFD564119FC76BB000AFC9E /* bgSidewalkGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgSidewalkGreen@2x.png"; sourceTree = "<group>"; };
@@ -313,8 +310,6 @@
 			children = (
 				0CFB269219FA047B00285121 /* MQMapViewController.h */,
 				0CFB269319FA047B00285121 /* MQMapViewController.m */,
-				0CFB269519FA04E800285121 /* MQSearchHistoryViewController.h */,
-				0CFB269619FA04E800285121 /* MQSearchHistoryViewController.m */,
 				0C29162A19FDEEB0009BBD48 /* MQSearchLocationCell.h */,
 				0C29162B19FDEEB0009BBD48 /* MQSearchLocationCell.m */,
 			);
@@ -771,7 +766,6 @@
 				5C1636E419EB29AF00BACC3E /* LIALinkedInAuthorizationViewController.m in Sources */,
 				5C18053519CDF15000E171E6 /* UIColor+MQColorAdditions.m in Sources */,
 				5C5ADB3019C5623B00B5E29D /* AFURLRequestSerialization.m in Sources */,
-				0CFB269719FA04E800285121 /* MQSearchHistoryViewController.m in Sources */,
 				5C1636E519EB29AF00BACC3E /* LIALinkedInHttpClient.m in Sources */,
 				5C573FCC19BAB83300677DDF /* MQListing.m in Sources */,
 				0CFD564919FCA510000AFC9E /* MQVideoViewController.m in Sources */,

@@ -242,8 +242,28 @@
         return;
     }
     
-    NSLog(@"SEARCH: %@", self.searchBar.text);
+    NSString *searchTerm = self.searchBar.text;
+    NSArray *parts = [searchTerm componentsSeparatedByString:@","];
+    if (parts.count < 2){
+        [self showAlertWithtTitle:@"Format Error" message:@"Please enter a city and state like this: 'new york, NY'"];
+        return;
+    }
+    
+    NSString *city = [parts[0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *state = [parts[parts.count-1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *cityState = [NSString stringWithFormat:@"%@, %@", [city lowercaseString], [state lowercaseString]];
+    
+    NSLog(@"SEARCH: %@", cityState);
+    [self.locationMgr.cities removeAllObjects];
+    [self.locationMgr.cities addObject:cityState];
+
     [self.searchBar resignFirstResponder];
+    
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kNewSearchNotification object:nil]];
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+
 }
 
 #pragma mark - UITableViewDataSource

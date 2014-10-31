@@ -11,7 +11,6 @@
 #import "MQCollectionViewFlowLayout.h"
 #import "MQWebServices.h"
 #import "MQMapViewController.h"
-#import "MQSearchHistoryViewController.h"
 #import "MQListingViewController.h"
 #import "MQSignupViewController.h"
 #import "MQLoginViewController.h"
@@ -106,7 +105,7 @@ static NSString *cellId = @"cellId";
     self.lblLocation.font = [UIFont fontWithName:@"Heiti SC" size:14.0f];
     self.lblLocation.textColor = [UIColor blackColor];
     self.lblLocation.userInteractionEnabled = YES;
-    [self.lblLocation addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showSearchOptions:)]];
+    [self.lblLocation addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showMap:)]];
     [view addSubview:self.lblLocation];
     
 
@@ -133,7 +132,7 @@ static NSString *cellId = @"cellId";
     UIButton *btnLocation = [UIButton buttonWithType:UIButtonTypeCustom];
     btnLocation.frame = CGRectMake(0.0f, 0.0f, 0.75f*imgLocation.size.width, 0.75f*imgLocation.size.height);
     [btnLocation setBackgroundImage:imgLocation forState:UIControlStateNormal];
-    [btnLocation addTarget:self action:@selector(showSearchOptions:) forControlEvents:UIControlEventTouchUpInside];
+    [btnLocation addTarget:self action:@selector(showMap:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnLocation];
 
     [self.loadingIndicator startLoading];
@@ -364,19 +363,6 @@ static NSString *cellId = @"cellId";
     });
 }
 
-- (void)showSearchOptions:(UIGestureRecognizer *)tap
-{
-    if (self.profile.searches.count > 0){
-        UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"Search" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Previous Searches", @"Show Map", nil];
-        actionsheet.frame = CGRectMake(0, 150, self.view.frame.size.width, 100);
-        actionsheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-        [actionsheet showInView:[UIApplication sharedApplication].keyWindow];
-        return;
-    }
-    
-    [self showMap:nil];
-}
-
 - (void)showMap:(UIButton *)btn
 {
     MQMapViewController *mapVc = [[MQMapViewController alloc] init];
@@ -474,43 +460,23 @@ static NSString *cellId = @"cellId";
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSLog(@"actionSheet clickedButtonAtIndex: %d", (int)buttonIndex);
-    if ([actionSheet.title isEqualToString:@"Radius"]){
-        if (buttonIndex==0) { // sign up
-            MQSignupViewController *signupVc = [[MQSignupViewController alloc] init];
-            UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:signupVc];
-            [self presentViewController:navCtr animated:YES completion:^{
-                
-            }];
-        }
-        
-        if (buttonIndex==1) { // log in
-            MQLoginViewController *loginVc = [[MQLoginViewController alloc] init];
-            UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:loginVc];
-            [self presentViewController:navCtr animated:YES completion:^{
-                
-            }];
-        }
-        
-        return;
+    if (buttonIndex==0) { // sign up
+        MQSignupViewController *signupVc = [[MQSignupViewController alloc] init];
+        UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:signupVc];
+        [self presentViewController:navCtr animated:YES completion:^{
+            
+        }];
+    }
+    
+    if (buttonIndex==1) { // log in
+        MQLoginViewController *loginVc = [[MQLoginViewController alloc] init];
+        UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:loginVc];
+        [self presentViewController:navCtr animated:YES completion:^{
+            
+        }];
     }
     
 
-    if ([actionSheet.title isEqualToString:@"Search"]){
-        if (buttonIndex==0) { // previous searchs
-            NSLog(@"Show previous searches: %@", [self.profile.searches description]);
-            MQSearchHistoryViewController *searchHistoryVc = [[MQSearchHistoryViewController alloc] init];
-            UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:searchHistoryVc];
-            [self presentViewController:navCtr animated:YES completion:^{
-                
-            }];
-        }
-        
-        if (buttonIndex==1) { // show map
-            [self showMap:nil];
-        }
-        
-        return;
-    }
 }
 
 

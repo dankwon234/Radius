@@ -7,12 +7,16 @@
 
 
 #import "MQMapViewController.h"
+#import "MQSearchLocationCell.h"
+
 
 @interface MQMapViewController ()
+@property (strong, nonatomic) UITableView *searchHistoryTable;
 @property (strong, nonatomic) MQLocationManager *locationMgr;
 @property (strong, nonatomic) MKMapView *mapView;
 @property (strong, nonatomic) UIButton *btnSearch;
 @property (nonatomic) int index;
+@property (nonatomic) BOOL useMap;
 @end
 
 @implementation MQMapViewController
@@ -26,7 +30,7 @@
         self.locationMgr = [MQLocationManager sharedLocationManager];
         self.title = @"Select Location";
         self.index = 0;
-        
+        self.useMap = YES;
     }
     return self;
 }
@@ -48,6 +52,18 @@
     adjustedRegion.span.latitudeDelta  = 0.05f;
     [self.mapView setRegion:adjustedRegion animated:YES];
     [view addSubview:self.mapView];
+    
+    
+    self.searchHistoryTable = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height, frame.size.width, frame.size.height-92.0f) style:UITableViewStylePlain];
+    self.searchHistoryTable.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight);
+    self.searchHistoryTable.dataSource = self;
+    self.searchHistoryTable.delegate = self;
+    self.searchHistoryTable.separatorStyle = UITableViewCellSelectionStyleNone;
+    self.searchHistoryTable.alpha = 0.90f;
+    [view addSubview:self.searchHistoryTable];
+
+    
+    
     
     UIView *search = [[UIView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height-64.0f, frame.size.width, 64.0f)];
     search.backgroundColor = [UIColor grayColor];
@@ -94,6 +110,7 @@
     UIButton *btnList = [UIButton buttonWithType:UIButtonTypeCustom];
     btnList.frame = CGRectMake(0.0f, 0.0f, 0.65f*imgList.size.width, 0.65f*imgList.size.height);
     [btnList setBackgroundImage:imgList forState:UIControlStateNormal];
+    [btnList addTarget:self action:@selector(toggleSearchTable:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnList];
     
 }
@@ -150,16 +167,116 @@
 
 - (void)searchListings:(UIButton *)btn
 {
-    [self.loadingIndicator startLoading];
+    if (self.useMap){
+        [self.loadingIndicator startLoading];
+        
+        [self.locationMgr.cities removeAllObjects];
+        CLLocationCoordinate2D center = self.mapView.centerCoordinate;
+        [self.locationMgr.cities removeAllObjects];
+        [self.locationMgr reverseGeocode:CLLocationCoordinate2DMake(center.latitude, center.longitude) completion:^{
+            [self checkCoordinates];
+        }];
+        
+        return;
+    }
     
-    [self.locationMgr.cities removeAllObjects];
-    CLLocationCoordinate2D center = self.mapView.centerCoordinate;
-    [self.locationMgr.cities removeAllObjects];
-    [self.locationMgr reverseGeocode:CLLocationCoordinate2DMake(center.latitude, center.longitude) completion:^{
-        [self checkCoordinates];
+    if (self.locationMgr.cities.count==0){
+        [self showAlertWithtTitle:@"No Locations Selected" message:@"Please select at least one location to search."];
+        return;
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kNewSearchNotification object:nil]];
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        
     }];
 }
 
+- (void)removeLocation:(UIButton *)btn
+{
+    NSLog(@"removeLocation: %d", (int)btn.tag);
+    int tag = (int)btn.tag-1000;
+    if (tag < 0)
+        return;
+    
+    NSString *location = self.profile.searches[tag];
+    if ([self.locationMgr.cities containsObject:location]) // location is currently selected, cannot remove
+        return;
+    
+    NSLog(@"Remove Location: %@", location);
+    [self.profile.searches removeObject:location];
+    [self.searchHistoryTable reloadData];
+    
+    [self.profile updateProfile];
+}
+
+- (void)toggleSearchTable:(UIButton *)btn
+{
+    [UIView animateWithDuration:1.20f
+                          delay:0
+         usingSpringWithDamping:0.6f
+          initialSpringVelocity:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         CGRect frame = self.searchHistoryTable.frame;
+                         frame.origin.y = (frame.origin.y==64.0f) ? self.view.frame.size.height : 64.0f;
+                         self.searchHistoryTable.frame = frame;
+                     }
+                     completion:^(BOOL finished){
+                         self.useMap = !(self.searchHistoryTable.frame.origin.y==64.0f);
+
+                     }];
+}
+
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.profile.searches.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellId = @"cellId";
+    MQSearchLocationCell *cell = (MQSearchLocationCell *)[tableView dequeueReusableCellWithIdentifier:cellId];
+    if (cell==nil){
+        cell = [[MQSearchLocationCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
+        [cell.btnRemove addTarget:self action:@selector(removeLocation:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    
+    NSString *location = self.profile.searches[indexPath.row];
+    NSArray *parts = [location componentsSeparatedByString:@", "];
+    cell.textLabel.text = (parts.count > 1) ? [NSString stringWithFormat:@"%@, %@", [parts[0] capitalizedString], [parts[parts.count-1] uppercaseString]] : location;
+    
+    cell.btnRemove.tag = 1000+indexPath.row;
+    NSString *btnImage = ([self.locationMgr.cities containsObject:location]) ? @"iconSelected.png" : @"iconDeleteRed.png";
+    [cell.btnRemove setBackgroundImage:[UIImage imageNamed:btnImage] forState:UIControlStateNormal];
+    
+    
+    
+    cell.textLabel.textColor = ([self.locationMgr.cities containsObject:location]) ? kGreen : [UIColor darkGrayColor];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *location = self.profile.searches[indexPath.row];
+    if ([self.locationMgr.cities containsObject:location]){
+        [self.locationMgr.cities removeObject:location];
+        [self.searchHistoryTable reloadData];
+        return;
+        
+    }
+    
+    if (self.locationMgr.cities.count >= 5){
+        [self showAlertWithtTitle:@"Limit Reached" message:@"Please de-select a location before choosing another one."];
+        return;
+    }
+    
+    [self.locationMgr.cities addObject:location];
+    [self.searchHistoryTable reloadData];
+}
 
 
 

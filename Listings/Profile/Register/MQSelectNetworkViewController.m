@@ -362,7 +362,7 @@
                 return;
             }
             
-            if (twitterAccounts.count > 0){
+            if (twitterAccounts.count > 1){
                 NSLog(@"Found %d twitter accounts", (int)twitterAccounts.count);
                 dispatch_async(dispatch_get_main_queue(), ^{
                     MQSelectTwitterAccountViewController *selectTwitterVc = [[MQSelectTwitterAccountViewController alloc] init];

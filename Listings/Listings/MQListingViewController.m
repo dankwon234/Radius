@@ -29,7 +29,7 @@
 @implementation MQListingViewController
 @synthesize listing;
 
-#define kTopInset 70.0f
+#define kTopInset 160.0f
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -70,10 +70,19 @@
     self.blurryBackground.alpha = 1.0f;
     [view addSubview:self.blurryBackground];
 
-    CGFloat y = 110.0f;
+    self.venueIcon = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, -70.0f, 60.0f, 60.0f)];
+    self.venueIcon.center = CGPointMake(0.5f*frame.size.width, self.venueIcon.center.y);
+    self.venueIcon.layer.borderColor = [[UIColor whiteColor] CGColor];
+    self.venueIcon.layer.borderWidth = 2.0f;
+    self.venueIcon.layer.cornerRadius = 0.5f*self.venueIcon.frame.size.width;
+    self.venueIcon.layer.masksToBounds = YES;
+    self.venueIcon.image = (self.listing.iconData) ? self.listing.iconData : [UIImage imageNamed:@"logo.png"];
+    [view addSubview:self.venueIcon];
+
+    CGFloat y = 0.0f;
     self.theScrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0f, y, frame.size.width, frame.size.height-y)];
     self.theScrollview.delegate = self;
-    self.theScrollview.autoresizingMask = (UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin);
+    self.theScrollview.autoresizingMask = (UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin);
     self.theScrollview.backgroundColor = [UIColor clearColor];
     self.theScrollview.showsVerticalScrollIndicator = NO;
     self.theScrollview.contentInset = UIEdgeInsetsMake(kTopInset, 0.0f, 0.0f, 0.0f);
@@ -197,22 +206,14 @@
     y += btnApply.frame.size.height;
     
     CGFloat contentHeight = y+padding+20.0f;
-    if (contentHeight < 420.0f)
-        contentHeight = 420.0f;
+    if (contentHeight < 440.0f)
+        contentHeight = 440.0f;
     
     self.theScrollview.contentSize = CGSizeMake(0.0f, contentHeight);
     [view addSubview:self.theScrollview];
     
     
     
-    self.venueIcon = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, -70.0f, 60.0f, 60.0f)];
-    self.venueIcon.center = CGPointMake(0.5f*frame.size.width, self.venueIcon.center.y);
-    self.venueIcon.layer.borderColor = [[UIColor whiteColor] CGColor];
-    self.venueIcon.layer.borderWidth = 2.0f;
-    self.venueIcon.layer.cornerRadius = 0.5f*self.venueIcon.frame.size.width;
-    self.venueIcon.layer.masksToBounds = YES;
-    self.venueIcon.image = (self.listing.iconData) ? self.listing.iconData : [UIImage imageNamed:@"logo.png"];
-    [view addSubview:self.venueIcon];
     
     [self setupFullImage:view];
 
@@ -239,7 +240,7 @@
           initialSpringVelocity:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         self.venueIcon.center = CGPointMake(self.venueIcon.center.x, self.theScrollview.frame.origin.y);
+                         self.venueIcon.center = CGPointMake(self.venueIcon.center.x, self.theScrollview.frame.origin.y+110.0f);
 
                      }
                      completion:NULL];
@@ -344,7 +345,7 @@
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     NSLog(@"scrollViewDidEndDragging: %.2f", scrollView.contentOffset.y);
-    if (scrollView.contentOffset.y < -135.0f)
+    if (scrollView.contentOffset.y < -200.0f)
         [self viewFullImage:self.listing.imageData];
 }
 

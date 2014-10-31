@@ -30,7 +30,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.sections = @[@"Search Jobs", @"Search Candidates"];
+        self.sections = @[@"Search Jobs", @"Search Candidates", @"About Radius"];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(toggleMenu)
@@ -57,8 +57,9 @@
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 64.0f)];
     headerView.backgroundColor = [UIColor redColor];
     self.btnAccount = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.btnAccount.frame = CGRectMake(8.0f, 36.0f, frame.size.width, 22.0f);
+    self.btnAccount.frame = CGRectMake(8.0f, 0.0f, frame.size.width, headerView.frame.size.height-2.0f);
     self.btnAccount.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    self.btnAccount.contentVerticalAlignment = UIControlContentVerticalAlignmentBottom;
     self.btnAccount.titleLabel.font = [UIFont fontWithName:@"Heiti SC" size:14.0f];
     [self.btnAccount addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:self.btnAccount];
@@ -192,6 +193,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row==2){ // about radius
+        return;
+    }
+
     if (indexPath.row==0){
         if ([self.currentVc isEqual:self.listingsVc]){
             [self toggleMenu];

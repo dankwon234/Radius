@@ -92,7 +92,7 @@
 
     UIImage *imgList = [UIImage imageNamed:@"iconList.png"];
     UIButton *btnList = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnList.frame = CGRectMake(0.0f, 0.0f, 0.50f*imgList.size.width, 0.50f*imgList.size.height);
+    btnList.frame = CGRectMake(0.0f, 0.0f, 0.65f*imgList.size.width, 0.65f*imgList.size.height);
     [btnList setBackgroundImage:imgList forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnList];
     

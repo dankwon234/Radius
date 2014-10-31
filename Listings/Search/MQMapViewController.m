@@ -237,10 +237,8 @@
 #pragma mark - UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    if (self.searchBar.text.length == 0){
-        NSLog(@"MISSING SEARCH VALUE");
+    if (self.searchBar.text.length == 0)
         return;
-    }
     
     NSString *searchTerm = self.searchBar.text;
     NSArray *parts = [searchTerm componentsSeparatedByString:@","];

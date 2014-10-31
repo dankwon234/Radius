@@ -12,6 +12,7 @@
 
 @interface MQMapViewController ()
 @property (strong, nonatomic) UITableView *searchHistoryTable;
+@property (strong, nonatomic) UISearchBar *searchBar;
 @property (strong, nonatomic) MQLocationManager *locationMgr;
 @property (strong, nonatomic) MKMapView *mapView;
 @property (strong, nonatomic) UIButton *btnSearch;
@@ -60,6 +61,10 @@
     self.searchHistoryTable.delegate = self;
     self.searchHistoryTable.separatorStyle = UITableViewCellSelectionStyleNone;
     self.searchHistoryTable.alpha = 0.90f;
+    
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 44.0f)];
+    self.searchBar.delegate = self;
+    self.searchHistoryTable.tableHeaderView = self.searchBar;
     [view addSubview:self.searchHistoryTable];
 
     
@@ -211,6 +216,7 @@
 
 - (void)toggleSearchTable:(UIButton *)btn
 {
+    [self.searchBar resignFirstResponder];
     [UIView animateWithDuration:1.20f
                           delay:0
          usingSpringWithDamping:0.6f
@@ -233,6 +239,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.profile.searches.count;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"Search History";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -276,6 +287,11 @@
     
     [self.locationMgr.cities addObject:location];
     [self.searchHistoryTable reloadData];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.searchBar resignFirstResponder];
 }
 
 

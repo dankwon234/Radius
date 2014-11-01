@@ -28,11 +28,13 @@
     if (self) {
         
         self.base = [[UIView alloc] initWithFrame:CGRectMake(2.0f, 2.0f, frame.size.width-4.0f, frame.size.height-4.0f)];
-        self.base.backgroundColor = [UIColor greenColor];
+        self.base.backgroundColor = [UIColor whiteColor];
         self.base.layer.cornerRadius = 3.0f;
         self.base.layer.masksToBounds = YES;
         
         self.backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.base.frame.size.width, self.base.frame.size.width)];
+        self.backgroundImage.alpha = 0;
+        [self.backgroundImage addObserver:self forKeyPath:@"image" options:0 context:nil];
         [self.base addSubview:self.backgroundImage];
         
         CGFloat y = 0.25f*frame.size.height;
@@ -110,17 +112,31 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:@"text"]==NO)
+    if ([keyPath isEqualToString:@"image"]){
+        [UIView animateWithDuration:0.3f
+                              delay:0
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+                             self.backgroundImage.alpha = 1;
+                         }
+                         completion:^(BOOL finished){
+                             
+                         }];
+
+    }
+    
+    if ([keyPath isEqualToString:@"text"]){
+        CGRect frame = self.lblSkills.frame;
+        CGRect boudingRect = [self.lblSkills.text boundingRectWithSize:CGSizeMake(frame.size.width, 250.0f)
+                                                               options:NSStringDrawingUsesLineFragmentOrigin
+                                                            attributes:@{NSFontAttributeName:self.lblSkills.font}
+                                                               context:NULL];
+        
+        frame.size.height = boudingRect.size.height+4.0f;
+        self.lblSkills.frame = frame;
         return;
+    }
     
-    CGRect frame = self.lblSkills.frame;
-    CGRect boudingRect = [self.lblSkills.text boundingRectWithSize:CGSizeMake(frame.size.width, 250.0f)
-                                                           options:NSStringDrawingUsesLineFragmentOrigin
-                                                        attributes:@{NSFontAttributeName:self.lblSkills.font}
-                                                           context:NULL];
-    
-    frame.size.height = boudingRect.size.height+4.0f;
-    self.lblSkills.frame = frame;
     
     
     

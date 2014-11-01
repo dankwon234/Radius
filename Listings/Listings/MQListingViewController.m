@@ -294,6 +294,12 @@
 
 - (void)saveListing:(UIGestureRecognizer *)tap
 {
+    if (self.profile.populated==NO){
+        [self showAlertWithtTitle:@"Not Logged In" message:@"Please log in or register to save listings."];
+        return;
+    }
+    
+    
     if ([self.listing.saved containsObject:self.profile.uniqueId]) // already saved, ignore
         return;
     

@@ -107,6 +107,7 @@
 - (void)dealloc
 {
     [self.lblSkills removeObserver:self forKeyPath:@"text"];
+    [self.backgroundImage removeObserver:self forKeyPath:@"image"];
 }
 
 

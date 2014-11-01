@@ -58,10 +58,10 @@
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 64.0f)];
     headerView.backgroundColor = kOrange;
     self.btnAccount = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.btnAccount.frame = CGRectMake(13.0f, 0.0f, frame.size.width, headerView.frame.size.height-4.0f);
+    self.btnAccount.frame = CGRectMake(14.0f, 0.0f, frame.size.width, headerView.frame.size.height-4.0f);
     self.btnAccount.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     self.btnAccount.contentVerticalAlignment = UIControlContentVerticalAlignmentBottom;
-    self.btnAccount.titleLabel.font = [UIFont fontWithName:@"Heiti SC" size:14.0f];
+    self.btnAccount.titleLabel.font = [UIFont fontWithName:@"Heiti SC" size:12.0f];
     [self.btnAccount addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:self.btnAccount];
     self.sectionsTable.tableHeaderView = headerView;
@@ -184,7 +184,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (cell==nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
-        cell.textLabel.font = [UIFont fontWithName:@"Heiti SC" size:12.0f];
+        cell.textLabel.font = [UIFont fontWithName:@"Heiti SC" size:14.0f];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.contentView.backgroundColor = [UIColor darkGrayColor];
         

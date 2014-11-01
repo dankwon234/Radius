@@ -160,9 +160,10 @@
 
 - (void)updateProfile
 {
-    NSLog(@"updateProfile: %@", self.uniqueId);
     if ([self.uniqueId isEqualToString:@"none"])
         return;
+
+    NSLog(@"updateProfile: %@", self.uniqueId);
 
     [[MQWebServices sharedInstance] updateProfile:self completion:^(id result, NSError *error){
         if (error)

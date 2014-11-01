@@ -12,6 +12,7 @@
 #import "MQPublicProfile.h"
 #import "MQProfileCollectionCell.h"
 #import "MQMapViewController.h"
+#import "MQPublicProfileViewController.h"
 
 
 @interface MQProfilesViewController ()
@@ -295,7 +296,15 @@ static NSString *profileCellId = @"profileCellId";
     return cell;
 }
 
-
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    MQPublicProfile *profile = (MQPublicProfile *)self.profiles[indexPath.row];
+    NSLog(@"collectionView didSelectItemAtIndexPath: %@ %@", profile.firstName, profile.lastName);
+    
+    MQPublicProfileViewController *profileVc = [[MQPublicProfileViewController alloc] init];
+    profileVc.publicProfile = profile;
+    [self.navigationController pushViewController:profileVc animated:YES];
+}
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -28,6 +28,7 @@
 @synthesize skills;
 @synthesize populated;
 @synthesize applications;
+@synthesize references;
 @synthesize resume;
 @synthesize video;
 @synthesize saved;
@@ -57,6 +58,7 @@
         self.schools = [NSMutableArray array];
         self.skills = [NSMutableArray array];
         self.searches = [NSMutableArray array];
+        self.references = nil;
         self.applications = nil;
         self.saved = nil;
         self.populated = NO;

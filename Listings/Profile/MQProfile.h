@@ -30,6 +30,7 @@
 @property (strong, nonatomic) NSMutableArray *schools;
 @property (strong, nonatomic) NSMutableArray *skills;
 @property (strong, nonatomic) NSMutableArray *applications;
+@property (strong, nonatomic) NSMutableArray *references;
 @property (strong, nonatomic) NSMutableArray *saved;
 @property (strong, nonatomic) NSMutableArray *searches; // array of city, state of search history
 @property (strong, nonatomic) UIImage *imageData;

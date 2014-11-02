@@ -15,6 +15,7 @@
 @property (strong, nonatomic) UIImageView *profileIcon;
 @property (strong, nonatomic) UILabel *lblProfileName;
 @property (strong, nonatomic) UILabel *lblLocation;
+@property (strong, nonatomic) UILabel *lblBio;
 @end
 
 @implementation MQPublicProfileViewController
@@ -100,6 +101,30 @@
     UIView *base = [[UIView alloc] initWithFrame:CGRectMake(0.0f, y, frame.size.width, 800.0f)];
     base.backgroundColor = [UIColor whiteColor];
     base.alpha = 0.9f;
+    
+    CGFloat padding = 12.0f;
+    UILabel *lblBioHeader = [[UILabel alloc] initWithFrame:CGRectMake(padding, padding, frame.size.width-2*padding, 16.0f)];
+    lblBioHeader.text = [NSString stringWithFormat:@"About %@", [self.publicProfile.firstName capitalizedString]];
+    lblBioHeader.textColor = [UIColor darkGrayColor];
+    lblBioHeader.font = [UIFont boldSystemFontOfSize:16.0f];
+    [base addSubview:lblBioHeader];
+
+    UIFont *font = [UIFont fontWithName:@"Heiti SC" size:14.0f];
+    CGRect boundingRect = [self.publicProfile.bio boundingRectWithSize:CGSizeMake(frame.size.width-24.0f, 220.0f)
+                                                               options:NSStringDrawingUsesLineFragmentOrigin
+                                                            attributes:@{NSFontAttributeName:font}
+                                                               context:nil];
+    
+    y = padding+lblBioHeader.frame.size.height+4.0f;
+    self.lblBio = [[UILabel alloc] initWithFrame:CGRectMake(padding, y, frame.size.width-2*padding, boundingRect.size.height)];
+    self.lblBio.textColor = [UIColor darkGrayColor];
+    self.lblBio.numberOfLines = 0;
+    self.lblBio.lineBreakMode = NSLineBreakByWordWrapping;
+    self.lblBio.font = font;
+    self.lblBio.text = self.publicProfile.bio;
+    [base addSubview:self.lblBio];
+    
+    
     [self.theScrollview addSubview:base];
 
     self.theScrollview.contentSize = CGSizeMake(0.0f, 800.0f);

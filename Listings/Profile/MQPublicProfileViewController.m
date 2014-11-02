@@ -99,7 +99,7 @@
     
     
     UIView *base = [[UIView alloc] initWithFrame:CGRectMake(0.0f, y, frame.size.width, 800.0f)];
-    base.backgroundColor = [UIColor whiteColor];
+    base.backgroundColor = kBaseGray;
     base.alpha = 0.9f;
     
     CGFloat padding = 12.0f;
@@ -123,6 +123,30 @@
     self.lblBio.font = font;
     self.lblBio.text = self.publicProfile.bio;
     [base addSubview:self.lblBio];
+    y += boundingRect.size.height+6.0f;
+    
+    font = [UIFont systemFontOfSize:14];
+    NSString *skillsString = [self.publicProfile.skills componentsJoinedByString:@", "];
+    boundingRect = [skillsString boundingRectWithSize:CGSizeMake(frame.size.width-24.0f, 220.0f)
+                                              options:NSStringDrawingUsesLineFragmentOrigin
+                                           attributes:@{NSFontAttributeName:font}
+                                              context:nil];
+
+    UILabel *lblSkills = [[UILabel alloc] initWithFrame:CGRectMake(padding, y, frame.size.width-2*padding, boundingRect.size.height+4.0f)];
+    lblSkills.textAlignment = NSTextAlignmentCenter;
+    lblSkills.textColor = [UIColor grayColor];
+    lblSkills.font = font;
+    lblSkills.backgroundColor = [UIColor whiteColor];
+    lblSkills.numberOfLines = 0;
+    lblSkills.lineBreakMode = NSLineBreakByWordWrapping;
+    lblSkills.layer.borderWidth = 0.5f;
+    lblSkills.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    lblSkills.layer.cornerRadius = 2.0f;
+    lblSkills.layer.masksToBounds = YES;
+    lblSkills.text = skillsString;
+    [base addSubview:lblSkills];
+    
+
     
     
     [self.theScrollview addSubview:base];

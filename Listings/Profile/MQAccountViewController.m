@@ -8,7 +8,7 @@
 
 #import "MQAccountViewController.h"
 #import "MQProfileViewController.h"
-//#import "MQApplicationsViewController.h"
+#import "MQReferencesViewController.h"
 #import "MQProfileListingsViewController.h"
 
 
@@ -172,7 +172,11 @@
         MQProfileListingsViewController *savedVc = [[MQProfileListingsViewController alloc] init];
         savedVc.mode = @"saved";
         [self.navigationController pushViewController:savedVc animated:YES];
-        
+    }
+    
+    if (tag==1003){ // references
+        MQReferencesViewController *referencesVc = [[MQReferencesViewController alloc] init];
+        [self.navigationController pushViewController:referencesVc animated:YES];
     }
 
     

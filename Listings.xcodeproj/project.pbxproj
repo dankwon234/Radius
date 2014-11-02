@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C0443951A06F6FC00CC927B /* MQReferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0443941A06F6FC00CC927B /* MQReferencesViewController.m */; };
 		0C04500C1A03594C00CBFBF9 /* iconList@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C04500B1A03594C00CBFBF9 /* iconList@2x.png */; };
 		0C0AB7F21A00706200995072 /* MQPublicProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0AB7F11A00706200995072 /* MQPublicProfile.m */; };
 		0C22AEC719FA21180067F8D7 /* MQResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C22AEC619FA21180067F8D7 /* MQResumeViewController.m */; };
@@ -20,6 +21,7 @@
 		0C56503D19FA475F00BD6C36 /* header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C56503C19FA475F00BD6C36 /* header@2x.png */; };
 		0C56503F19FA49FB00BD6C36 /* backArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C56503E19FA49FB00BD6C36 /* backArrow@2x.png */; };
 		0C56504119FA4C9D00BD6C36 /* exit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C56504019FA4C9D00BD6C36 /* exit@2x.png */; };
+		0CAC0C951A05FF84007C58E9 /* MQReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAC0C941A05FF84007C58E9 /* MQReference.m */; };
 		0CC452A71A008D1000689AC6 /* MQLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC452A61A008D1000689AC6 /* MQLocationManager.m */; };
 		0CF70E5E19FD77ED00184706 /* iconLocationBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF70E5D19FD77ED00184706 /* iconLocationBlue@2x.png */; };
 		0CF70E6019FD797F00184706 /* iconCalendarBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF70E5F19FD797F00184706 /* iconCalendarBlue@2x.png */; };
@@ -120,6 +122,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C0443931A06F6FC00CC927B /* MQReferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQReferencesViewController.h; sourceTree = "<group>"; };
+		0C0443941A06F6FC00CC927B /* MQReferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQReferencesViewController.m; sourceTree = "<group>"; };
 		0C04500B1A03594C00CBFBF9 /* iconList@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconList@2x.png"; sourceTree = "<group>"; };
 		0C0AB7F01A00706200995072 /* MQPublicProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQPublicProfile.h; sourceTree = "<group>"; };
 		0C0AB7F11A00706200995072 /* MQPublicProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQPublicProfile.m; sourceTree = "<group>"; };
@@ -140,6 +144,8 @@
 		0C56503C19FA475F00BD6C36 /* header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header@2x.png"; sourceTree = "<group>"; };
 		0C56503E19FA49FB00BD6C36 /* backArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backArrow@2x.png"; sourceTree = "<group>"; };
 		0C56504019FA4C9D00BD6C36 /* exit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exit@2x.png"; sourceTree = "<group>"; };
+		0CAC0C931A05FF84007C58E9 /* MQReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQReference.h; sourceTree = "<group>"; };
+		0CAC0C941A05FF84007C58E9 /* MQReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQReference.m; sourceTree = "<group>"; };
 		0CC452A51A008D1000689AC6 /* MQLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQLocationManager.h; sourceTree = "<group>"; };
 		0CC452A61A008D1000689AC6 /* MQLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQLocationManager.m; sourceTree = "<group>"; };
 		0CF70E5D19FD77ED00184706 /* iconLocationBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconLocationBlue@2x.png"; sourceTree = "<group>"; };
@@ -618,6 +624,10 @@
 				0C22AEC619FA21180067F8D7 /* MQResumeViewController.m */,
 				0CFD564719FCA510000AFC9E /* MQVideoViewController.h */,
 				0CFD564819FCA510000AFC9E /* MQVideoViewController.m */,
+				0CAC0C931A05FF84007C58E9 /* MQReference.h */,
+				0CAC0C941A05FF84007C58E9 /* MQReference.m */,
+				0C0443931A06F6FC00CC927B /* MQReferencesViewController.h */,
+				0C0443941A06F6FC00CC927B /* MQReferencesViewController.m */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -772,8 +782,10 @@
 				5C1636E419EB29AF00BACC3E /* LIALinkedInAuthorizationViewController.m in Sources */,
 				5C18053519CDF15000E171E6 /* UIColor+MQColorAdditions.m in Sources */,
 				5C5ADB3019C5623B00B5E29D /* AFURLRequestSerialization.m in Sources */,
+				0C0443951A06F6FC00CC927B /* MQReferencesViewController.m in Sources */,
 				5C1636E519EB29AF00BACC3E /* LIALinkedInHttpClient.m in Sources */,
 				5C573FCC19BAB83300677DDF /* MQListing.m in Sources */,
+				0CAC0C951A05FF84007C58E9 /* MQReference.m in Sources */,
 				0CFD564919FCA510000AFC9E /* MQVideoViewController.m in Sources */,
 				5C5ADB2C19C5623B00B5E29D /* AFHTTPSessionManager.m in Sources */,
 				5CE459FB19D8BF0600635A67 /* MQSocialAccountsMgr.m in Sources */,

@@ -9,6 +9,7 @@
 #import "MQContactsViewController.h"
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
+#import "MQSearchLocationCell.h"
 
 
 @interface MQContactsViewController ()
@@ -23,6 +24,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.title = @"Contacts";
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.contacts = [NSMutableArray array];
         self.selectedContacts = [NSMutableArray array];
@@ -42,7 +44,30 @@
     self.contactsTable.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight);
     self.contactsTable.dataSource = self;
     self.contactsTable.delegate = self;
+    self.contactsTable.contentInset = UIEdgeInsetsMake(0, 0, 64.0f, 0);
+    self.contactsTable.separatorStyle = UITableViewCellSelectionStyleNone;
+    self.contactsTable.alpha = 0.90f;
     [view addSubview:self.contactsTable];
+    
+    UIView *requestView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height-64.0f, frame.size.width, 64.0f)];
+    requestView.backgroundColor = [UIColor grayColor];
+    requestView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    
+    UIButton *btnRequest = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnRequest.frame = CGRectMake(12.0, 12.0f, frame.size.width-24.0f, 44.0f);
+    btnRequest.backgroundColor = [UIColor clearColor];
+    btnRequest.layer.borderColor = [[UIColor whiteColor] CGColor];
+    btnRequest.layer.borderWidth = 1.5f;
+    btnRequest.layer.cornerRadius = 4.0f;
+    btnRequest.layer.masksToBounds = YES;
+    btnRequest.titleLabel.font = [UIFont fontWithName:@"Heiti SC" size:16.0f];
+    [btnRequest setTitle:@"REQUEST REFERENCES" forState:UIControlStateNormal];
+    [btnRequest setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btnRequest addTarget:self action:@selector(requestReferences) forControlEvents:UIControlEventTouchUpInside];
+    [requestView addSubview:btnRequest];
+    
+    [view addSubview:requestView];
+
 
     self.view = view;
 }
@@ -59,10 +84,6 @@
     [btnExit setBackgroundImage:imgExit forState:UIControlStateNormal];
     [btnExit addTarget:self action:@selector(exit:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnExit];
-
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                                           target:self
-                                                                                           action:@selector(requestReferences)];
 
 
     [self requestAddresBookAccess];
@@ -186,15 +207,24 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellId = @"cellId";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    MQSearchLocationCell *cell = (MQSearchLocationCell *)[tableView dequeueReusableCellWithIdentifier:cellId];
     if (cell==nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell = [[MQSearchLocationCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
+        [cell.btnRemove setBackgroundImage:[UIImage imageNamed:@"iconSelected.png"] forState:UIControlStateNormal];
     }
     
     NSDictionary *contactInfo = (NSDictionary *)self.contacts[indexPath.row];
     cell.textLabel.text = contactInfo[@"fullName"];
     cell.textLabel.textColor = ([self.selectedContacts containsObject:contactInfo]) ? kGreen : [UIColor darkGrayColor];
+    if ([self.selectedContacts containsObject:contactInfo]){
+        cell.textLabel.textColor = kGreen;
+        cell.btnRemove.alpha = 1.0f;
+    }
+    else{
+        cell.textLabel.textColor = [UIColor darkGrayColor];
+        cell.btnRemove.alpha = 0.0f;
+
+    }
     return cell;
 }
 

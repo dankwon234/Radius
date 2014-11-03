@@ -10,6 +10,7 @@
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
 #import "MQSearchLocationCell.h"
+#import "MQWebServices.h"
 
 
 @interface MQContactsViewController ()
@@ -99,12 +100,33 @@
 - (void)requestReferences
 {
     NSLog(@"requestReferences: %@", [self.selectedContacts description]);
+    if (self.selectedContacts.count==0){
+        [self showAlertWithtTitle:@"No Requests" message:@"Please include at least one contact for a reference."];
+        return;
+    }
+    
+    [self.loadingIndicator startLoading];
+    [[MQWebServices sharedInstance] requestReferences:self.selectedContacts forProfile:self.profile completion:^(id result, NSError *error){
+        [self.loadingIndicator stopLoading];
+        
+        if (error){
+            [self showAlertWithtTitle:@"Error" message:[error localizedDescription]];
+            return;
+        }
+        
+        NSDictionary *results = (NSDictionary *)result;
+        NSLog(@"%@", [results description]);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.navigationController dismissViewControllerAnimated:YES completion:^{
+                [self showAlertWithtTitle:@"Referece Requests Submitted" message:@"Your reference requests have been submitted. Each person you specified will receive a text message asking for a reference on your behalf."];
+            }];
+        });
+    }];
 }
 
 //search for beginning of first or last name, have search work for only prefixes
 - (void)requestAddresBookAccess//call to get address book, latency
 {
-    
     CFErrorRef error = NULL;
     ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, &error);
     if (error) {

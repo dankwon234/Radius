@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0C0443951A06F6FC00CC927B /* MQReferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0443941A06F6FC00CC927B /* MQReferencesViewController.m */; };
+		0C0443981A06FB3000CC927B /* MQContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0443971A06FB3000CC927B /* MQContactsViewController.m */; };
+		0C04439B1A06FCC800CC927B /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C0443991A06FCC800CC927B /* AddressBook.framework */; };
+		0C04439C1A06FCC800CC927B /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C04439A1A06FCC800CC927B /* AddressBookUI.framework */; };
 		0C04500C1A03594C00CBFBF9 /* iconList@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C04500B1A03594C00CBFBF9 /* iconList@2x.png */; };
 		0C0AB7F21A00706200995072 /* MQPublicProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0AB7F11A00706200995072 /* MQPublicProfile.m */; };
 		0C22AEC719FA21180067F8D7 /* MQResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C22AEC619FA21180067F8D7 /* MQResumeViewController.m */; };
@@ -124,6 +127,10 @@
 /* Begin PBXFileReference section */
 		0C0443931A06F6FC00CC927B /* MQReferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQReferencesViewController.h; sourceTree = "<group>"; };
 		0C0443941A06F6FC00CC927B /* MQReferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQReferencesViewController.m; sourceTree = "<group>"; };
+		0C0443961A06FB3000CC927B /* MQContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQContactsViewController.h; sourceTree = "<group>"; };
+		0C0443971A06FB3000CC927B /* MQContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQContactsViewController.m; sourceTree = "<group>"; };
+		0C0443991A06FCC800CC927B /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		0C04439A1A06FCC800CC927B /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		0C04500B1A03594C00CBFBF9 /* iconList@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconList@2x.png"; sourceTree = "<group>"; };
 		0C0AB7F01A00706200995072 /* MQPublicProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQPublicProfile.h; sourceTree = "<group>"; };
 		0C0AB7F11A00706200995072 /* MQPublicProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQPublicProfile.m; sourceTree = "<group>"; };
@@ -289,6 +296,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C04439B1A06FCC800CC927B /* AddressBook.framework in Frameworks */,
+				0C04439C1A06FCC800CC927B /* AddressBookUI.framework in Frameworks */,
 				0CFD564D19FCA89F000AFC9E /* MediaPlayer.framework in Frameworks */,
 				0CFD564B19FCA890000AFC9E /* MobileCoreServices.framework in Frameworks */,
 				5CE459FF19D8BF3300635A67 /* Social.framework in Frameworks */,
@@ -373,6 +382,8 @@
 		5C573F7119BAA86400677DDF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C0443991A06FCC800CC927B /* AddressBook.framework */,
+				0C04439A1A06FCC800CC927B /* AddressBookUI.framework */,
 				0CFD564C19FCA89F000AFC9E /* MediaPlayer.framework */,
 				0CFD564A19FCA890000AFC9E /* MobileCoreServices.framework */,
 				5CE459FE19D8BF3300635A67 /* Social.framework */,
@@ -628,6 +639,8 @@
 				0CAC0C941A05FF84007C58E9 /* MQReference.m */,
 				0C0443931A06F6FC00CC927B /* MQReferencesViewController.h */,
 				0C0443941A06F6FC00CC927B /* MQReferencesViewController.m */,
+				0C0443961A06FB3000CC927B /* MQContactsViewController.h */,
+				0C0443971A06FB3000CC927B /* MQContactsViewController.m */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -812,6 +825,7 @@
 				5CEA0D9A19C688F0004234C7 /* MQListingHeaderCell.m in Sources */,
 				5C911C5219EBAED8002AD978 /* MQSignupViewController.m in Sources */,
 				5C5ADB3119C5623B00B5E29D /* AFURLResponseSerialization.m in Sources */,
+				0C0443981A06FB3000CC927B /* MQContactsViewController.m in Sources */,
 				0C524DA91A00D26900EB2710 /* MQProfileCollectionCell.m in Sources */,
 				0C22AEC719FA21180067F8D7 /* MQResumeViewController.m in Sources */,
 			);

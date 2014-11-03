@@ -50,7 +50,7 @@ typedef void (^MQWebServiceRequestCompletionBlock)(id result, NSError *error);
 - (void)fetchVideoUploadString:(MQWebServiceRequestCompletionBlock)completionBlock;
 
 // References
-- (void)requestReferences:(NSArray *)contacts completion:(MQWebServiceRequestCompletionBlock)completionBlock;
+- (void)requestReferences:(NSArray *)contacts forProfile:(MQProfile *)profile completion:(MQWebServiceRequestCompletionBlock)completionBlock;
 
 
 @end

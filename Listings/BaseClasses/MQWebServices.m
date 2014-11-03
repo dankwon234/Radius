@@ -645,12 +645,12 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 }
 
 #pragma mark - References
-- (void)requestReferences:(NSArray *)contacts completion:(MQWebServiceRequestCompletionBlock)completionBlock
+- (void)requestReferences:(NSArray *)contacts forProfile:(MQProfile *)profile completion:(MQWebServiceRequestCompletionBlock)completionBlock
 {
     AFHTTPRequestOperationManager *manager = [self requestManagerForJSONSerializiation];
     
     [manager POST:kPathReferences
-       parameters:@{@"action":@"request", @"requests":contacts}
+       parameters:@{@"action":@"request", @"requests":contacts, @"profile":profile.uniqueId}
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               NSDictionary *responseDictionary = (NSDictionary *)responseObject;
               NSDictionary *results = [responseDictionary objectForKey:@"results"];

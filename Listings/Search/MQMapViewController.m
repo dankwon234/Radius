@@ -55,11 +55,12 @@
     [view addSubview:self.mapView];
     
     
-    self.searchHistoryTable = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height, frame.size.width, frame.size.height-92.0f) style:UITableViewStylePlain];
+    self.searchHistoryTable = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height, frame.size.width, frame.size.height) style:UITableViewStylePlain];
     self.searchHistoryTable.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight);
     self.searchHistoryTable.dataSource = self;
     self.searchHistoryTable.delegate = self;
     self.searchHistoryTable.separatorStyle = UITableViewCellSelectionStyleNone;
+    self.searchHistoryTable.contentInset = UIEdgeInsetsMake(0, 0, 96.0f, 0);
     self.searchHistoryTable.alpha = 0.90f;
     
     self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 44.0f)];

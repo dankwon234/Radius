@@ -19,6 +19,7 @@
 #define kPathImages @"/site/images/"
 #define kPathProfile @"/api/radiusaccounts/"
 #define kPathApplications @"/api/applications/"
+#define kPathReferences @"/api/references/"
 #define kPathLogin @"/api/radiuslogin/"
 
 
@@ -643,6 +644,34 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     
 }
 
+#pragma mark - References
+- (void)requestReferences:(NSArray *)contacts completion:(MQWebServiceRequestCompletionBlock)completionBlock
+{
+    AFHTTPRequestOperationManager *manager = [self requestManagerForJSONSerializiation];
+    
+    [manager POST:kPathReferences
+       parameters:@{@"action":@"request", @"requests":contacts}
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              NSDictionary *responseDictionary = (NSDictionary *)responseObject;
+              NSDictionary *results = [responseDictionary objectForKey:@"results"];
+              NSString *confirmation = [results objectForKey:@"confirmation"];
+              
+              if ([confirmation isEqualToString:@"success"]==NO){
+                  if (completionBlock)
+                      completionBlock(results, [NSError errorWithDomain:kErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey:results[@"message"]}]);
+                  
+                  return;
+              }
+              if (completionBlock)
+                  completionBlock(results, nil);
+          }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              NSLog(@"FAILURE BLOCK: %@", [error localizedDescription]);
+              if (completionBlock)
+                  completionBlock(nil, error);
+          }];
+
+}
 
 
 

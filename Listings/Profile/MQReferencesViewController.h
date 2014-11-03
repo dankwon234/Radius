@@ -9,7 +9,7 @@
 #import "MQViewController.h"
 #import "MQPublicProfile.h"
 
-@interface MQReferencesViewController : MQViewController
+@interface MQReferencesViewController : MQViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) MQPublicProfile *publicProfile; // can be nil. if nil, use host profile instead
 @end

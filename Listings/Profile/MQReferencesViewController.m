@@ -87,7 +87,7 @@
             if (parts.count > 5){
                 NSString *month = parts[1];
                 NSString *day = parts[2];
-                NSString *year = parts[parts.count-1];
+                NSString *year = [parts lastObject];
                 
                 if ([day hasPrefix:@"0"])
                     day = [day stringByReplacingOccurrencesOfString:@"0" withString:@""];

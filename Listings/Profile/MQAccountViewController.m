@@ -47,7 +47,7 @@
     UIFont *titleFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:16.0f];
     UIFont *detailFont = [UIFont fontWithName:@"Heiti SC" size:14.0f];
     
-    NSArray *sections = @[@{@"title":@"Profile", @"details":@"Manage your profile details", @"icon":@"iconProfile.png", @"color":kOrange}, @{@"title":@"Applied", @"details":@"View your job applications", @"icon":@"iconCheckMark.png", @"color":[UIColor darkGrayColor]}, @{@"title":@"Saved", @"details":@"View your saved jobs", @"icon":@"iconSave.png", @"color":kGreen}, @{@"title":@"References", @"details":@"Improve your profile with references", @"icon":@"iconSave.png", @"color":kLightBlue}];
+    NSArray *sections = @[@{@"title":@"Profile", @"details":@"Manage your profile details", @"icon":@"iconProfile.png", @"color":kOrange}, @{@"title":@"Applied", @"details":@"View your job applications", @"icon":@"iconCheckMark.png", @"color":[UIColor darkGrayColor]}, @{@"title":@"Saved", @"details":@"View your saved jobs", @"icon":@"iconSave.png", @"color":kGreen}, @{@"title":@"References", @"details":@"Improve your profile with references", @"icon":@"iconComment.png", @"color":kLightBlue}];
 
     for (int i=0; i<sections.count; i++){
         NSDictionary *section = sections[i];

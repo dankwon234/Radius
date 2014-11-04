@@ -645,6 +645,34 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 }
 
 #pragma mark - References
+- (void)fetchReferences:(MQProfile *)profile completion:(MQWebServiceRequestCompletionBlock)completionBlock
+{
+    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:kBaseUrl]];
+    
+    [manager GET:kPathReferences
+      parameters:@{@"profile":profile.uniqueId}
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSDictionary *responseDictionary = (NSDictionary *)responseObject;
+             NSDictionary *results = [responseDictionary objectForKey:@"results"];
+             NSString *confirmation = [results objectForKey:@"confirmation"];
+             
+             if ([confirmation isEqualToString:@"success"]==NO){
+                 if (completionBlock)
+                     completionBlock(results, [NSError errorWithDomain:kErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey:results[@"message"]}]);
+                 
+                 return;
+             }
+             
+             if (completionBlock)
+                 completionBlock(results, nil);
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             if (completionBlock)
+                 completionBlock(nil, error);
+         }];
+}
+
+
 - (void)requestReferences:(NSArray *)contacts forProfile:(MQProfile *)profile completion:(MQWebServiceRequestCompletionBlock)completionBlock
 {
     AFHTTPRequestOperationManager *manager = [self requestManagerForJSONSerializiation];

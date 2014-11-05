@@ -645,12 +645,12 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 }
 
 #pragma mark - References
-- (void)fetchReferences:(MQProfile *)profile completion:(MQWebServiceRequestCompletionBlock)completionBlock
+- (void)fetchReferences:(NSString *)profileId completion:(MQWebServiceRequestCompletionBlock)completionBlock
 {
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:kBaseUrl]];
     
     [manager GET:kPathReferences
-      parameters:@{@"profile":profile.uniqueId}
+      parameters:@{@"profile":profileId}
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              NSDictionary *responseDictionary = (NSDictionary *)responseObject;
              NSDictionary *results = [responseDictionary objectForKey:@"results"];

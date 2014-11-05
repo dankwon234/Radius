@@ -82,6 +82,7 @@
         self.profile.references = [NSMutableArray array];
         for (int i=0;i<r.count; i++) {
             NSMutableDictionary *reference = [NSMutableDictionary dictionaryWithDictionary:r[i]];
+            reference[@"author"] = [reference[@"author"] capitalizedString];
             
             NSArray *parts = [reference[@"timestamp"] componentsSeparatedByString:@" "];
             if (parts.count > 5){
@@ -138,6 +139,7 @@
     NSDictionary *reference = (NSDictionary *)self.profile.references[indexPath.row];
     cell.lblText.text = reference[@"text"];
     cell.lblDate.text = reference[@"formattedDate"];
+    cell.lblFrom.text = reference[@"author"];
     return cell;
 }
 

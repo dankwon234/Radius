@@ -59,15 +59,29 @@
     [super viewDidLoad];
     [self addCustomBackButton];
     
+    if (self.publicProfile){
+        if (self.publicProfile.references)
+            return;
+        
+        [self fetchReferences:self.publicProfile.uniqueId];
+        return;
+    }
+    
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                                           target:self
-                                                                                           action:@selector(addReference:)];
+                                                                                               target:self
+                                                                                               action:@selector(addReference:)];
     
     if (self.profile.references)
         return;
     
+    [self fetchReferences:self.profile.uniqueId];
+}
+
+- (void)fetchReferences:(NSString *)profileId
+{
     [self.loadingIndicator startLoading];
-    [[MQWebServices sharedInstance] fetchReferences:self.profile completion:^(id result, NSError *error){
+    [[MQWebServices sharedInstance] fetchReferences:profileId completion:^(id result, NSError *error){
         [self.loadingIndicator stopLoading];
         
         if (error){
@@ -79,7 +93,7 @@
         NSLog(@"%@", [results description]);
         
         NSArray *r = results[@"references"];
-        self.profile.references = [NSMutableArray array];
+        NSMutableArray *references = [NSMutableArray array];
         for (int i=0;i<r.count; i++) {
             NSMutableDictionary *reference = [NSMutableDictionary dictionaryWithDictionary:r[i]];
             reference[@"author"] = [reference[@"author"] capitalizedString];
@@ -95,15 +109,19 @@
                 
                 reference[@"formattedDate"] = [NSString stringWithFormat:@"%@ %@, %@", month, day, year];
             }
-
-            [self.profile.references addObject:reference];
+            
+            [references addObject:reference];
         }
+        
+        if (self.publicProfile)
+            self.publicProfile.references = references;
+        else
+            self.profile.references = references;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.referencesTable reloadData];
         });
     }];
-
 }
 
 - (void)back:(UIButton *)btn
@@ -126,7 +144,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.profile.references.count;
+    return (self.publicProfile) ? self.publicProfile.references.count : self.profile.references.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -136,7 +154,7 @@
     if (cell==nil)
         cell = [[MQReferenceCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
     
-    NSDictionary *reference = (NSDictionary *)self.profile.references[indexPath.row];
+    NSDictionary *reference = (self.publicProfile) ? (NSDictionary *)self.publicProfile.references[indexPath.row] : (NSDictionary *)self.profile.references[indexPath.row];
     cell.lblText.text = reference[@"text"];
     cell.lblDate.text = reference[@"formattedDate"];
     cell.lblFrom.text = reference[@"author"];
@@ -145,7 +163,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *reference = (NSDictionary *)self.profile.references[indexPath.row];
+    NSDictionary *reference = (self.publicProfile) ? (NSDictionary *)self.publicProfile.references[indexPath.row] : (NSDictionary *)self.profile.references[indexPath.row];
+    
     CGRect boundingRect = [reference[@"text"] boundingRectWithSize:CGSizeMake([MQReferenceCell textLabelWidth], 250.0f)
                                                            options:NSStringDrawingUsesLineFragmentOrigin
                                                         attributes:@{NSFontAttributeName:[MQReferenceCell textLabelFont]}

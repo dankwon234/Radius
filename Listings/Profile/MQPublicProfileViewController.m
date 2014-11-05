@@ -98,6 +98,7 @@
     self.theScrollview.backgroundColor = clear;
     self.theScrollview.showsVerticalScrollIndicator = NO;
     self.theScrollview.delegate = self;
+    [self.theScrollview addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewPhoto:)]];
     
     
     UIView *base = [[UIView alloc] initWithFrame:CGRectMake(0.0f, y, frame.size.width, 800.0f)];
@@ -331,6 +332,16 @@
 - (void)contactProfile:(UIButton *)btn
 {
     NSLog(@"contactProfile:");
+}
+
+- (void)viewPhoto:(UIGestureRecognizer *)tap
+{
+    CGPoint location = [tap locationInView:self.theScrollview];
+    if (location.y > 120.0f)
+        return;
+    
+    
+    [self viewFullImage:self.publicProfile.imageData];
 }
 
 

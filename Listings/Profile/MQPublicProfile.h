@@ -24,6 +24,7 @@
 @property (copy, nonatomic) NSString *video;
 @property (strong, nonatomic) NSMutableArray *schools;
 @property (strong, nonatomic) NSMutableArray *skills;
+@property (strong, nonatomic) NSMutableArray *references;
 @property (strong, nonatomic) UIImage *imageData;
 - (void)populate:(NSDictionary *)profileInfo;
 - (void)fetchImage;

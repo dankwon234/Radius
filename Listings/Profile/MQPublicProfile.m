@@ -29,6 +29,7 @@
 @synthesize skills;
 @synthesize resume;
 @synthesize video;
+@synthesize references;
 
 
 - (id)init
@@ -50,6 +51,7 @@
         self.video = @"none";
         self.schools = [NSMutableArray array];
         self.skills = [NSMutableArray array];
+        self.references = nil;
     }
     
     return self;

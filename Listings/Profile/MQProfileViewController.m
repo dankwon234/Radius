@@ -536,8 +536,10 @@ NSString *bioPlaceholder = @"Bio (tell us a little about yourself)";
         [self.loadingIndicator startLoading];
         [self.socialMgr requestFacebookAccess:kFacebookPermissions completionBlock:^(id result, NSError *error){
             if (error){
-                [self.loadingIndicator stopLoading];
-                [self showAlertWithtTitle:@"Error" message:[error localizedDescription]];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.loadingIndicator stopLoading];
+                    [self showAlertWithtTitle:@"Error" message:@"Facebook access is not granted for this app. Please check your settings."];
+                });
                 return;
             }
             

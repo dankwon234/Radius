@@ -24,6 +24,8 @@
 		0C56503D19FA475F00BD6C36 /* header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C56503C19FA475F00BD6C36 /* header@2x.png */; };
 		0C56503F19FA49FB00BD6C36 /* backArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C56503E19FA49FB00BD6C36 /* backArrow@2x.png */; };
 		0C56504119FA4C9D00BD6C36 /* exit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C56504019FA4C9D00BD6C36 /* exit@2x.png */; };
+		0C60A2F51A09D6CD00DA9F34 /* bgSidewalkGray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C60A2F41A09D6CD00DA9F34 /* bgSidewalkGray@2x.png */; };
+		0C60A2F71A09E14800DA9F34 /* forwardArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C60A2F61A09E14800DA9F34 /* forwardArrow@2x.png */; };
 		0CAC0C951A05FF84007C58E9 /* MQReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAC0C941A05FF84007C58E9 /* MQReference.m */; };
 		0CB7EE101A0879C0005BB1DA /* MQReferenceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB7EE0F1A0879C0005BB1DA /* MQReferenceCell.m */; };
 		0CB7EE121A08A1F4005BB1DA /* iconComment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CB7EE111A08A1F4005BB1DA /* iconComment@2x.png */; };
@@ -153,6 +155,8 @@
 		0C56503C19FA475F00BD6C36 /* header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header@2x.png"; sourceTree = "<group>"; };
 		0C56503E19FA49FB00BD6C36 /* backArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backArrow@2x.png"; sourceTree = "<group>"; };
 		0C56504019FA4C9D00BD6C36 /* exit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exit@2x.png"; sourceTree = "<group>"; };
+		0C60A2F41A09D6CD00DA9F34 /* bgSidewalkGray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgSidewalkGray@2x.png"; sourceTree = "<group>"; };
+		0C60A2F61A09E14800DA9F34 /* forwardArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forwardArrow@2x.png"; sourceTree = "<group>"; };
 		0CAC0C931A05FF84007C58E9 /* MQReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQReference.h; sourceTree = "<group>"; };
 		0CAC0C941A05FF84007C58E9 /* MQReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQReference.m; sourceTree = "<group>"; };
 		0CB7EE0E1A0879C0005BB1DA /* MQReferenceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQReferenceCell.h; sourceTree = "<group>"; };
@@ -503,9 +507,11 @@
 				5CF8482A19F2283F00DCCD7F /* bgLegsBlue@2x.png */,
 				5C101A1619E8AF270046F7F1 /* bgSidewalk@2x.png */,
 				0CFD564119FC76BB000AFC9E /* bgSidewalkGreen@2x.png */,
+				0C60A2F41A09D6CD00DA9F34 /* bgSidewalkGray@2x.png */,
 				5C101A1019E8998B0046F7F1 /* logo@2x.png */,
 				5C101A1419E8A0B50046F7F1 /* locationPin@2x.png */,
 				0C56503E19FA49FB00BD6C36 /* backArrow@2x.png */,
+				0C60A2F61A09E14800DA9F34 /* forwardArrow@2x.png */,
 				0C29162D19FDF09D009BBD48 /* iconDeleteRed@2x.png */,
 				0C04500B1A03594C00CBFBF9 /* iconList@2x.png */,
 				0CFD564519FC8EC3000AFC9E /* iconHamburger@2x.png */,
@@ -735,6 +741,7 @@
 				5C101A1519E8A0B50046F7F1 /* locationPin@2x.png in Resources */,
 				5CF8483319F2356100DCCD7F /* iconCheckMark@2x.png in Resources */,
 				5C101A1119E8998B0046F7F1 /* logo@2x.png in Resources */,
+				0C60A2F51A09D6CD00DA9F34 /* bgSidewalkGray@2x.png in Resources */,
 				5C573F7D19BAA86500677DDF /* InfoPlist.strings in Resources */,
 				5CF8483119F2307900DCCD7F /* iconProfile@2x.png in Resources */,
 				0C29162E19FDF09D009BBD48 /* iconDeleteRed@2x.png in Resources */,
@@ -743,6 +750,7 @@
 				5CF8482B19F2283F00DCCD7F /* bgLegsBlue@2x.png in Resources */,
 				0C56503D19FA475F00BD6C36 /* header@2x.png in Resources */,
 				0C04500C1A03594C00CBFBF9 /* iconList@2x.png in Resources */,
+				0C60A2F71A09E14800DA9F34 /* forwardArrow@2x.png in Resources */,
 				0C56504119FA4C9D00BD6C36 /* exit@2x.png in Resources */,
 				0CF70E6019FD797F00184706 /* iconCalendarBlue@2x.png in Resources */,
 				5C101A0F19E8975D0046F7F1 /* icon80.png in Resources */,

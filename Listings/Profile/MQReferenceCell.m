@@ -47,7 +47,6 @@
         self.lblFrom.numberOfLines = 2;
         self.lblFrom.textAlignment = NSTextAlignmentCenter;
         self.lblFrom.lineBreakMode = NSLineBreakByWordWrapping;
-        self.lblFrom.text = @"Denny\nKwon";
         [self.contentView addSubview:self.lblFrom];
         
         CGFloat x = kTextLabelIndent+kPadding;

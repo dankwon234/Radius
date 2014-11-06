@@ -16,6 +16,7 @@
 @property (strong, nonatomic) UIImageView *profileIcon;
 @property (strong, nonatomic) UILabel *lblProfileName;
 @property (strong, nonatomic) UILabel *lblLocation;
+@property (strong, nonatomic) UILabel *lblSchool; // may be nil
 @property (strong, nonatomic) UILabel *lblBio;
 @end
 
@@ -63,7 +64,7 @@
     
     CGFloat dimen = 70.0f;
     self.profileIcon = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, dimen, dimen)];
-    self.profileIcon.center = CGPointMake(0.5f*frame.size.width, 54.0f);
+    self.profileIcon.center = CGPointMake(0.5f*frame.size.width, 46.0f);
     self.profileIcon.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     self.profileIcon.image = (self.publicProfile.imageData) ? self.publicProfile.imageData : [UIImage imageNamed:@"logo.png"];
     self.profileIcon.layer.cornerRadius = 0.5f*dimen;
@@ -82,6 +83,17 @@
     self.lblProfileName.font = [UIFont fontWithName:@"Heiti SC" size:16.0f];
     [view addSubview:self.lblProfileName];
     y += self.lblProfileName.frame.size.height;
+    
+    if (self.publicProfile.schools.count > 0){
+        self.lblSchool = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, y, frame.size.width, 16.0f)];
+        self.lblSchool.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+        self.lblSchool.textColor = white;
+        self.lblSchool.textAlignment = NSTextAlignmentCenter;
+        self.lblSchool.font = [UIFont fontWithName:@"Heiti SC" size:14.0f];
+        self.lblSchool.text = [self.publicProfile.schools[0] capitalizedString];
+        [view addSubview:self.lblSchool];
+        y += self.lblSchool.frame.size.height;
+    }
 
     self.lblLocation = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, y, frame.size.width, 16.0f)];
     self.lblLocation.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
@@ -266,6 +278,7 @@
             self.profileIcon.alpha = 1.0f;
             self.lblProfileName.alpha = 1.0f;
             self.lblLocation.alpha = 1.0f;
+            self.lblSchool.alpha = 1.0f;
             return;
         }
         
@@ -280,6 +293,7 @@
         self.profileIcon.alpha = 1.0f-(distance/75.0f);
         self.lblProfileName.alpha = self.profileIcon.alpha;
         self.lblLocation.alpha = self.profileIcon.alpha;
+        self.lblSchool.alpha = self.profileIcon.alpha;
         
         // closer to zero, less blur applied
         double blurFactor = (offset + self.theScrollview.contentInset.top) / (2 * CGRectGetHeight(self.theScrollview.bounds) / 3.5f);

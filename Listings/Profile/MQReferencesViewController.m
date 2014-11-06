@@ -43,7 +43,9 @@
     line.backgroundColor = [UIColor whiteColor];
     [view addSubview:line];
     
-    self.referencesTable = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height) style:UITableViewStylePlain];
+//    self.referencesTable = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height) style:UITableViewStylePlain];
+    
+    self.referencesTable = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height, frame.size.width, frame.size.height) style:UITableViewStylePlain];
     self.referencesTable.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight);
     self.referencesTable.dataSource = self;
     self.referencesTable.delegate = self;
@@ -60,8 +62,10 @@
     [self addCustomBackButton];
     
     if (self.publicProfile){
-        if (self.publicProfile.references)
+        if (self.publicProfile.references){
+            [self layoutReferencesTable];
             return;
+        }
         
         [self fetchReferences:self.publicProfile.uniqueId];
         return;
@@ -72,8 +76,10 @@
                                                                                                target:self
                                                                                                action:@selector(addReference:)];
     
-    if (self.profile.references)
+    if (self.profile.references){
+        [self layoutReferencesTable];
         return;
+    }
     
     [self fetchReferences:self.profile.uniqueId];
 }
@@ -120,8 +126,25 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.referencesTable reloadData];
+            [self layoutReferencesTable];
+            
         });
     }];
+}
+
+- (void)layoutReferencesTable
+{
+    [UIView animateWithDuration:1.50f
+                          delay:0
+         usingSpringWithDamping:0.5f
+          initialSpringVelocity:0.0f
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         CGRect frame = self.referencesTable.frame;
+                         frame.origin.y = 0.0f;
+                         self.referencesTable.frame = frame;
+                     }
+                     completion:NULL];
 }
 
 - (void)back:(UIButton *)btn

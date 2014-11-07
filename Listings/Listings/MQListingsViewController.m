@@ -261,7 +261,7 @@ static NSString *cellId = @"cellId";
         
         if (list.count == 0){
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self showAlertWithtTitle:@"No Listings!" message:@"To change the search area, tap the pin icon on the upper right corner."];
+                [self showNotification:@"No Listings!" withMessage:@"To change the search area, tap the pin icon on the upper right corner."];
             });
             return;
         }
@@ -343,7 +343,7 @@ static NSString *cellId = @"cellId";
                          
                      }
                      completion:^(BOOL finished){
-                         
+                         [self.view bringSubviewToFront:self.notificationView];
                          
                      }];
 }

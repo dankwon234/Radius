@@ -34,7 +34,7 @@
     self.loadingIndicator.alpha = 0.0f;
     [self.view addSubview:self.loadingIndicator];
     
-    self.notificationView = [[MQNotificationView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height, frame.size.width, frame.size.height-64.0f)];
+    self.notificationView = [[MQNotificationView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height, frame.size.width, frame.size.height)];
     self.notificationView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.notificationView.alpha = 0.0f;
     [self.view addSubview:self.notificationView];

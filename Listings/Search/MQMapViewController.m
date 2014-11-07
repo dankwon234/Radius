@@ -16,6 +16,7 @@
 @property (strong, nonatomic) MQLocationManager *locationMgr;
 @property (strong, nonatomic) MKMapView *mapView;
 @property (strong, nonatomic) UIButton *btnSearch;
+@property (strong, nonatomic) UIView *screen;
 @property (nonatomic) int index;
 @property (nonatomic) BOOL useMap;
 @end
@@ -55,6 +56,32 @@
     [view addSubview:self.mapView];
     
     
+    self.screen = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height)];
+    self.screen.backgroundColor = [UIColor whiteColor];
+    self.screen.alpha = 0.0f;
+    [self.screen addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissSearchBar:)]];
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(dismissSearchBar:)];
+    swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.screen addGestureRecognizer:swipeLeft];
+    
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(dismissSearchBar:)];
+    swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.screen addGestureRecognizer:swipeRight];
+
+    UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(dismissSearchBar:)];
+    swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
+    [self.screen addGestureRecognizer:swipeDown];
+
+    [view addSubview:self.screen];
+    
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 44.0f)];
+    self.searchBar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    self.searchBar.delegate = self;
+    self.searchBar.placeholder = @"New York, NY";
+    [view addSubview:self.searchBar];
+    
+    
+    
     self.searchHistoryTable = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height, frame.size.width, frame.size.height) style:UITableViewStylePlain];
     self.searchHistoryTable.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight);
     self.searchHistoryTable.dataSource = self;
@@ -62,13 +89,7 @@
     self.searchHistoryTable.separatorStyle = UITableViewCellSelectionStyleNone;
     self.searchHistoryTable.contentInset = UIEdgeInsetsMake(0, 0, 96.0f, 0);
     self.searchHistoryTable.alpha = 0.90f;
-    
-    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 44.0f)];
-    self.searchBar.delegate = self;
-    self.searchBar.placeholder = @"New York, NY";
-    self.searchHistoryTable.tableHeaderView = self.searchBar;
     [view addSubview:self.searchHistoryTable];
-
     
     
     
@@ -235,7 +256,46 @@
                      }];
 }
 
+- (void)dismissSearchBar:(UIGestureRecognizer *)tap
+{
+    [self.searchBar resignFirstResponder];
+}
+
+
+#pragma mark - MKMapViewDelegate
+- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
+{
+    self.searchBar.text = @"";
+}
+
 #pragma mark - UISearchBarDelegate
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    [UIView animateWithDuration:0.4f
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.screen.alpha = 0.9f;
+                     }
+                     completion:NULL];
+    return YES;
+}
+
+
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
+    [UIView animateWithDuration:0.4f
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.screen.alpha = 0.0f;
+                     }
+                     completion:NULL];
+    return YES;
+}
+
+
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     if (self.searchBar.text.length == 0)

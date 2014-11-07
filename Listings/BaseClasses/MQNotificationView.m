@@ -44,16 +44,16 @@
         logo.frame = CGRectMake(x, y, 0.18f*logo.frame.size.width, 0.18f*logo.frame.size.height);
         [self addSubview:logo];
         
-        x = logo.frame.origin.x+logo.frame.size.width+10.0f;
+        x = padding+8.0f;
         self.lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(x, 0, self.background.frame.size.width-x, 22.0)];
         self.lblTitle.center = CGPointMake(self.lblTitle.center.x, logo.center.y);
+        self.lblTitle.textAlignment = NSTextAlignmentCenter;
         self.lblTitle.font = [UIFont fontWithName:@"Heiti SC" size:16.0f];
         self.lblTitle.textColor = [UIColor darkGrayColor];
         self.lblTitle.text = @"Alert Title";
         [self addSubview:self.lblTitle];
         
         y = logo.frame.origin.y+logo.frame.size.height+8.0f;
-        x = padding+8.0f;
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(x, y, frame.size.width-2*padding-16.0f, 0.5f)];
         line.backgroundColor = [UIColor lightGrayColor];
         [self addSubview:line];
@@ -63,6 +63,7 @@
         self.lblMessage.textColor = [UIColor darkGrayColor];
         self.lblMessage.numberOfLines = 0;
         self.lblMessage.lineBreakMode = NSLineBreakByWordWrapping;
+        self.lblMessage.textAlignment = NSTextAlignmentCenter;
         self.lblMessage.text = @"This is the message";
         self.lblMessage.font = [UIFont fontWithName:@"Heiti SC" size:14.0f];
         [self.lblMessage addObserver:self forKeyPath:@"text" options:0 context:nil];

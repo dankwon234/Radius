@@ -34,10 +34,20 @@
     self.loadingIndicator.alpha = 0.0f;
     [self.view addSubview:self.loadingIndicator];
     
-    self.notificationView = [[MQNotificationView alloc] initWithFrame:CGRectMake(0.0f, 64.0f, frame.size.width, frame.size.height-64.0f)];
+    self.notificationView = [[MQNotificationView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height, frame.size.width, frame.size.height-64.0f)];
     self.notificationView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.notificationView.alpha = 0.0f;
     [self.view addSubview:self.notificationView];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    self.notificationView.alpha = 0.0f;
+    CGRect frame = self.notificationView.frame;
+    frame.origin.y = self.view.frame.size.height;
+    self.notificationView.frame = frame;
 }
 
 - (UIView *)baseView:(BOOL)navCtr
@@ -184,6 +194,28 @@
                          
                      }
                      completion:^(BOOL finished){
+                     }];
+}
+
+- (void)showNotification:(NSString *)title withMessage:(NSString *)message
+{
+    self.notificationView.alpha = 1.0f;
+    self.notificationView.lblTitle.text = title;
+    self.notificationView.lblMessage.text = message;
+    
+    [UIView animateWithDuration:1.35f
+                          delay:0
+         usingSpringWithDamping:0.5f
+          initialSpringVelocity:0.0f
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         
+                         CGRect frame = self.notificationView.frame;
+                         frame.origin.y = 64.0f;
+                         self.notificationView.frame = frame;
+                     }
+                     completion:^(BOOL finished){
+                         
                      }];
 }
 

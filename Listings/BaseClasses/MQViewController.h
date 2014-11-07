@@ -33,4 +33,5 @@
 - (void)setupFullImage:(UIView *)view;
 - (void)exitFullImage:(UIButton *)btn;
 - (void)viewFullImage:(UIImage *)image;
+- (void)showNotification:(NSString *)title withMessage:(NSString *)message;
 @end

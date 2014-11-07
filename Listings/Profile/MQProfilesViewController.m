@@ -238,6 +238,7 @@ static NSString *profileCellId = @"profileCellId";
                          self.profilesTable.frame = CGRectMake(frame.origin.x, 64.0f, frame.size.width, frame.size.height-20.0f);
                      }
                      completion:^(BOOL finished){
+                         [self.view bringSubviewToFront:self.loadingIndicator];
                          [self.view bringSubviewToFront:self.notificationView];
                      }];
 }

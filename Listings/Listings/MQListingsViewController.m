@@ -261,15 +261,24 @@ static NSString *cellId = @"cellId";
         
         if (list.count == 0){
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self showNotification:@"No Listings!" withMessage:@"To change the search area, tap the pin icon on the upper right corner."];
+                NSArray *parts = [self.locationMgr.cities[0] componentsSeparatedByString:@","];
+                NSString *location = [parts[0] capitalizedString];
+                if (parts.count > 1){
+                    NSString *stateAbbreviation = [[parts lastObject] uppercaseString];
+                    stateAbbreviation = [stateAbbreviation stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                    location = [location stringByAppendingString:[NSString stringWithFormat:@", %@", stateAbbreviation]];
+                }
+                
+                NSString *msg = [NSString stringWithFormat:@"We didn't find any jobs in %@.\n\nTo change locations, tap the pin in the upper right corner.", location];
+
+                [self showNotification:@"No Listings!" withMessage:msg];
             });
             return;
         }
         
         self.listings = [NSMutableArray array];
         for (int i=0; i<list.count; i++) {
-            MQListing *listing = [[MQListing alloc] init];
-            [listing populate:list[i]];
+            MQListing *listing = [MQListing listingWithInfo:list[i]];
             [self.listings addObject:listing];
             if ([listing.image isEqualToString:@"none"]==NO && listing.imageData==nil)
                 [listing fetchImage];

@@ -43,15 +43,36 @@
     line.backgroundColor = [UIColor whiteColor];
     [view addSubview:line];
     
-//    self.referencesTable = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height) style:UITableViewStylePlain];
-    
     self.referencesTable = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height, frame.size.width, frame.size.height) style:UITableViewStylePlain];
     self.referencesTable.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight);
     self.referencesTable.dataSource = self;
     self.referencesTable.delegate = self;
     self.referencesTable.separatorStyle = UITableViewCellSelectionStyleNone;
     self.referencesTable.backgroundColor = [UIColor clearColor];
+    self.referencesTable.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 64.0f, 0.0f);
     [view addSubview:self.referencesTable];
+    
+    
+    UIView *requestReferenceView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height-64.0f, frame.size.width, 64.0f)];
+    requestReferenceView.backgroundColor = [UIColor grayColor];
+    requestReferenceView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
+    
+    NSString *title = (self.publicProfile) ? @"SUBMIT REFERENCE" : @"REQUEST REFERENCE";
+    UIButton *btnReference = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnReference.frame = CGRectMake(12.0, 12.0f, frame.size.width-24.0f, 44.0f);
+    btnReference.backgroundColor = [UIColor clearColor];
+    btnReference.layer.borderColor = [[UIColor whiteColor] CGColor];
+    btnReference.layer.borderWidth = 1.5f;
+    btnReference.layer.cornerRadius = 4.0f;
+    btnReference.layer.masksToBounds = YES;
+    btnReference.titleLabel.font = [UIFont fontWithName:@"Heiti SC" size:16.0f];
+    [btnReference setTitle:title forState:UIControlStateNormal];
+    [btnReference setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btnReference addTarget:self action:@selector(addReference:) forControlEvents:UIControlEventTouchUpInside];
+    [requestReferenceView addSubview:btnReference];
+    
+    [view addSubview:requestReferenceView];
+
 
     self.view = view;
 }
@@ -72,9 +93,6 @@
     }
     
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                                               target:self
-                                                                                               action:@selector(addReference:)];
     
     if (self.profile.references){
         [self layoutReferencesTable];
@@ -125,6 +143,21 @@
             self.profile.references = references;
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            if (r.count==0){
+                NSString *msg = nil;
+                if (self.publicProfile){
+                    NSString *fullName = [NSString stringWithFormat:@"%@ %@", [self.publicProfile.firstName capitalizedString], [self.publicProfile.lastName capitalizedString]];
+                    msg = [NSString stringWithFormat:@"%@ has no references. If you would like to submit a refernece for %@, tap the 'Submit Reference' button.", fullName, fullName];
+                    
+                }
+                else{
+                    msg = @"You have no references. To request a reference, tap the 'Request References' button.";
+                }
+                
+                [self showNotification:@"No References" withMessage:msg];
+                return;
+            }
+            
             [self.referencesTable reloadData];
             [self layoutReferencesTable];
             
@@ -155,8 +188,14 @@
 - (void)addReference:(UIBarButtonItem *)btn
 {
     NSLog(@"addReference: ");
-    MQContactsViewController *contactsVc = [[MQContactsViewController alloc] init];
-    UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:contactsVc];
+    if (self.publicProfile){
+        
+        
+        return;
+    }
+    
+    
+    UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:[[MQContactsViewController alloc] init]];
     navCtr.navigationBar.barTintColor = kOrange;
     [self presentViewController:navCtr animated:YES completion:^{
         

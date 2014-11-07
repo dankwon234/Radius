@@ -40,13 +40,6 @@ static NSString *profileCellId = @"profileCellId";
         UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, imgHeader.size.width, imgHeader.size.height)];
         header.backgroundColor = [UIColor colorWithPatternImage:imgHeader];
         self.navigationItem.titleView = header;
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(updateNeedsRefresh)
-                                                     name:kNewSearchNotification
-                                                   object:nil];
-
-
     }
     return self;
     
@@ -93,6 +86,13 @@ static NSString *profileCellId = @"profileCellId";
         [self searchProfiles];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kNewSearchNotification object:nil];
+    
+}
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"imageData"]==NO)
@@ -122,7 +122,10 @@ static NSString *profileCellId = @"profileCellId";
     MQMapViewController *mapVc = [[MQMapViewController alloc] init];
     UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:mapVc];
     [self presentViewController:navCtr animated:YES completion:^{
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(updateNeedsRefresh)
+                                                     name:kNewSearchNotification
+                                                   object:nil];
     }];
 }
 

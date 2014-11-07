@@ -260,6 +260,7 @@
             
             CGAffineTransform transform = CGAffineTransformMakeScale(1.0f+factor, 1.0f+factor);
             self.background.transform = transform;
+            self.venueIcon.alpha = 1.0f;
             return;
         }
         
@@ -271,6 +272,8 @@
             self.background.frame = frame;
         }
         
+        self.venueIcon.alpha = 1.0f-(distance/100.0f);
+
         // closer to zero, less blur applied
         double blurFactor = (offset + scrollview.contentInset.top) / (2 * CGRectGetHeight(scrollview.bounds) / 6.5f);
         self.blurryBackground.alpha = blurFactor;

@@ -75,12 +75,12 @@
         [self.lblMessage addObserver:self forKeyPath:@"text" options:0 context:nil];
         [self addSubview:self.lblMessage];
         
+        y = self.background.frame.origin.y + self.background.frame.size.height+24.0f;
         UIButton *btnDismiss = [UIButton buttonWithType:UIButtonTypeCustom];
-        btnDismiss.frame = CGRectMake(padding, frame.size.height-64.0f, frame.size.width-2*padding, 44.0f);
+        btnDismiss.frame = CGRectMake(padding, y, frame.size.width-2*padding, 44.0f);
         btnDismiss.backgroundColor = kOrange;
         btnDismiss.layer.cornerRadius = 3.0f;
         btnDismiss.layer.masksToBounds = YES;
-        btnDismiss.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
         [btnDismiss setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btnDismiss setTitle:@"DISMISS" forState:UIControlStateNormal];
         btnDismiss.titleLabel.font = [UIFont fontWithName:@"Heiti SC" size:16.0f];

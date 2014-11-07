@@ -26,6 +26,7 @@
 		0C56504119FA4C9D00BD6C36 /* exit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C56504019FA4C9D00BD6C36 /* exit@2x.png */; };
 		0C60A2F51A09D6CD00DA9F34 /* bgSidewalkGray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C60A2F41A09D6CD00DA9F34 /* bgSidewalkGray@2x.png */; };
 		0C60A2F71A09E14800DA9F34 /* forwardArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C60A2F61A09E14800DA9F34 /* forwardArrow@2x.png */; };
+		0C863E861A0B0E7C0046B0A3 /* MQWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C863E851A0B0E7C0046B0A3 /* MQWebViewController.m */; };
 		0CAC0C951A05FF84007C58E9 /* MQReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAC0C941A05FF84007C58E9 /* MQReference.m */; };
 		0CB7EE101A0879C0005BB1DA /* MQReferenceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB7EE0F1A0879C0005BB1DA /* MQReferenceCell.m */; };
 		0CB7EE121A08A1F4005BB1DA /* iconComment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CB7EE111A08A1F4005BB1DA /* iconComment@2x.png */; };
@@ -157,6 +158,8 @@
 		0C56504019FA4C9D00BD6C36 /* exit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exit@2x.png"; sourceTree = "<group>"; };
 		0C60A2F41A09D6CD00DA9F34 /* bgSidewalkGray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgSidewalkGray@2x.png"; sourceTree = "<group>"; };
 		0C60A2F61A09E14800DA9F34 /* forwardArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forwardArrow@2x.png"; sourceTree = "<group>"; };
+		0C863E841A0B0E7C0046B0A3 /* MQWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQWebViewController.h; sourceTree = "<group>"; };
+		0C863E851A0B0E7C0046B0A3 /* MQWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQWebViewController.m; sourceTree = "<group>"; };
 		0CAC0C931A05FF84007C58E9 /* MQReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQReference.h; sourceTree = "<group>"; };
 		0CAC0C941A05FF84007C58E9 /* MQReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQReference.m; sourceTree = "<group>"; };
 		0CB7EE0E1A0879C0005BB1DA /* MQReferenceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQReferenceCell.h; sourceTree = "<group>"; };
@@ -462,6 +465,8 @@
 			children = (
 				5C573FA519BAA94900677DDF /* MQViewController.h */,
 				5C573FA619BAA94900677DDF /* MQViewController.m */,
+				0C863E841A0B0E7C0046B0A3 /* MQWebViewController.h */,
+				0C863E851A0B0E7C0046B0A3 /* MQWebViewController.m */,
 				5C573FB419BAB0CC00677DDF /* MQWebServices.h */,
 				5C573FB519BAB0CD00677DDF /* MQWebServices.m */,
 				0CC452A51A008D1000689AC6 /* MQLocationManager.h */,
@@ -828,6 +833,7 @@
 				5CEA0D9D19C68E37004234C7 /* MQListingSummaryCell.m in Sources */,
 				5C573F7F19BAA86500677DDF /* main.m in Sources */,
 				5C5ADB2D19C5623B00B5E29D /* AFNetworkReachabilityManager.m in Sources */,
+				0C863E861A0B0E7C0046B0A3 /* MQWebViewController.m in Sources */,
 				5C5ADB3219C5623B00B5E29D /* AFURLSessionManager.m in Sources */,
 				5C573FD219BAC85000677DDF /* MQCollectionViewFlowLayout.m in Sources */,
 				5C5ADB3319C5623B00B5E29D /* Reachability.m in Sources */,

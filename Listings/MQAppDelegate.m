@@ -8,12 +8,15 @@
 
 #import "MQAppDelegate.h"
 #import "MQContainerViewController.h"
-
+#import "MQProfile.h"
 
 @implementation MQAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor blackColor];
     
@@ -26,6 +29,29 @@
     [self.window makeKeyAndVisible];
     return YES;
 }
+
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+{
+    if (!deviceToken)
+        return;
+    
+    NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
+    for (NSString *character in @[@"<", @">", @" "])
+        token = [token stringByReplacingOccurrencesOfString:character withString:@""];
+    
+    // cache device token:
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:token forKey:@"deviceToken"];
+    [defaults synchronize];
+    
+    NSLog(@"application didRegisterForRemoteNotificationsWithDeviceToken: %@", token);
+    MQProfile *profile = [MQProfile sharedProfile];
+    profile.deviceToken = token;
+    [profile updateProfile];
+    
+    
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

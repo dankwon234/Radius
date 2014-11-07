@@ -59,7 +59,6 @@
         requestReferenceView.backgroundColor = [UIColor grayColor];
         requestReferenceView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
 
-        NSString *title = (self.publicProfile) ? @"SUBMIT REFERENCE" : @"REQUEST REFERENCE";
         UIButton *btnReference = [UIButton buttonWithType:UIButtonTypeCustom];
         btnReference.frame = CGRectMake(12.0, 12.0f, frame.size.width-24.0f, 44.0f);
         btnReference.backgroundColor = [UIColor clearColor];
@@ -68,7 +67,7 @@
         btnReference.layer.cornerRadius = 4.0f;
         btnReference.layer.masksToBounds = YES;
         btnReference.titleLabel.font = [UIFont fontWithName:@"Heiti SC" size:16.0f];
-        [btnReference setTitle:title forState:UIControlStateNormal];
+        [btnReference setTitle:@"REQUEST REFERENCE" forState:UIControlStateNormal];
         [btnReference setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btnReference addTarget:self action:@selector(addReference:) forControlEvents:UIControlEventTouchUpInside];
         [requestReferenceView addSubview:btnReference];

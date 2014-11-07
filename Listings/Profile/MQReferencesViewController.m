@@ -149,8 +149,7 @@
                 NSString *msg = nil;
                 if (self.publicProfile){
                     NSString *fullName = [NSString stringWithFormat:@"%@ %@", [self.publicProfile.firstName capitalizedString], [self.publicProfile.lastName capitalizedString]];
-                    msg = [NSString stringWithFormat:@"%@ has no references. If you would like to submit a refernece for %@, tap the 'Submit Reference' button.", fullName, fullName];
-                    
+                    msg = [NSString stringWithFormat:@"%@ has no references.", fullName];
                 }
                 else{
                     msg = @"You have no references. To request a reference, tap the 'Request References' button.";

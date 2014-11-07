@@ -52,6 +52,13 @@
     return self;
 }
 
++ (MQListing *)listingWithInfo:(NSDictionary *)info
+{
+    MQListing *listing = [[MQListing alloc] init];
+    [listing populate:info];
+    return listing;
+}
+
 - (void)populate:(NSDictionary *)info
 {
     for (NSString *key in info.allKeys) {

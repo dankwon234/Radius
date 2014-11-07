@@ -30,6 +30,7 @@
 @property (copy, nonatomic) NSString *email;
 @property (copy, nonatomic) NSArray *applications;
 @property (copy, nonatomic) NSArray *saved; // id numbers of profiles that saved this listing
++ (MQListing *)listingWithInfo:(NSDictionary *)info;
 - (void)populate:(NSDictionary *)info;
 - (void)fetchImage;
 - (void)fetchIcon;

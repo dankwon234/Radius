@@ -4,9 +4,10 @@
 //
 //  Created by Dan Kwon on 11/6/14.
 //  Copyright (c) 2014 Mercury. All rights reserved.
-//
+
 
 #import "MQNotificationView.h"
+#import "Config.h"
 
 @interface MQNotificationView ()
 @property (strong, nonatomic) UIView *background;
@@ -22,8 +23,13 @@
     self = [super initWithFrame:frame];
     if (self){
         
+        UIView *bgBlack = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height)];
+        bgBlack.backgroundColor = [UIColor blackColor];
+        bgBlack.alpha = 0.8f;
+        [self addSubview:bgBlack];
+        
         CGFloat padding = 24.0f;
-        self.background = [[UIView alloc] initWithFrame:CGRectMake(padding, padding, frame.size.width-2*padding, 0.6f*frame.size.height)];
+        self.background = [[UIView alloc] initWithFrame:CGRectMake(padding, padding, frame.size.width-2*padding, 0.5f*frame.size.height)];
         self.background.autoresizingMask = (UIViewAutoresizingFlexibleHeight);
         self.background.backgroundColor = [UIColor whiteColor];
         self.background.alpha = 0.86f;
@@ -70,6 +76,18 @@
         [self.lblMessage addObserver:self forKeyPath:@"text" options:0 context:nil];
         [self addSubview:self.lblMessage];
         
+        UIButton *btnDismiss = [UIButton buttonWithType:UIButtonTypeCustom];
+        btnDismiss.frame = CGRectMake(padding, frame.size.height-64.0f, frame.size.width-2*padding, 44.0f);
+        btnDismiss.backgroundColor = kOrange;
+        btnDismiss.layer.cornerRadius = 3.0f;
+        btnDismiss.layer.masksToBounds = YES;
+        btnDismiss.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
+        [btnDismiss setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btnDismiss setTitle:@"DISMISS" forState:UIControlStateNormal];
+        btnDismiss.titleLabel.font = [UIFont fontWithName:@"Heiti SC" size:16.0f];
+        [btnDismiss addTarget:self action:@selector(dismissButton:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:btnDismiss];
+        
     }
     
     return self;
@@ -93,6 +111,28 @@
     
     frame.size.height = boundingRect.size.height;
     self.lblMessage.frame = frame;
+}
+
+- (void)dismissButton:(UIButton *)btn
+{
+    
+    [UIView animateWithDuration:0.35f
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         
+                         CGRect frame = self.frame;
+                         frame.origin.y = -frame.size.height;
+                         self.frame = frame;
+                     }
+                     completion:^(BOOL finished){
+                         CGRect frame = self.frame;
+                         frame.origin.y = frame.size.height;
+                         self.frame = frame;
+                         
+                         self.alpha = 0.0f;
+                     }];
+
 }
 
 

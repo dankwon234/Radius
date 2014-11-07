@@ -942,7 +942,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "b5d2d279-808e-4c5b-a296-74139571dac9";
+				PROVISIONING_PROFILE = "7a5b59df-c2e4-4c73-9deb-312b5f4ff93a";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -989,7 +989,7 @@
 				INFOPLIST_FILE = "Listings/Listings-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b5d2d279-808e-4c5b-a296-74139571dac9";
+				PROVISIONING_PROFILE = "7a5b59df-c2e4-4c73-9deb-312b5f4ff93a";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

@@ -33,6 +33,7 @@
 @synthesize video;
 @synthesize saved;
 @synthesize searches;
+@synthesize deviceToken;
 @synthesize phone = _phone; // using a custom setter for this
 
 
@@ -55,6 +56,7 @@
         self.bio = @"none";
         self.resume = @"none";
         self.video = @"none";
+        self.deviceToken = @"none";
         self.schools = [NSMutableArray array];
         self.skills = [NSMutableArray array];
         self.searches = [NSMutableArray array];
@@ -125,6 +127,7 @@
     self.phone = [profileInfo objectForKey:@"phone"];
     self.resume = [profileInfo objectForKey:@"resume"];
     self.video = [profileInfo objectForKey:@"video"];
+    self.deviceToken = [profileInfo objectForKey:@"deviceToken"];
     self.skills = [NSMutableArray arrayWithArray:[profileInfo objectForKey:@"skills"]];
     self.schools = [NSMutableArray arrayWithArray:[profileInfo objectForKey:@"schools"]];
     self.searches = [NSMutableArray arrayWithArray:[profileInfo objectForKey:@"searches"]];
@@ -221,6 +224,9 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"id":self.uniqueId, @"image":self.image, @"city":self.city, @"state":self.state, @"firstName":self.firstName, @"lastName":self.lastName, @"email":self.email, @"facebookId":self.facebookId, @"twitterId":self.twitterId, @"linkedinId":self.linkedinId, @"schools":self.schools, @"bio":self.bio, @"phone":self.phone, @"skills":self.skills}];
     
     // for properties that were added later, have to check for nil first
+    if (self.deviceToken != nil)
+        params[@"deviceToken"] = self.deviceToken;
+
     if (self.searches != nil)
         params[@"searches"] = self.searches;
 

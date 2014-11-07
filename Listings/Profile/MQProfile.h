@@ -27,6 +27,7 @@
 @property (copy, nonatomic) NSString *image;
 @property (copy, nonatomic) NSString *resume;
 @property (copy, nonatomic) NSString *video;
+@property (copy, nonatomic) NSString *deviceToken;
 @property (strong, nonatomic) NSMutableArray *schools;
 @property (strong, nonatomic) NSMutableArray *skills;
 @property (strong, nonatomic) NSMutableArray *applications;

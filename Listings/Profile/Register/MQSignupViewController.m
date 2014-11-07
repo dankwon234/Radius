@@ -8,6 +8,7 @@
 
 #import "MQSignupViewController.h"
 #import "MQSelectNetworkViewController.h"
+#import "MQAccountViewController.h"
 #import "MQWebServices.h"
 
 @interface MQSignupViewController ()
@@ -36,11 +37,12 @@
     NSArray *fields = @[@"First Name", @"Last Name", @"Email", @"Password"];
     CGFloat y = 94.0f;
     CGFloat h = 44.0f;
+    CGFloat width = frame.size.width;
     UIFont *font = [UIFont fontWithName:@"Heiti SC" size:16.0f];
     UIColor *white = [UIColor whiteColor];
     UIColor *darkGray = [UIColor darkGrayColor];
     for (int i=0; i<fields.count; i++) {
-        UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0.0f, y, frame.size.width, h)];
+        UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0.0f, y, width, h)];
         textField.tag = 1000+i;
         textField.placeholder = fields[i];
         textField.backgroundColor = white;
@@ -64,7 +66,7 @@
     }
     
     CGFloat padding = 12.0f;
-    UIView *next = [[UIView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height-64.0f, frame.size.width, 64.0f)];
+    UIView *next = [[UIView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height-64.0f, width, 64.0f)];
     next.backgroundColor = [UIColor grayColor];
     next.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     
@@ -77,7 +79,7 @@
     btnNext.layer.cornerRadius = 4.0f;
     btnNext.layer.masksToBounds = YES;
     btnNext.titleLabel.font = [UIFont fontWithName:@"Heiti SC" size:16.0f];
-    [btnNext setTitle:@"NEXT" forState:UIControlStateNormal];
+    [btnNext setTitle:@"REGISTER" forState:UIControlStateNormal];
     [btnNext setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btnNext addTarget:self action:@selector(btnNextAction:) forControlEvents:UIControlEventTouchUpInside];
     [next addSubview:btnNext];
@@ -165,8 +167,11 @@
         [self.profile populate:profileInfo];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            MQSelectNetworkViewController *selectNetworkVc = [[MQSelectNetworkViewController alloc] init];
-            [self.navigationController pushViewController:selectNetworkVc animated:YES];
+            MQAccountViewController *accountVc = [[MQAccountViewController alloc] init];
+            [self.navigationController pushViewController:accountVc animated:YES];
+            
+//            MQSelectNetworkViewController *selectNetworkVc = [[MQSelectNetworkViewController alloc] init];
+//            [self.navigationController pushViewController:selectNetworkVc animated:YES];
         });
         
     }];

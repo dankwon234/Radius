@@ -87,6 +87,9 @@
         [btnDismiss addTarget:self action:@selector(dismissButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btnDismiss];
         
+        UISwipeGestureRecognizer *swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(dismissButton:)];
+        swipeUp.direction = UISwipeGestureRecognizerDirectionUp;
+        [self addGestureRecognizer:swipeUp];
     }
     
     return self;

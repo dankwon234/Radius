@@ -296,6 +296,7 @@ NSString *bioPlaceholder = @"Bio (tell us a little about yourself)";
         networkLabel.font = font;
         networkLabel.textColor = [UIColor lightGrayColor];
         networkLabel.text = socialNetworks[i];
+        networkLabel.tag = 3000;
         [bgNetworkLabel addSubview:networkLabel];
         
         UILabel *lblUsername = [[UILabel alloc] initWithFrame:CGRectMake(64.0f, 29.0f, frame.size.width-64.0f, 10.0f)];
@@ -531,9 +532,13 @@ NSString *bioPlaceholder = @"Bio (tell us a little about yourself)";
     [self dismissKeyboard];
 
     int tag = (int)tap.view.tag;
-    //    NSLog(@"selectNetwork: %d", tag);
     
-    if (tag==1007){ // facebook
+    UILabel *lbl = (UILabel *)[tap.view viewWithTag:3000];
+    NSString *network = [lbl.text lowercaseString];
+    NSLog(@"selectNetwork: %@", network);
+//    return;
+    
+    if ([network isEqualToString:@"facebook"]){ // facebook
         [self.loadingIndicator startLoading];
         [self.socialMgr requestFacebookAccess:kFacebookPermissions completionBlock:^(id result, NSError *error){
             if (error){
@@ -573,7 +578,7 @@ NSString *bioPlaceholder = @"Bio (tell us a little about yourself)";
     }
     
     
-    if (tag==1008){ // linkedin
+    if ([network isEqualToString:@"linkedin"]){ // linkedin
         [self.loadingIndicator startLoading];
         [self.socialMgr requestLinkedInAccess:@[@"r_fullprofile", @"r_network", @"r_emailaddress"] fromViewController:self completionBlock:^(id result, NSError *error){
             [self.loadingIndicator stopLoading];
@@ -606,7 +611,7 @@ NSString *bioPlaceholder = @"Bio (tell us a little about yourself)";
     
     
     
-    if (tag==1009){ // twitter
+    if ([network isEqualToString:@"twitter"]){ // twitter
         [self.loadingIndicator startLoading];
         [self.socialMgr requestTwitterAccess:^(id result, NSError *error){
             if (error){
@@ -968,15 +973,14 @@ NSString *bioPlaceholder = @"Bio (tell us a little about yourself)";
         return NO;
     }
     
-    if (tag==1006){ // video text field
-        [self dismissKeyboard];
-        MQVideoViewController *videoVc = [[MQVideoViewController alloc] init];
-        [self.navigationController pushViewController:videoVc animated:YES];
-        return NO;
-    }
+//    if (tag==1006){ // video text field
+//        [self dismissKeyboard];
+//        MQVideoViewController *videoVc = [[MQVideoViewController alloc] init];
+//        [self.navigationController pushViewController:videoVc animated:YES];
+//        return NO;
+//    }
     
     CGFloat offset = 0;
-    
     
     if (tag < 1003)
         offset = 178.0f;

@@ -14,7 +14,6 @@ typedef void (^MQLocationManagerCompletionBlock)(NSError *error);
 
 @interface MQLocationManager : NSObject <CLLocationManagerDelegate>
 
-@property (copy, nonatomic) NSString *currentCity;
 @property (nonatomic) CLLocationCoordinate2D currentLocation;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) NSMutableArray *cities;

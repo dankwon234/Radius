@@ -13,7 +13,6 @@
 @synthesize cities;
 @synthesize now;
 @synthesize geoCoder;
-@synthesize currentCity;
 @synthesize completion;
 @synthesize currentLocation;
 

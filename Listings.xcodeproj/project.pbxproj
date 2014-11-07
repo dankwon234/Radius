@@ -31,6 +31,8 @@
 		0CB7EE101A0879C0005BB1DA /* MQReferenceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB7EE0F1A0879C0005BB1DA /* MQReferenceCell.m */; };
 		0CB7EE121A08A1F4005BB1DA /* iconComment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CB7EE111A08A1F4005BB1DA /* iconComment@2x.png */; };
 		0CC452A71A008D1000689AC6 /* MQLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC452A61A008D1000689AC6 /* MQLocationManager.m */; };
+		0CDF02071A0C51EC0019D160 /* MQNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF02061A0C51EC0019D160 /* MQNotificationView.m */; };
+		0CDF020D1A0C5B390019D160 /* exclamation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CDF020C1A0C5B390019D160 /* exclamation@2x.png */; };
 		0CF70E5E19FD77ED00184706 /* iconLocationBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF70E5D19FD77ED00184706 /* iconLocationBlue@2x.png */; };
 		0CF70E6019FD797F00184706 /* iconCalendarBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF70E5F19FD797F00184706 /* iconCalendarBlue@2x.png */; };
 		0CF70E6219FD7DC900184706 /* iconSaveBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF70E6119FD7DC900184706 /* iconSaveBlue@2x.png */; };
@@ -167,6 +169,9 @@
 		0CB7EE111A08A1F4005BB1DA /* iconComment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconComment@2x.png"; sourceTree = "<group>"; };
 		0CC452A51A008D1000689AC6 /* MQLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQLocationManager.h; sourceTree = "<group>"; };
 		0CC452A61A008D1000689AC6 /* MQLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQLocationManager.m; sourceTree = "<group>"; };
+		0CDF02051A0C51EC0019D160 /* MQNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQNotificationView.h; sourceTree = "<group>"; };
+		0CDF02061A0C51EC0019D160 /* MQNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQNotificationView.m; sourceTree = "<group>"; };
+		0CDF020C1A0C5B390019D160 /* exclamation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exclamation@2x.png"; sourceTree = "<group>"; };
 		0CF70E5D19FD77ED00184706 /* iconLocationBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconLocationBlue@2x.png"; sourceTree = "<group>"; };
 		0CF70E5F19FD797F00184706 /* iconCalendarBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconCalendarBlue@2x.png"; sourceTree = "<group>"; };
 		0CF70E6119FD7DC900184706 /* iconSaveBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconSaveBlue@2x.png"; sourceTree = "<group>"; };
@@ -467,6 +472,8 @@
 				5C573FA619BAA94900677DDF /* MQViewController.m */,
 				0C863E841A0B0E7C0046B0A3 /* MQWebViewController.h */,
 				0C863E851A0B0E7C0046B0A3 /* MQWebViewController.m */,
+				0CDF02051A0C51EC0019D160 /* MQNotificationView.h */,
+				0CDF02061A0C51EC0019D160 /* MQNotificationView.m */,
 				5C573FB419BAB0CC00677DDF /* MQWebServices.h */,
 				5C573FB519BAB0CD00677DDF /* MQWebServices.m */,
 				0CC452A51A008D1000689AC6 /* MQLocationManager.h */,
@@ -504,6 +511,7 @@
 			children = (
 				5CBAED4E19CF48A600813FC5 /* launch */,
 				5C0C93C919BEB4B60011086B /* shadow@2x.png */,
+				0CDF020C1A0C5B390019D160 /* exclamation@2x.png */,
 				0C56504019FA4C9D00BD6C36 /* exit@2x.png */,
 				0C56503C19FA475F00BD6C36 /* header@2x.png */,
 				5C0A674619ECE520007BF8BA /* bgBlurry1@2x.png */,
@@ -740,6 +748,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CDF020D1A0C5B390019D160 /* exclamation@2x.png in Resources */,
 				5CECD4DF19D89596009A912A /* Default-568h@2x.png in Resources */,
 				0CFD564219FC76BB000AFC9E /* bgSidewalkGreen@2x.png in Resources */,
 				5C1636D619EB22DC00BACC3E /* iconCheckGreen@2x.png in Resources */,
@@ -832,6 +841,7 @@
 				0CFB269419FA047B00285121 /* MQMapViewController.m in Sources */,
 				5CEA0D9D19C68E37004234C7 /* MQListingSummaryCell.m in Sources */,
 				5C573F7F19BAA86500677DDF /* main.m in Sources */,
+				0CDF02071A0C51EC0019D160 /* MQNotificationView.m in Sources */,
 				5C5ADB2D19C5623B00B5E29D /* AFNetworkReachabilityManager.m in Sources */,
 				0C863E861A0B0E7C0046B0A3 /* MQWebViewController.m in Sources */,
 				5C5ADB3219C5623B00B5E29D /* AFURLSessionManager.m in Sources */,

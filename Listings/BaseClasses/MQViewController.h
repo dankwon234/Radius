@@ -13,11 +13,13 @@
 #import "MQProfile.h"
 #import "MQLocationManager.h"
 #import "Config.h"
+#import "MQNotificationView.h"
 
 
 @interface MQViewController : UIViewController
 
 @property (strong, nonatomic) MQLoadingIndicator *loadingIndicator;
+@property (strong, nonatomic) MQNotificationView *notificationView;
 @property (strong, nonatomic) MQProfile *profile;
 @property (strong, nonatomic) UIView *fullImageView;
 @property (strong, nonatomic) UIImageView *fullImage;

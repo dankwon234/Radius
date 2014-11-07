@@ -12,6 +12,7 @@
 @synthesize profile;
 @synthesize fullImageView;
 @synthesize fullImage;
+@synthesize notificationView;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -27,10 +28,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.loadingIndicator = [[MQLoadingIndicator alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height)];
+    
+    CGRect frame = self.view.frame;
+    self.loadingIndicator = [[MQLoadingIndicator alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height)];
     self.loadingIndicator.alpha = 0.0f;
     [self.view addSubview:self.loadingIndicator];
     
+    self.notificationView = [[MQNotificationView alloc] initWithFrame:CGRectMake(0.0f, 64.0f, frame.size.width, frame.size.height-64.0f)];
+    self.notificationView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    self.notificationView.alpha = 0.0f;
+    [self.view addSubview:self.notificationView];
 }
 
 - (UIView *)baseView:(BOOL)navCtr

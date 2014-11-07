@@ -55,7 +55,13 @@
     }
     
     return self;
-    
+}
+
++ (MQPublicProfile *)publicProfileWithInfo:(NSDictionary *)info
+{
+    MQPublicProfile *profile = [[MQPublicProfile alloc] init];
+    [profile populate:info];
+    return profile;
 }
 
 

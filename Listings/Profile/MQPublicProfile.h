@@ -26,6 +26,7 @@
 @property (strong, nonatomic) NSMutableArray *skills;
 @property (strong, nonatomic) NSMutableArray *references;
 @property (strong, nonatomic) UIImage *imageData;
++ (MQPublicProfile *)publicProfileWithInfo:(NSDictionary *)info;
 - (void)populate:(NSDictionary *)profileInfo;
 - (void)fetchImage;
 @end

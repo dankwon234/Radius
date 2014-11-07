@@ -80,7 +80,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:@"text"])
+    if ([keyPath isEqualToString:@"text"]==NO)
         return;
     
     CGRect frame = self.lblMessage.frame;

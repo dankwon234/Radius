@@ -29,7 +29,7 @@
         [self addSubview:bgBlack];
         
         CGFloat padding = 24.0f;
-        self.background = [[UIView alloc] initWithFrame:CGRectMake(padding, padding, frame.size.width-2*padding, 0.70f*frame.size.height)];
+        self.background = [[UIView alloc] initWithFrame:CGRectMake(padding, padding, frame.size.width-2*padding, 0.65f*frame.size.height)];
         self.background.backgroundColor = [UIColor whiteColor];
         self.background.alpha = 0.86f;
         self.background.layer.cornerRadius = 3.0f;

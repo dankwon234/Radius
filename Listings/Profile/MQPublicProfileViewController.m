@@ -8,6 +8,8 @@
 
 #import "MQPublicProfileViewController.h"
 #import "MQReferencesViewController.h"
+#import "MQWebViewController.h"
+
 
 @interface MQPublicProfileViewController ()
 @property (strong, nonatomic) UIImageView *background;
@@ -184,7 +186,7 @@
     [base addSubview:lblMoreHeader];
     y += lblMoreHeader.frame.size.height+1.5f*padding;
     
-    NSArray *more = @[@"Twitter", @"Resume", @"LinkedIn", @"References"];
+    NSArray *more = @[@"Twitter", @"Facebook", @"Resume", @"LinkedIn", @"References"];
     UIImage *arrow = [UIImage imageNamed:@"forwardArrow.png"];
     UIFont *btnFont = [UIFont fontWithName:@"Heiti SC" size:14.0f];
     UIColor *black = [UIColor blackColor];
@@ -329,15 +331,22 @@
     }
 
     if ([option isEqualToString:@"facebook"]){
-        
+        MQWebViewController *webVc = [[MQWebViewController alloc] init];
+        webVc.address = [NSString stringWithFormat:@"https://www.facebook.com/%@", self.publicProfile.facebookId];
+        [self.navigationController pushViewController:webVc animated:YES];
     }
 
     if ([option isEqualToString:@"twitter"]){
-        
+        MQWebViewController *webVc = [[MQWebViewController alloc] init];
+        webVc.title = @"Twitter";
+        webVc.address = [NSString stringWithFormat:@"https://twitter.com/intent/user?user_id=%@", self.publicProfile.twitterId];
+        [self.navigationController pushViewController:webVc animated:YES];
     }
     
     if ([option isEqualToString:@"linkedin"]){
-        
+        MQWebViewController *webVc = [[MQWebViewController alloc] init];
+        webVc.address = [NSString stringWithFormat:@"http://www.linkedin.com/profile/view?id=%@", self.publicProfile.linkedinId];
+        [self.navigationController pushViewController:webVc animated:YES];
     }
 
 

@@ -95,6 +95,8 @@ NSString *placeholder = @"Coverletter (recommended)";
 {
     [super viewDidLoad];
     [self addCustomBackButton];
+    
+    [self showNotification:@"Coverletter" withMessage:@"A coverletter is a great way to tailor your application specifically for the job.\n\nBy adding a coverletter, employers will know that you put thought into their job and are not simply mass applying to many jobs."];
 
 }
 

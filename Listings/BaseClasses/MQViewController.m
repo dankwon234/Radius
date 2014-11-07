@@ -211,7 +211,7 @@
                      animations:^{
                          
                          CGRect frame = self.notificationView.frame;
-                         frame.origin.y = 64.0f;
+                         frame.origin.y = (self.edgesForExtendedLayout == UIRectEdgeNone) ? 0.0f : 64.0f;
                          self.notificationView.frame = frame;
                      }
                      completion:^(BOOL finished){

@@ -101,7 +101,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    NSString *account = (self.profile.populated) ? self.profile.email : @"Log In";
+    NSString *account = (self.profile.populated) ? [self.profile.email uppercaseString] : @"Log In";
     [self.btnAccount setTitle:account forState:UIControlStateNormal];
 }
 

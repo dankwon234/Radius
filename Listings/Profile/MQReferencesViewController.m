@@ -152,7 +152,7 @@
                     msg = [NSString stringWithFormat:@"%@ has no references.", fullName];
                 }
                 else{
-                    msg = @"You have no references. To request a reference, tap the 'Request References' button.";
+                    msg = @"You have no references. References are a great way to show potential employers that you have a solid trackrecord and work history.\n\nTo request a reference, tap the 'Request References' button.";
                 }
                 
                 [self showNotification:@"No References" withMessage:msg];

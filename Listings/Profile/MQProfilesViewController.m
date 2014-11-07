@@ -143,21 +143,36 @@ static NSString *profileCellId = @"profileCellId";
     [[MQWebServices sharedInstance] fetchProfiles:self.locationMgr.cities completionBlock:^(id result, NSError *error){
         [self.loadingIndicator stopLoading];
         
-        if (error){
+        if (error)
             return;
-        }
         
         NSDictionary *results = (NSDictionary *)result;
         NSLog(@"%@", [results description]);
         NSArray *accounts = results[@"accounts"];
         
-        for (int i=0; i<accounts.count; i++) {
-            MQPublicProfile *profile = [[MQPublicProfile alloc] init];
-            [profile populate:accounts[i]];
-            [self.profiles addObject:profile];
-        }
+        if (accounts.count > 0)
+            [self.profiles removeAllObjects];
+
+        for (int i=0; i<accounts.count; i++)
+            [self.profiles addObject:[MQPublicProfile publicProfileWithInfo:accounts[i]]];
+        
         
         dispatch_async(dispatch_get_main_queue(), ^{
+//            if (self.profiles.count==0){
+            if (accounts.count==0){
+                NSArray *parts = [self.locationMgr.cities[0] componentsSeparatedByString:@","];
+                NSString *location = [parts[0] capitalizedString];
+                if (parts.count > 1){
+                    NSString *stateAbbreviation = [[parts lastObject] uppercaseString];
+                    stateAbbreviation = [stateAbbreviation stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                    location = [location stringByAppendingString:[NSString stringWithFormat:@", %@", stateAbbreviation]];
+                }
+                
+                NSString *msg = [NSString stringWithFormat:@"We didn't find any profiles in %@.\n\nTo change the location, tap the pin in the upper right corner.", location];
+                [self showNotification:@"No Profiles" withMessage:msg];
+                return;
+            }
+            
             [self layoutProfilesCollectionView];
         });
 
@@ -210,7 +225,7 @@ static NSString *profileCellId = @"profileCellId";
     
     [self refreshProfilesCollectionView];
     
-    [UIView animateWithDuration:1.20f
+    [UIView animateWithDuration:1.25f
                           delay:0
          usingSpringWithDamping:0.6f
           initialSpringVelocity:0
@@ -220,7 +235,7 @@ static NSString *profileCellId = @"profileCellId";
                          self.profilesTable.frame = CGRectMake(frame.origin.x, 64.0f, frame.size.width, frame.size.height-20.0f);
                      }
                      completion:^(BOOL finished){
-                         
+                         [self.view bringSubviewToFront:self.notificationView];
                      }];
 }
 

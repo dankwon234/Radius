@@ -271,7 +271,7 @@ static NSString *cellId = @"cellId";
                 
                 NSString *msg = [NSString stringWithFormat:@"We didn't find any jobs in %@.\n\nTo change locations, tap the pin in the upper right corner.", location];
 
-                [self showNotification:@"No Listings!" withMessage:msg];
+                [self showNotification:@"No Jobs!" withMessage:msg];
             });
             return;
         }

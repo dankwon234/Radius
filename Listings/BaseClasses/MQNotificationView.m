@@ -35,7 +35,7 @@
         
         UIImageView *exclamation = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"exclamation.png"]];
         exclamation.center = CGPointMake(self.background.center.x, self.background.center.y+60.0f);
-        exclamation.alpha = 0.35f;
+        exclamation.alpha = 0.25f;
         [self addSubview:exclamation];
         
         CGFloat y = padding+8.0f;
@@ -58,7 +58,8 @@
         line.backgroundColor = [UIColor lightGrayColor];
         [self addSubview:line];
         
-        y += 12.0f;
+        y += 16.0f;
+        x *= 2;
         self.lblMessage = [[UILabel alloc] initWithFrame:CGRectMake(x, y, frame.size.width-2*x, 16.0f)];
         self.lblMessage.textColor = [UIColor darkGrayColor];
         self.lblMessage.numberOfLines = 0;

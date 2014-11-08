@@ -7,6 +7,7 @@
 //
 
 #import "MQTutorialViewController.h"
+#import "MQTutorialCard.h"
 
 @interface MQTutorialViewController ()
 @property (strong, nonatomic) UIScrollView *theScrollview;
@@ -25,36 +26,31 @@
     self.theScrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height)];
     self.theScrollview.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight);
     self.theScrollview.pagingEnabled = YES;
-    self.theScrollview.contentSize = CGSizeMake(4*frame.size.width, 0); // 4 pages
+    self.theScrollview.delegate = self;
     
     CGFloat width = frame.size.width;
     CGFloat height = frame.size.height;
     
-    for (int i=0; i<4; i++) {
-        UIView *cardView = [[UIView alloc] initWithFrame:CGRectMake(i*width, 0.0f, width, height)];
-        cardView.backgroundColor = [UIColor clearColor];
-        cardView.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight);
-        
-        UIView *card = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.7f*width, 0.7f*height)];
-        card.backgroundColor = [UIColor whiteColor];
-        card.layer.cornerRadius = 3.0f;
-        card.layer.masksToBounds = YES;
-        card.center = CGPointMake(0.5f*width, 0.5f*height);
-        
-        UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]];
-        logo.frame = CGRectMake(10.0f, 10.0f, 0.18f*logo.frame.size.width, 0.18f*logo.frame.size.height);
-        [card addSubview:logo];
-
+    NSArray *cards = @[@{@"title":@"Welcome!", @"image":@"shot1.png", @"description":@"Radius is the best new app for job seekers and employers alike.\n\nFind your perfect job or employee today!"}, @{@"title":@" Local", @"image":@"shot7.png", @"description":@"Need a babysitter in New York or a job in Sacramento?\n\nOn Radius, you can view the details of candidates and jobs in your area of choice."}, @{@"title":@"Convenient", @"image":@"shot2.png", @"description":@"When you find the perfect job, just press 'Apply.' Your profile info will be sent directly to the employer.\n\nWhen you find the perfect candidate, press 'Connect.' and the candidate will be notified!"}];
+    
+    for (int i=0; i<cards.count; i++) {
+        NSDictionary *cardInfo = cards[i];
+        MQTutorialCard *card = [[MQTutorialCard alloc] initWithFrame:CGRectMake(i*width, 0.0f, width, height)];
+        card.lblTitle.text = cardInfo[@"title"];
+        card.lblDescription.text = cardInfo[@"description"];
+        card.backgroundImage.image = [UIImage imageNamed:cardInfo[@"image"]];
         
         
-        [cardView addSubview:card];
-        
-        [self.theScrollview addSubview:cardView];
-        
-        
+        [self.theScrollview addSubview:card];
     }
     
+    self.theScrollview.contentSize = CGSizeMake(cards.count*frame.size.width, 0);
     [view addSubview:self.theScrollview];
+    
+    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0.0f, frame.size.height-94.0f, frame.size.width, 20.0f)];
+    self.pageControl.numberOfPages = cards.count;
+    self.pageControl.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    [view addSubview:self.pageControl];
     
     UIView *exitView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, frame.size.height-64.0f, frame.size.width, 64.0f)];
     exitView.backgroundColor = [UIColor grayColor];
@@ -79,10 +75,6 @@
     self.view = view;
 }
 
-
-
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -95,6 +87,12 @@
     }];
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    CGFloat page = scrollView.contentOffset.x / scrollView.frame.size.width;
+    NSLog(@"PAGE: %.2f", page);
+    self.pageControl.currentPage = (NSInteger)page;
+}
 
 - (void)didReceiveMemoryWarning
 {

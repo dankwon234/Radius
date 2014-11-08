@@ -14,8 +14,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    // this is how notifications are handled in iOS 8:
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]){
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeAlert) categories:nil];
+        
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    }
     
+    else{
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    }
+
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor blackColor];
@@ -39,17 +48,31 @@
     for (NSString *character in @[@"<", @">", @" "])
         token = [token stringByReplacingOccurrencesOfString:character withString:@""];
     
-    // cache device token:
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:token forKey:@"deviceToken"];
-    [defaults synchronize];
-    
     NSLog(@"application didRegisterForRemoteNotificationsWithDeviceToken: %@", token);
     MQProfile *profile = [MQProfile sharedProfile];
     profile.deviceToken = token;
     [profile updateProfile];
     
+}
+
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+    [application registerForRemoteNotifications]; // register to receive notifications
+}
+
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void(^)())completionHandler
+{
+    NSLog(@"application handleActionWithIdentifier: %@ forRemoteNotification: %@", identifier, [userInfo description]);
     
+    
+    //handle the actions
+    if ([identifier isEqualToString:@"declineAction"]){
+        
+    }
+    
+    if ([identifier isEqualToString:@"answerAction"]){
+        
+    }
 }
 
 

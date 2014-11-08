@@ -13,6 +13,10 @@
 		0C04439C1A06FCC800CC927B /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C04439A1A06FCC800CC927B /* AddressBookUI.framework */; };
 		0C04500C1A03594C00CBFBF9 /* iconList@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C04500B1A03594C00CBFBF9 /* iconList@2x.png */; };
 		0C0AB7F21A00706200995072 /* MQPublicProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0AB7F11A00706200995072 /* MQPublicProfile.m */; };
+		0C0AEE8B1A0EB9A800943789 /* MQTutorialCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0AEE8A1A0EB9A800943789 /* MQTutorialCard.m */; };
+		0C0AEE8F1A0EC7F900943789 /* shot1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C0AEE8D1A0EC7F900943789 /* shot1@2x.png */; };
+		0C0AEE901A0EC7F900943789 /* shot2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C0AEE8E1A0EC7F900943789 /* shot2@2x.png */; };
+		0C0AEE921A0ECC4100943789 /* shot7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C0AEE911A0ECC4100943789 /* shot7@2x.png */; };
 		0C22AEC719FA21180067F8D7 /* MQResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C22AEC619FA21180067F8D7 /* MQResumeViewController.m */; };
 		0C29162C19FDEEB0009BBD48 /* MQSearchLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C29162B19FDEEB0009BBD48 /* MQSearchLocationCell.m */; };
 		0C29162E19FDF09D009BBD48 /* iconDeleteRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C29162D19FDF09D009BBD48 /* iconDeleteRed@2x.png */; };
@@ -143,6 +147,11 @@
 		0C04500B1A03594C00CBFBF9 /* iconList@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconList@2x.png"; sourceTree = "<group>"; };
 		0C0AB7F01A00706200995072 /* MQPublicProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQPublicProfile.h; sourceTree = "<group>"; };
 		0C0AB7F11A00706200995072 /* MQPublicProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQPublicProfile.m; sourceTree = "<group>"; };
+		0C0AEE891A0EB9A800943789 /* MQTutorialCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQTutorialCard.h; sourceTree = "<group>"; };
+		0C0AEE8A1A0EB9A800943789 /* MQTutorialCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQTutorialCard.m; sourceTree = "<group>"; };
+		0C0AEE8D1A0EC7F900943789 /* shot1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shot1@2x.png"; sourceTree = "<group>"; };
+		0C0AEE8E1A0EC7F900943789 /* shot2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shot2@2x.png"; sourceTree = "<group>"; };
+		0C0AEE911A0ECC4100943789 /* shot7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shot7@2x.png"; sourceTree = "<group>"; };
 		0C22AEC519FA21180067F8D7 /* MQResumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQResumeViewController.h; sourceTree = "<group>"; };
 		0C22AEC619FA21180067F8D7 /* MQResumeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQResumeViewController.m; sourceTree = "<group>"; };
 		0C29162A19FDEEB0009BBD48 /* MQSearchLocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQSearchLocationCell.h; sourceTree = "<group>"; };
@@ -345,6 +354,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C0AEE8C1A0EC7F900943789 /* screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				0C0AEE8D1A0EC7F900943789 /* shot1@2x.png */,
+				0C0AEE8E1A0EC7F900943789 /* shot2@2x.png */,
+				0C0AEE911A0ECC4100943789 /* shot7@2x.png */,
+			);
+			path = screenshots;
+			sourceTree = "<group>";
+		};
 		0CFB269119FA045100285121 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -361,6 +380,8 @@
 			children = (
 				0CFC0A411A0D6FC200B65C8A /* MQTutorialViewController.h */,
 				0CFC0A421A0D6FC200B65C8A /* MQTutorialViewController.m */,
+				0C0AEE891A0EB9A800943789 /* MQTutorialCard.h */,
+				0C0AEE8A1A0EB9A800943789 /* MQTutorialCard.m */,
 			);
 			path = About;
 			sourceTree = "<group>";
@@ -523,6 +544,7 @@
 		5C573FA419BAA90600677DDF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0C0AEE8C1A0EC7F900943789 /* screenshots */,
 				5CBAED4E19CF48A600813FC5 /* launch */,
 				5C0C93C919BEB4B60011086B /* shadow@2x.png */,
 				0CDF020C1A0C5B390019D160 /* exclamation@2x.png */,
@@ -764,6 +786,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C0AEE921A0ECC4100943789 /* shot7@2x.png in Resources */,
+				0C0AEE8F1A0EC7F900943789 /* shot1@2x.png in Resources */,
 				0CDF020D1A0C5B390019D160 /* exclamation@2x.png in Resources */,
 				0CFD564219FC76BB000AFC9E /* bgSidewalkGreen@2x.png in Resources */,
 				5C1636D619EB22DC00BACC3E /* iconCheckGreen@2x.png in Resources */,
@@ -801,6 +825,7 @@
 				5C573F8519BAA86500677DDF /* Images.xcassets in Resources */,
 				0CDF02191A0C953B0019D160 /* Default-568h@2x.png in Resources */,
 				0CB7EE121A08A1F4005BB1DA /* iconComment@2x.png in Resources */,
+				0C0AEE901A0EC7F900943789 /* shot2@2x.png in Resources */,
 				0CF70E5E19FD77ED00184706 /* iconLocationBlue@2x.png in Resources */,
 				5CE03D7C19C63E0B00BE577D /* iconCalendar@2x.png in Resources */,
 			);
@@ -828,6 +853,7 @@
 				5C5ADB2B19C5623B00B5E29D /* AFHTTPRequestOperationManager.m in Sources */,
 				5CF2966319C60BF8007CF784 /* UIView+MQViewAdditions.m in Sources */,
 				0CFC0A431A0D6FC200B65C8A /* MQTutorialViewController.m in Sources */,
+				0C0AEE8B1A0EB9A800943789 /* MQTutorialCard.m in Sources */,
 				0C0AB7F21A00706200995072 /* MQPublicProfile.m in Sources */,
 				0C32660C1A057DA900B91FE6 /* MQPublicProfileViewController.m in Sources */,
 				5CFCB93F19F2496C00681270 /* MQSubmitApplicationViewController.m in Sources */,

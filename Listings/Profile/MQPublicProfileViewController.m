@@ -9,6 +9,7 @@
 #import "MQPublicProfileViewController.h"
 #import "MQReferencesViewController.h"
 #import "MQWebViewController.h"
+#import "MQResumeViewController.h"
 
 
 @interface MQPublicProfileViewController ()
@@ -186,7 +187,17 @@
     [base addSubview:lblMoreHeader];
     y += lblMoreHeader.frame.size.height+1.5f*padding;
     
-    NSArray *more = @[@"Twitter", @"Facebook", @"Resume", @"LinkedIn", @"References"];
+    NSMutableArray *more = [NSMutableArray arrayWithArray:@[@"Resume", @"References"]];
+    if ([self.publicProfile.facebookId isEqualToString:@"none"]==NO)
+        [more addObject:@"Facebook"];
+
+    if ([self.publicProfile.twitterId isEqualToString:@"none"]==NO)
+        [more addObject:@"Twitter"];
+
+    if ([self.publicProfile.linkedinId isEqualToString:@"none"]==NO)
+        [more addObject:@"Linkedin"];
+
+    
     UIImage *arrow = [UIImage imageNamed:@"forwardArrow.png"];
     UIFont *btnFont = [UIFont fontWithName:@"Heiti SC" size:14.0f];
     UIColor *black = [UIColor blackColor];
@@ -320,7 +331,15 @@
     NSLog(@"selectOption: %@", option);
     
     if ([option isEqualToString:@"resume"]){
+        if ([self.publicProfile.resume isEqualToString:@"none"]){
+            NSString *fullName = [NSString stringWithFormat:@"%@ %@", [self.publicProfile.firstName capitalizedString], [self.publicProfile.lastName capitalizedString]];
+            NSString *msg = [NSString stringWithFormat:@"%@ does not have a resume linked to this account.", fullName];
+            [self showAlertWithtTitle:@"No Resume" message:msg];
+            return;
+        }
         
+        MQResumeViewController *resumeVc = [[MQResumeViewController alloc] init];
+        [self.navigationController pushViewController:resumeVc animated:YES];
     }
     
     if ([option isEqualToString:@"references"]){

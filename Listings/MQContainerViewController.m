@@ -12,6 +12,7 @@
 #import "MQAccountViewController.h"
 #import "MQSignupViewController.h"
 #import "MQLoginViewController.h"
+#import "MQTutorialViewController.h"
 
 
 @interface MQContainerViewController ()
@@ -202,6 +203,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row==2){ // about radius
+        
+        MQTutorialViewController *tutorialVc = [[MQTutorialViewController alloc] init];
+        [self presentViewController:tutorialVc animated:YES completion:^{
+            
+        }];
+
         return;
     }
 

@@ -42,6 +42,7 @@
 		0CF70E6019FD797F00184706 /* iconCalendarBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF70E5F19FD797F00184706 /* iconCalendarBlue@2x.png */; };
 		0CF70E6219FD7DC900184706 /* iconSaveBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF70E6119FD7DC900184706 /* iconSaveBlue@2x.png */; };
 		0CFB269419FA047B00285121 /* MQMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFB269319FA047B00285121 /* MQMapViewController.m */; };
+		0CFC0A431A0D6FC200B65C8A /* MQTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC0A421A0D6FC200B65C8A /* MQTutorialViewController.m */; };
 		0CFD420719F980BE0020DC4B /* MQProfileListingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CFD420619F980BE0020DC4B /* MQProfileListingsViewController.m */; };
 		0CFD564219FC76BB000AFC9E /* bgSidewalkGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CFD564119FC76BB000AFC9E /* bgSidewalkGreen@2x.png */; };
 		0CFD564419FC7761000AFC9E /* bgBlurry1Red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CFD564319FC7761000AFC9E /* bgBlurry1Red@2x.png */; };
@@ -183,6 +184,8 @@
 		0CF70E6119FD7DC900184706 /* iconSaveBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconSaveBlue@2x.png"; sourceTree = "<group>"; };
 		0CFB269219FA047B00285121 /* MQMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQMapViewController.h; sourceTree = "<group>"; };
 		0CFB269319FA047B00285121 /* MQMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQMapViewController.m; sourceTree = "<group>"; };
+		0CFC0A411A0D6FC200B65C8A /* MQTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQTutorialViewController.h; sourceTree = "<group>"; };
+		0CFC0A421A0D6FC200B65C8A /* MQTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQTutorialViewController.m; sourceTree = "<group>"; };
 		0CFD420519F980BE0020DC4B /* MQProfileListingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQProfileListingsViewController.h; sourceTree = "<group>"; };
 		0CFD420619F980BE0020DC4B /* MQProfileListingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQProfileListingsViewController.m; sourceTree = "<group>"; };
 		0CFD564119FC76BB000AFC9E /* bgSidewalkGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgSidewalkGreen@2x.png"; sourceTree = "<group>"; };
@@ -353,6 +356,15 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		0CFC0A401A0D6F8600B65C8A /* About */ = {
+			isa = PBXGroup;
+			children = (
+				0CFC0A411A0D6FC200B65C8A /* MQTutorialViewController.h */,
+				0CFC0A421A0D6FC200B65C8A /* MQTutorialViewController.m */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
 		5C1636D719EB29AF00BACC3E /* IOSLinkedInAPI */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,6 +437,7 @@
 				5C573FB119BAAB0A00677DDF /* MQContainerViewController.h */,
 				5C573FB219BAAB0A00677DDF /* MQContainerViewController.m */,
 				5C573FA219BAA8E900677DDF /* BaseClasses */,
+				0CFC0A401A0D6F8600B65C8A /* About */,
 				0CFB269119FA045100285121 /* Search */,
 				5CF7408119C3A1AF001A0AF9 /* Profile */,
 				5C573FC319BAB6D300677DDF /* Listings */,
@@ -814,6 +827,7 @@
 				0C29162C19FDEEB0009BBD48 /* MQSearchLocationCell.m in Sources */,
 				5C5ADB2B19C5623B00B5E29D /* AFHTTPRequestOperationManager.m in Sources */,
 				5CF2966319C60BF8007CF784 /* UIView+MQViewAdditions.m in Sources */,
+				0CFC0A431A0D6FC200B65C8A /* MQTutorialViewController.m in Sources */,
 				0C0AB7F21A00706200995072 /* MQPublicProfile.m in Sources */,
 				0C32660C1A057DA900B91FE6 /* MQPublicProfileViewController.m in Sources */,
 				5CFCB93F19F2496C00681270 /* MQSubmitApplicationViewController.m in Sources */,

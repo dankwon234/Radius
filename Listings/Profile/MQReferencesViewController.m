@@ -49,7 +49,7 @@
     self.referencesTable.delegate = self;
     self.referencesTable.separatorStyle = UITableViewCellSelectionStyleNone;
     self.referencesTable.backgroundColor = [UIColor clearColor];
-    self.referencesTable.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 64.0f, 0.0f);
+    self.referencesTable.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 84.0f, 0.0f);
     [view addSubview:self.referencesTable];
     
     

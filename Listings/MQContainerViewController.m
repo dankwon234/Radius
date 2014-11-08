@@ -206,7 +206,7 @@
         
         MQTutorialViewController *tutorialVc = [[MQTutorialViewController alloc] init];
         [self presentViewController:tutorialVc animated:YES completion:^{
-            
+            [self.sectionsTable deselectRowAtIndexPath:[self.sectionsTable indexPathForSelectedRow] animated:NO];
         }];
 
         return;

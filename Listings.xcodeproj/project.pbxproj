@@ -31,12 +31,12 @@
 		0CB7EE101A0879C0005BB1DA /* MQReferenceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CB7EE0F1A0879C0005BB1DA /* MQReferenceCell.m */; };
 		0CB7EE121A08A1F4005BB1DA /* iconComment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CB7EE111A08A1F4005BB1DA /* iconComment@2x.png */; };
 		0CC452A71A008D1000689AC6 /* MQLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC452A61A008D1000689AC6 /* MQLocationManager.m */; };
+		0CD08A571A0DC05C004F7ABC /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CD08A561A0DC05C004F7ABC /* Default@2x.png */; };
 		0CDF02071A0C51EC0019D160 /* MQNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDF02061A0C51EC0019D160 /* MQNotificationView.m */; };
 		0CDF020D1A0C5B390019D160 /* exclamation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CDF020C1A0C5B390019D160 /* exclamation@2x.png */; };
 		0CDF02111A0C91AB0019D160 /* icon58.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CDF020E1A0C91AB0019D160 /* icon58.png */; };
 		0CDF02121A0C91AB0019D160 /* icon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CDF020F1A0C91AB0019D160 /* icon120.png */; };
 		0CDF02131A0C91AB0019D160 /* icon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CDF02101A0C91AB0019D160 /* icon80.png */; };
-		0CDF02171A0C93210019D160 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CDF02161A0C93210019D160 /* Default@2x.png */; };
 		0CDF02191A0C953B0019D160 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CDF02181A0C953B0019D160 /* Default-568h@2x.png */; };
 		0CF70E5E19FD77ED00184706 /* iconLocationBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF70E5D19FD77ED00184706 /* iconLocationBlue@2x.png */; };
 		0CF70E6019FD797F00184706 /* iconCalendarBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF70E5F19FD797F00184706 /* iconCalendarBlue@2x.png */; };
@@ -171,13 +171,13 @@
 		0CB7EE111A08A1F4005BB1DA /* iconComment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconComment@2x.png"; sourceTree = "<group>"; };
 		0CC452A51A008D1000689AC6 /* MQLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQLocationManager.h; sourceTree = "<group>"; };
 		0CC452A61A008D1000689AC6 /* MQLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQLocationManager.m; sourceTree = "<group>"; };
+		0CD08A561A0DC05C004F7ABC /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		0CDF02051A0C51EC0019D160 /* MQNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQNotificationView.h; sourceTree = "<group>"; };
 		0CDF02061A0C51EC0019D160 /* MQNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQNotificationView.m; sourceTree = "<group>"; };
 		0CDF020C1A0C5B390019D160 /* exclamation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exclamation@2x.png"; sourceTree = "<group>"; };
 		0CDF020E1A0C91AB0019D160 /* icon58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon58.png; sourceTree = "<group>"; };
 		0CDF020F1A0C91AB0019D160 /* icon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon120.png; sourceTree = "<group>"; };
 		0CDF02101A0C91AB0019D160 /* icon80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon80.png; sourceTree = "<group>"; };
-		0CDF02161A0C93210019D160 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		0CDF02181A0C953B0019D160 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		0CF70E5D19FD77ED00184706 /* iconLocationBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconLocationBlue@2x.png"; sourceTree = "<group>"; };
 		0CF70E5F19FD797F00184706 /* iconCalendarBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconCalendarBlue@2x.png"; sourceTree = "<group>"; };
@@ -642,7 +642,7 @@
 			isa = PBXGroup;
 			children = (
 				0CDF02181A0C953B0019D160 /* Default-568h@2x.png */,
-				0CDF02161A0C93210019D160 /* Default@2x.png */,
+				0CD08A561A0DC05C004F7ABC /* Default@2x.png */,
 				0CDF020E1A0C91AB0019D160 /* icon58.png */,
 				0CDF020F1A0C91AB0019D160 /* icon120.png */,
 				0CDF02101A0C91AB0019D160 /* icon80.png */,
@@ -794,7 +794,7 @@
 				5C0C93CA19BEB4B60011086B /* shadow@2x.png in Resources */,
 				0CFD564619FC8EC3000AFC9E /* iconHamburger@2x.png in Resources */,
 				5C101A1719E8AF280046F7F1 /* bgSidewalk@2x.png in Resources */,
-				0CDF02171A0C93210019D160 /* Default@2x.png in Resources */,
+				0CD08A571A0DC05C004F7ABC /* Default@2x.png in Resources */,
 				0CF70E6219FD7DC900184706 /* iconSaveBlue@2x.png in Resources */,
 				5CE03D7819C6385F00BE577D /* iconLocation@2x.png in Resources */,
 				0C56503F19FA49FB00BD6C36 /* backArrow@2x.png in Resources */,

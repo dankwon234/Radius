@@ -233,7 +233,7 @@
                                                         attributes:@{NSFontAttributeName:[MQReferenceCell textLabelFont]}
                                                            context:nil];
     
-    return boundingRect.size.height+44.0f;
+    return boundingRect.size.height+52.0f;
 }
 
 

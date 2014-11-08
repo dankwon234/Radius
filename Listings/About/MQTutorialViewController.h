@@ -8,6 +8,6 @@
 
 #import "MQViewController.h"
 
-@interface MQTutorialViewController : MQViewController
+@interface MQTutorialViewController : MQViewController <UIScrollViewDelegate>
 
 @end

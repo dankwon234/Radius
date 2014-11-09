@@ -34,6 +34,7 @@
     self.theWebview = [[UIWebView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height)];
     self.theWebview.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight);
     self.theWebview.delegate = self;
+    self.theWebview.scalesPageToFit = YES;
     [view addSubview:self.theWebview];
     
     self.view = view;

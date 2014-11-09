@@ -53,5 +53,9 @@ typedef void (^MQWebServiceRequestCompletionBlock)(id result, NSError *error);
 - (void)fetchReferences:(NSString *)profileId completion:(MQWebServiceRequestCompletionBlock)completionBlock;
 - (void)requestReferences:(NSArray *)contacts forProfile:(MQProfile *)profile completion:(MQWebServiceRequestCompletionBlock)completionBlock;
 
+// Introductions
+- (void)submitIntroduction:(NSDictionary *)introduction completion:(MQWebServiceRequestCompletionBlock)completionBlock;
+
+
 
 @end

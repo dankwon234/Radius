@@ -17,6 +17,7 @@
 		0C0AEE8F1A0EC7F900943789 /* shot1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C0AEE8D1A0EC7F900943789 /* shot1@2x.png */; };
 		0C0AEE901A0EC7F900943789 /* shot2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C0AEE8E1A0EC7F900943789 /* shot2@2x.png */; };
 		0C0AEE921A0ECC4100943789 /* shot7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C0AEE911A0ECC4100943789 /* shot7@2x.png */; };
+		0C0AEE951A0EE40400943789 /* MQSubmitIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0AEE941A0EE40400943789 /* MQSubmitIntroViewController.m */; };
 		0C22AEC719FA21180067F8D7 /* MQResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C22AEC619FA21180067F8D7 /* MQResumeViewController.m */; };
 		0C29162C19FDEEB0009BBD48 /* MQSearchLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C29162B19FDEEB0009BBD48 /* MQSearchLocationCell.m */; };
 		0C29162E19FDF09D009BBD48 /* iconDeleteRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C29162D19FDF09D009BBD48 /* iconDeleteRed@2x.png */; };
@@ -152,6 +153,8 @@
 		0C0AEE8D1A0EC7F900943789 /* shot1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shot1@2x.png"; sourceTree = "<group>"; };
 		0C0AEE8E1A0EC7F900943789 /* shot2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shot2@2x.png"; sourceTree = "<group>"; };
 		0C0AEE911A0ECC4100943789 /* shot7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shot7@2x.png"; sourceTree = "<group>"; };
+		0C0AEE931A0EE40400943789 /* MQSubmitIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQSubmitIntroViewController.h; sourceTree = "<group>"; };
+		0C0AEE941A0EE40400943789 /* MQSubmitIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQSubmitIntroViewController.m; sourceTree = "<group>"; };
 		0C22AEC519FA21180067F8D7 /* MQResumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQResumeViewController.h; sourceTree = "<group>"; };
 		0C22AEC619FA21180067F8D7 /* MQResumeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQResumeViewController.m; sourceTree = "<group>"; };
 		0C29162A19FDEEB0009BBD48 /* MQSearchLocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQSearchLocationCell.h; sourceTree = "<group>"; };
@@ -686,6 +689,8 @@
 				0C524DA81A00D26900EB2710 /* MQProfileCollectionCell.m */,
 				0C32660A1A057DA900B91FE6 /* MQPublicProfileViewController.h */,
 				0C32660B1A057DA900B91FE6 /* MQPublicProfileViewController.m */,
+				0C0AEE931A0EE40400943789 /* MQSubmitIntroViewController.h */,
+				0C0AEE941A0EE40400943789 /* MQSubmitIntroViewController.m */,
 				5CC6E10219EF4DB600373C9A /* MQLoginViewController.h */,
 				5CC6E10319EF4DB600373C9A /* MQLoginViewController.m */,
 				5CF8482519F1BEDA00DCCD7F /* MQAccountViewController.h */,
@@ -875,6 +880,7 @@
 				5C573FCC19BAB83300677DDF /* MQListing.m in Sources */,
 				0CB7EE101A0879C0005BB1DA /* MQReferenceCell.m in Sources */,
 				0CAC0C951A05FF84007C58E9 /* MQReference.m in Sources */,
+				0C0AEE951A0EE40400943789 /* MQSubmitIntroViewController.m in Sources */,
 				0CFD564919FCA510000AFC9E /* MQVideoViewController.m in Sources */,
 				5C5ADB2C19C5623B00B5E29D /* AFHTTPSessionManager.m in Sources */,
 				5CE459FB19D8BF0600635A67 /* MQSocialAccountsMgr.m in Sources */,

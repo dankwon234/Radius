@@ -127,6 +127,12 @@ static NSString *cellId = @"cellId";
     [btnLocation setBackgroundImage:imgLocation forState:UIControlStateNormal];
     [btnLocation addTarget:self action:@selector(showMap:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnLocation];
+    
+    if ([self.signalCheck checkSignal]==NO){
+        [self showAlertWithtTitle:@"No Connection" message:@"Please find an internet connection."];
+        return;
+    }
+
 
     [self.loadingIndicator startLoading];
     [self.locationMgr findLocation:^(NSError *error){

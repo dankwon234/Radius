@@ -9,7 +9,7 @@
 #import "MQViewController.h"
 #import "MQPublicProfile.h"
 
-@interface MQPublicProfileViewController : MQViewController <UIScrollViewDelegate>
+@interface MQPublicProfileViewController : MQViewController <UIScrollViewDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) MQPublicProfile *publicProfile;
 @end

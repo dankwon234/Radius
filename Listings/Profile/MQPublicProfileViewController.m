@@ -10,6 +10,9 @@
 #import "MQReferencesViewController.h"
 #import "MQWebViewController.h"
 #import "MQResumeViewController.h"
+#import "MQSignupViewController.h"
+#import "MQLoginViewController.h"
+#import "MQSubmitIntroViewController.h"
 
 
 @interface MQPublicProfileViewController ()
@@ -374,6 +377,17 @@
 - (void)contactProfile:(UIButton *)btn
 {
     NSLog(@"contactProfile:");
+    if (self.profile.populated){
+        MQSubmitIntroViewController *submitIntroVc = [[MQSubmitIntroViewController alloc] init];
+        submitIntroVc.publicProfile = self.publicProfile;
+        [self.navigationController pushViewController:submitIntroVc animated:YES];
+        return;
+    }
+    
+    UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"Apply" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Sign Up", @"Log In", nil];
+    actionsheet.frame = CGRectMake(0.0f, 150.0f, self.view.frame.size.width, 100.0f);
+    actionsheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+    [actionsheet showInView:[UIApplication sharedApplication].keyWindow];
 }
 
 - (void)viewPhoto:(UIGestureRecognizer *)tap
@@ -394,6 +408,35 @@
     if (scrollView.contentOffset.y < -80.0f)
         [self viewFullImage:self.publicProfile.imageData];
 }
+
+
+#pragma mark - UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"actionSheet clickedButtonAtIndex: %d", (int)buttonIndex);
+    
+    if (buttonIndex==0) { // sign up
+        MQSignupViewController *signupVc = [[MQSignupViewController alloc] init];
+        UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:signupVc];
+        [self presentViewController:navCtr animated:YES completion:^{
+            
+        }];
+    }
+    
+    if (buttonIndex==1) { // log in
+        MQLoginViewController *loginVc = [[MQLoginViewController alloc] init];
+        UINavigationController *navCtr = [[UINavigationController alloc] initWithRootViewController:loginVc];
+        [self presentViewController:navCtr animated:YES completion:^{
+            
+        }];
+        
+    }
+    
+    
+}
+
+
+
 
 - (void)didReceiveMemoryWarning
 {

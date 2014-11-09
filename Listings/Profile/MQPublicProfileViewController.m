@@ -341,8 +341,9 @@
             return;
         }
         
-        MQResumeViewController *resumeVc = [[MQResumeViewController alloc] init];
-        [self.navigationController pushViewController:resumeVc animated:YES];
+        MQWebViewController *webVc = [[MQWebViewController alloc] init];
+        webVc.address = [kBaseUrl stringByAppendingString:[NSString stringWithFormat:@"site/pdf/%@", self.publicProfile.resume]];
+        [self.navigationController pushViewController:webVc animated:YES];
     }
     
     if ([option isEqualToString:@"references"]){

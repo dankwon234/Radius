@@ -261,6 +261,12 @@ NSString *bioPlaceholder = @"Bio (tell us a little about yourself)";
             }
         }
         
+        if (i==2){ // resume
+            if ([self.profile.resume isEqualToString:@"none"]==NO)
+                textField.text = @"Resume";
+
+        }
+        
         
         UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 30.0f, h)];
         [textField setLeftViewMode:UITextFieldViewModeAlways];

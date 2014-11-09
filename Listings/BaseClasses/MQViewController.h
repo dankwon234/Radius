@@ -14,6 +14,7 @@
 #import "MQLocationManager.h"
 #import "Config.h"
 #import "MQNotificationView.h"
+#import "SignalCheck.h"
 
 
 @interface MQViewController : UIViewController
@@ -23,6 +24,8 @@
 @property (strong, nonatomic) MQProfile *profile;
 @property (strong, nonatomic) UIView *fullImageView;
 @property (strong, nonatomic) UIImageView *fullImage;
+@property (strong, nonatomic) SignalCheck *signalCheck;
+
 - (UIView *)baseView:(BOOL)navCtr;
 - (void)showAlertWithtTitle:(NSString *)title message:(NSString *)msg;
 - (void)showAlertWithOptions:(NSString *)title message:(NSString *)msg;

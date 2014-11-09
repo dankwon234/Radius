@@ -13,6 +13,7 @@
 @synthesize fullImageView;
 @synthesize fullImage;
 @synthesize notificationView;
+@synthesize signalCheck;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

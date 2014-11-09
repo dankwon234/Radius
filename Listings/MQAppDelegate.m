@@ -50,9 +50,11 @@
     
     NSLog(@"application didRegisterForRemoteNotificationsWithDeviceToken: %@", token);
     MQProfile *profile = [MQProfile sharedProfile];
+    if ([profile.deviceToken isEqualToString:token]) // already the same, no need to update
+        return;
+    
     profile.deviceToken = token;
     [profile updateProfile];
-    
 }
 
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings

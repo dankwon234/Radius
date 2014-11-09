@@ -37,4 +37,5 @@
 - (void)exitFullImage:(UIButton *)btn;
 - (void)viewFullImage:(UIImage *)image;
 - (void)showNotification:(NSString *)title withMessage:(NSString *)message;
+- (BOOL)checkConnection;
 @end

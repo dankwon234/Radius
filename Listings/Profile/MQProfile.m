@@ -198,7 +198,7 @@
 
 - (void)refreshProfileInfo
 {
-    NSLog(@"REFRESH PROFILE INFO: %@", self.uniqueId);
+//    NSLog(@"REFRESH PROFILE INFO: %@", self.uniqueId);
     if ([self.uniqueId isEqualToString:@"none"])
         return;
     

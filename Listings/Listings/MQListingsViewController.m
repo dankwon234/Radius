@@ -436,8 +436,10 @@ static NSString *cellId = @"cellId";
     cell.lblLocation.text = [NSString stringWithFormat:@"%@, %@", [listing.city capitalizedString], [listing.state uppercaseString]];
     cell.tag = indexPath.row+1000;
     
-    if ([listing.icon isEqualToString:@"none"])
+    if ([listing.icon isEqualToString:@"none"]){
+        cell.icon.image = [UIImage imageNamed:@"logo.png"];
         return cell;
+    }
 
     if (listing.iconData){
         cell.icon.image = listing.iconData;

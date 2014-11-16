@@ -48,7 +48,6 @@ static NSString *profileCellId = @"profileCellId";
 - (void)loadView
 {
     UIView *view = [self baseView:YES];
-//    CGRect frame = view.frame;
     view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgLegsBlue.png"]];
 
     

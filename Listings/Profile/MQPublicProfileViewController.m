@@ -137,7 +137,7 @@
     self.lblBio.lineBreakMode = NSLineBreakByWordWrapping;
     self.lblBio.textAlignment = NSTextAlignmentCenter;
     self.lblBio.font = font;
-    self.lblBio.text = self.publicProfile.bio;
+    self.lblBio.text = ([self.publicProfile.bio isEqualToString:@"none"]) ? @"" : self.publicProfile.bio;
     [base addSubview:self.lblBio];
     y += boundingRect.size.height+2.5f*padding;
     

@@ -138,7 +138,8 @@ static NSString *cellId = @"cellId";
     [self.locationMgr findLocation:^(NSError *error){
         if (error){
             [self.loadingIndicator stopLoading];
-            [self showAlertWithtTitle:@"Error" message:@"Failed to Get Your Location. Please check your settings to make sure location services is ativated (under 'Privacy' section)."];
+            
+            [self showNotification:@"Error" withMessage:@"Failed to Get Your Location. Please check your settings to make sure location services is ativated (under 'Privacy' section).\n\nTo choose your location, tap the icon in the upper right corner."];
             
             return;
         }

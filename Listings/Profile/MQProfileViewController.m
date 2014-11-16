@@ -620,12 +620,14 @@ NSString *bioPlaceholder = @"Bio (tell us a little about yourself)";
         [self.loadingIndicator startLoading];
         [self.socialMgr requestTwitterAccess:^(id result, NSError *error){
             if (error){
+                [self.loadingIndicator stopLoading];
                 [self showAlertWithtTitle:@"Error" message:[error localizedDescription]];
                 return;
             }
             
             NSArray *twitterAccounts = (NSArray *)result;
             if (twitterAccounts.count == 0){
+                [self.loadingIndicator stopLoading];
                 [self showAlertWithtTitle:@"No Twitter Accounts" message:@"We did not find any Twitter accounts associated with this device."];
                 return;
             }

@@ -20,6 +20,7 @@
 {
     self = [super init];
     if (self){
+        self.currentLocation = CLLocationCoordinate2DMake(40.7639869f, -73.9794185f); // default location is nyc
         self.cities = [NSMutableArray array];
     }
     return self;

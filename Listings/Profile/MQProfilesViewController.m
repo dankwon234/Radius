@@ -31,6 +31,8 @@ static NSString *profileCellId = @"profileCellId";
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
         self.needsRefresh = YES;
         self.locationMgr = [MQLocationManager sharedLocationManager];
         self.profiles = [NSMutableArray array];
@@ -218,7 +220,7 @@ static NSString *profileCellId = @"profileCellId";
     self.profilesTable.backgroundView = background;
     
     [self.profilesTable registerClass:[MQProfileCollectionCell class] forCellWithReuseIdentifier:profileCellId];
-    self.profilesTable.contentInset = UIEdgeInsetsMake(0.0f, 0, 12.0f, 0);
+    self.profilesTable.contentInset = UIEdgeInsetsMake(0.0f, 0, 36.0f, 0);
     self.profilesTable.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight);
     self.profilesTable.dataSource = self;
     self.profilesTable.delegate = self;
@@ -234,7 +236,8 @@ static NSString *profileCellId = @"profileCellId";
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          CGRect frame = self.profilesTable.frame;
-                         self.profilesTable.frame = CGRectMake(frame.origin.x, 64.0f, frame.size.width, frame.size.height-20.0f);
+//                         self.profilesTable.frame = CGRectMake(frame.origin.x, 64.0f, frame.size.width, frame.size.height-20.0f);
+                         self.profilesTable.frame = CGRectMake(frame.origin.x, 0.0f, frame.size.width, frame.size.height+64.0f);
                      }
                      completion:^(BOOL finished){
                          [self.view bringSubviewToFront:self.loadingIndicator];

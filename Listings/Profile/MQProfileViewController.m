@@ -229,7 +229,6 @@ NSString *bioPlaceholder = @"Bio (tell us a little about yourself)";
     y += lblHeaderExperience.frame.size.height+0.5f;
 
 
-//    NSArray *experienceFields = @[@"Skills (separated by commas)", @"Add School or College", @"Resume", @"Video"];
     NSArray *experienceFields = @[@"Skills (separated by commas)", @"Add School or College", @"Resume"];
     for (int i=0; i<experienceFields.count; i++) {
         UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0.0f, y, width, h)];
@@ -966,7 +965,7 @@ NSString *bioPlaceholder = @"Bio (tell us a little about yourself)";
                 NSDictionary *results = (NSDictionary *)result;
                 NSLog(@"%@", [results description]);
                 
-                NSString *msg = [NSString stringWithFormat:@"We sent a link to %@.\n\nTo upload your resume, click the link and login with your email and password.", [self.profile.email uppercaseString]];
+                NSString *msg = [NSString stringWithFormat:@"We sent a link to %@\n\nTo upload your resume, click the link and login with your email and password.", [self.profile.email uppercaseString]];
                 [self showAlertWithtTitle:@"Upload Resume" message:msg];
             }];
             

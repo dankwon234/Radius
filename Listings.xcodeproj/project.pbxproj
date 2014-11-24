@@ -12,6 +12,7 @@
 		0C04439B1A06FCC800CC927B /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C0443991A06FCC800CC927B /* AddressBook.framework */; };
 		0C04439C1A06FCC800CC927B /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C04439A1A06FCC800CC927B /* AddressBookUI.framework */; };
 		0C04500C1A03594C00CBFBF9 /* iconList@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C04500B1A03594C00CBFBF9 /* iconList@2x.png */; };
+		0C0942021A22C3F100CBC21A /* MQSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0942011A22C3F100CBC21A /* MQSession.m */; };
 		0C0AB7F21A00706200995072 /* MQPublicProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0AB7F11A00706200995072 /* MQPublicProfile.m */; };
 		0C0AEE8B1A0EB9A800943789 /* MQTutorialCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0AEE8A1A0EB9A800943789 /* MQTutorialCard.m */; };
 		0C0AEE8F1A0EC7F900943789 /* shot1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C0AEE8D1A0EC7F900943789 /* shot1@2x.png */; };
@@ -146,6 +147,8 @@
 		0C0443991A06FCC800CC927B /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		0C04439A1A06FCC800CC927B /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		0C04500B1A03594C00CBFBF9 /* iconList@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconList@2x.png"; sourceTree = "<group>"; };
+		0C0942001A22C3F100CBC21A /* MQSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQSession.h; sourceTree = "<group>"; };
+		0C0942011A22C3F100CBC21A /* MQSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQSession.m; sourceTree = "<group>"; };
 		0C0AB7F01A00706200995072 /* MQPublicProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQPublicProfile.h; sourceTree = "<group>"; };
 		0C0AB7F11A00706200995072 /* MQPublicProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQPublicProfile.m; sourceTree = "<group>"; };
 		0C0AEE891A0EB9A800943789 /* MQTutorialCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQTutorialCard.h; sourceTree = "<group>"; };
@@ -460,6 +463,8 @@
 				5C573F8219BAA86500677DDF /* MQAppDelegate.m */,
 				5C573FB119BAAB0A00677DDF /* MQContainerViewController.h */,
 				5C573FB219BAAB0A00677DDF /* MQContainerViewController.m */,
+				0C0942001A22C3F100CBC21A /* MQSession.h */,
+				0C0942011A22C3F100CBC21A /* MQSession.m */,
 				5C573FA219BAA8E900677DDF /* BaseClasses */,
 				0CFC0A401A0D6F8600B65C8A /* About */,
 				0CFB269119FA045100285121 /* Search */,
@@ -889,6 +894,7 @@
 				5C5ADB2E19C5623B00B5E29D /* AFSecurityPolicy.m in Sources */,
 				5CC6E10419EF4DB600373C9A /* MQLoginViewController.m in Sources */,
 				0CFB269419FA047B00285121 /* MQMapViewController.m in Sources */,
+				0C0942021A22C3F100CBC21A /* MQSession.m in Sources */,
 				5CEA0D9D19C68E37004234C7 /* MQListingSummaryCell.m in Sources */,
 				5C573F7F19BAA86500677DDF /* main.m in Sources */,
 				0CDF02071A0C51EC0019D160 /* MQNotificationView.m in Sources */,

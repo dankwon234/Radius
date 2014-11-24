@@ -88,7 +88,7 @@
     self.theScrollview.contentInset = UIEdgeInsetsMake(kTopInset, 0.0f, 0.0f, 0.0f);
     [self.theScrollview addObserver:self forKeyPath:@"contentOffset" options:0 context:nil];
     
-    UIView *base = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 1000.0f)];
+    UIView *base = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, 2000.0f)];
     base.backgroundColor = [UIColor whiteColor];
     base.alpha = 0.90f;
     
@@ -165,7 +165,7 @@
     y += shadow.frame.size.height+padding;
     
     UIFont *summaryFont = [UIFont systemFontOfSize:14.0f];
-    CGRect boudingRect = [self.listing.summary boundingRectWithSize:CGSizeMake(width, 450.0f)
+    CGRect boudingRect = [self.listing.summary boundingRectWithSize:CGSizeMake(width, 1450.0f)
                                                             options:NSStringDrawingUsesLineFragmentOrigin
                                                          attributes:@{NSFontAttributeName:summaryFont}
                                                             context:NULL];

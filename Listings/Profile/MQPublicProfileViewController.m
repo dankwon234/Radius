@@ -13,6 +13,7 @@
 #import "MQSignupViewController.h"
 #import "MQLoginViewController.h"
 #import "MQSubmitIntroViewController.h"
+#import "MQWebServices.h"
 
 
 @interface MQPublicProfileViewController ()
@@ -278,6 +279,29 @@
 
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    NSString *publicProfileId = self.publicProfile.uniqueId;
+    
+    NSLog(@"%@", [self.session.profilesViewed description]);
+    
+    if ([self.session.profilesViewed containsObject:publicProfileId]==YES)
+        return;
+    
+    [[MQWebServices sharedInstance] incrementView:self.publicProfile completion:^(id result, NSError *error){
+        if (error){
+            return;
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.session.profilesViewed addObject:publicProfileId];
+        });
+        
+    }];
+}
+
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -334,16 +358,24 @@
     NSLog(@"selectOption: %@", option);
     
     if ([option isEqualToString:@"resume"]){
-        if ([self.publicProfile.resume isEqualToString:@"none"]){
-            NSString *fullName = [NSString stringWithFormat:@"%@ %@", [self.publicProfile.firstName capitalizedString], [self.publicProfile.lastName capitalizedString]];
-            NSString *msg = [NSString stringWithFormat:@"%@ does not have a resume linked to this account.", fullName];
-            [self showAlertWithtTitle:@"No Resume" message:msg];
+        if (self.profile.populated){ // only registered users can view resume
+            if ([self.publicProfile.resume isEqualToString:@"none"]){
+                NSString *fullName = [NSString stringWithFormat:@"%@ %@", [self.publicProfile.firstName capitalizedString], [self.publicProfile.lastName capitalizedString]];
+                NSString *msg = [NSString stringWithFormat:@"%@ does not have a resume linked to this account.", fullName];
+                [self showAlertWithtTitle:@"No Resume" message:msg];
+                return;
+            }
+            
+            MQWebViewController *webVc = [[MQWebViewController alloc] init];
+            webVc.address = [kBaseUrl stringByAppendingString:[NSString stringWithFormat:@"site/pdf/%@", self.publicProfile.resume]];
+            [self.navigationController pushViewController:webVc animated:YES];
             return;
         }
         
-        MQWebViewController *webVc = [[MQWebViewController alloc] init];
-        webVc.address = [kBaseUrl stringByAppendingString:[NSString stringWithFormat:@"site/pdf/%@", self.publicProfile.resume]];
-        [self.navigationController pushViewController:webVc animated:YES];
+        UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"View Resume" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Sign Up", @"Log In", nil];
+        actionsheet.frame = CGRectMake(0.0f, 150.0f, self.view.frame.size.width, 100.0f);
+        actionsheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+        [actionsheet showInView:[UIApplication sharedApplication].keyWindow];
     }
     
     if ([option isEqualToString:@"references"]){
@@ -385,7 +417,7 @@
         return;
     }
     
-    UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"Apply" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Sign Up", @"Log In", nil];
+    UIActionSheet *actionsheet = [[UIActionSheet alloc] initWithTitle:@"Connect" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Sign Up", @"Log In", nil];
     actionsheet.frame = CGRectMake(0.0f, 150.0f, self.view.frame.size.width, 100.0f);
     actionsheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
     [actionsheet showInView:[UIApplication sharedApplication].keyWindow];

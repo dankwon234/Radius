@@ -30,7 +30,8 @@
 @synthesize resume;
 @synthesize video;
 @synthesize references;
-
+@synthesize numViews;
+@synthesize numReferences;
 
 - (id)init
 {
@@ -51,6 +52,8 @@
         self.video = @"none";
         self.schools = [NSMutableArray array];
         self.skills = [NSMutableArray array];
+        self.numViews = 0;
+        self.numReferences = 0;
         self.references = nil;
     }
     
@@ -81,6 +84,9 @@
     self.video = [profileInfo objectForKey:@"video"];
     self.skills = [NSMutableArray arrayWithArray:[profileInfo objectForKey:@"skills"]];
     self.schools = [NSMutableArray arrayWithArray:[profileInfo objectForKey:@"schools"]];
+    self.numReferences = [[profileInfo objectForKey:@"numReferences"] intValue];
+    self.numViews = [[profileInfo objectForKey:@"numViews"] intValue];
+
 }
 
 - (void)fetchImage

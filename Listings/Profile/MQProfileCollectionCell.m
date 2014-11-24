@@ -20,6 +20,7 @@
 @synthesize lblName;
 @synthesize lblLocation;
 @synthesize lblSkills;
+@synthesize lblStats;
 
 
 - (id)initWithFrame:(CGRect)frame
@@ -60,7 +61,6 @@
         y = self.icon.frame.origin.y+self.icon.frame.size.height+2.0f;
         
         self.lblName = [[UILabel alloc] initWithFrame:CGRectMake(12.0f, y, baseFrame.size.width-24.0f, 18.0f)];
-//        [self.lblName addObserver:self forKeyPath:@"text" options:0 context:nil];
         self.lblName.textAlignment = NSTextAlignmentCenter;
         self.lblName.textColor = [UIColor darkGrayColor];
         self.lblName.numberOfLines = 0;
@@ -84,17 +84,28 @@
         [self.lblSkills addObserver:self forKeyPath:@"text" options:0 context:nil];
         [self.base addSubview:self.lblSkills];
 
+        // the following views are pinned to the bottom:
         
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0.0f, baseFrame.size.height-24.0f, baseFrame.size.width, 0.5f)];
+        y = baseFrame.size.height-42.0f;
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0.0f, y, baseFrame.size.width, 0.5f)];
         line.backgroundColor = [UIColor grayColor];
         [self.base addSubview:line];
         
-        self.lblLocation = [[UILabel alloc] initWithFrame:CGRectMake(12.0f, baseFrame.size.height-18.0f, baseFrame.size.width-24.0f, 12.0f)];
+        y += 6.0f;
+        self.lblLocation = [[UILabel alloc] initWithFrame:CGRectMake(12.0f, y, baseFrame.size.width-24.0f, 12.0f)];
         self.lblLocation.textAlignment = NSTextAlignmentCenter;
         self.lblLocation.textColor = [UIColor darkGrayColor];
         self.lblLocation.backgroundColor = [UIColor clearColor];
         self.lblLocation.font = [UIFont fontWithName:@"Heiti SC" size:12.0f];
         [self.base addSubview:self.lblLocation];
+        y += self.lblLocation.frame.size.height+4.0f;
+        
+        self.lblStats = [[UILabel alloc] initWithFrame:CGRectMake(12.0f, y, baseFrame.size.width-24.0f, 12.0f)];
+        self.lblStats.textAlignment = NSTextAlignmentCenter;
+        self.lblStats.textColor = kOrange;
+        self.lblStats.backgroundColor = [UIColor clearColor];
+        self.lblStats.font = [UIFont fontWithName:@"Heiti SC" size:9.0f];
+        [self.base addSubview:self.lblStats];
 
         
         [self.contentView addSubview:self.base];

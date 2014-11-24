@@ -15,6 +15,7 @@
 #import "Config.h"
 #import "MQNotificationView.h"
 #import "SignalCheck.h"
+#import "MQSession.h"
 
 
 @interface MQViewController : UIViewController
@@ -22,6 +23,7 @@
 @property (strong, nonatomic) MQLoadingIndicator *loadingIndicator;
 @property (strong, nonatomic) MQNotificationView *notificationView;
 @property (strong, nonatomic) MQProfile *profile;
+@property (strong, nonatomic) MQSession *session;
 @property (strong, nonatomic) UIView *fullImageView;
 @property (strong, nonatomic) UIImageView *fullImage;
 @property (strong, nonatomic) SignalCheck *signalCheck;

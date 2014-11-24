@@ -14,6 +14,7 @@
 @synthesize fullImage;
 @synthesize notificationView;
 @synthesize signalCheck;
+@synthesize session;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -22,6 +23,7 @@
     if (self) {
 //        self.edgesForExtendedLayout = UIRectEdgeNone;
         self.profile = [MQProfile sharedProfile];
+        self.session = [MQSession currentSession];
     }
     return self;
 }

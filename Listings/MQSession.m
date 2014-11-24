@@ -27,8 +27,14 @@
 
 + (MQSession *)currentSession
 {
-    MQSession *session = [[MQSession alloc] init];
-    return session;
+    static MQSession *shared;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        shared = [[MQSession alloc] init];
+    });
+    
+
+    return shared;
 }
 
 

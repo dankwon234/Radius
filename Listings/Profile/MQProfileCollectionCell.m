@@ -128,7 +128,7 @@
     
     if ([keyPath isEqualToString:@"text"]){
         CGRect frame = self.lblSkills.frame;
-        CGRect boudingRect = [self.lblSkills.text boundingRectWithSize:CGSizeMake(frame.size.width, 250.0f)
+        CGRect boudingRect = [self.lblSkills.text boundingRectWithSize:CGSizeMake(frame.size.width, 70.0f)
                                                                options:NSStringDrawingUsesLineFragmentOrigin
                                                             attributes:@{NSFontAttributeName:self.lblSkills.font}
                                                                context:NULL];

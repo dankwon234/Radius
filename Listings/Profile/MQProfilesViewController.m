@@ -299,6 +299,8 @@ static NSString *profileCellId = @"profileCellId";
     else{
         cell.lblSkills.alpha = 0.0f;
     }
+    
+    cell.lblStats.text = [NSString stringWithFormat: @"%d views \u2022 %d references", profile.numViews, profile.numReferences];
         
     
     if (profile.imageData){

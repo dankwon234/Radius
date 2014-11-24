@@ -278,7 +278,6 @@ static NSString *profileCellId = @"profileCellId";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    //    NSLog(@"collectionView numberOfItemsInSection: %d", self.posts.count);
     return self.profiles.count;
 }
 

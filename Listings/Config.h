@@ -18,7 +18,7 @@
 #define kListingCellWidth 296.0f
 #define kHeaderCellHeight 150.0f
 #define kProfileCellWidth 142.0f
-#define kProfileCellHeight 200.0f
+#define kProfileCellHeight 224.0f
 
 #define kHideCellNotification @"hideCellNotification"
 #define kNewSearchNotification @"NewSearchNotification"

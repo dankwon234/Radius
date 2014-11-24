@@ -262,6 +262,39 @@
 }
 
 
+- (void)incrementView:(MQPublicProfile *)profile completion:(MQWebServiceRequestCompletionBlock)completionBlock
+{
+    AFHTTPRequestOperationManager *manager = [self requestManagerForJSONSerializiation];
+    
+    [manager PUT:[kPathProfile stringByAppendingString:profile.uniqueId]
+      parameters:@{@"action":@"addView"}
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSLog(@"JSON: %@", responseObject);
+             
+             NSDictionary *responseDictionary = (NSDictionary *)responseObject;
+             NSDictionary *results = [responseDictionary objectForKey:@"results"];
+             NSString *confirmation = [results objectForKey:@"confirmation"];
+             
+             if ([confirmation isEqualToString:@"success"]){
+                 if (completionBlock)
+                     completionBlock(results, nil);
+             }
+             else{
+                 if (completionBlock){
+                     NSLog(@"updateProfile: UPDATE FAILED");
+                     completionBlock(results, [NSError errorWithDomain:kErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey:results[@"message"]}]);
+                 }
+             }
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"FAILURE BLOCK: %@", [error localizedDescription]);
+             if (completionBlock)
+                 completionBlock(nil, error);
+         }];
+
+}
+
+
 // - - - - - - - - - - - - - - - - - - LISTINGS - - - - - - - - - - - - - - - - - -
 #pragma mark - Listings
 

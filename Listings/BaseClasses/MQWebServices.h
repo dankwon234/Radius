@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MQProfile.h"
+#import "MQPublicProfile.h"
 #import "MQApplication.h"
 
 typedef void (^MQWebServiceRequestCompletionBlock)(id result, NSError *error);
@@ -24,6 +25,9 @@ typedef void (^MQWebServiceRequestCompletionBlock)(id result, NSError *error);
 - (void)fetchProfileInfo:(MQProfile *)profile completionBlock:(MQWebServiceRequestCompletionBlock)completionBlock;
 - (void)resumeRequest:(MQProfile *)profile completionBlock:(MQWebServiceRequestCompletionBlock)completionBlock;
 - (void)fetchProfiles:(NSArray *)locations completionBlock:(MQWebServiceRequestCompletionBlock)completionBlock;
+
+// Public Profile
+- (void)incrementView:(MQPublicProfile *)profile completion:(MQWebServiceRequestCompletionBlock)completionBlock;
 
 
 // Listings
